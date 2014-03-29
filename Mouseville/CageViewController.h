@@ -10,5 +10,9 @@
 
 @interface CageViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *NumCagesLabel;
+@property (weak, nonatomic) IBOutlet UIView *CageInfo;
+@property (weak, nonatomic) IBOutlet UILabel *CageName;
+
+@property (weak, nonatomic) IBOutlet UITextView *CageNotes;
 
 @end
