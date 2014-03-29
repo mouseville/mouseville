@@ -58,15 +58,23 @@
     cage.cage_name = @"Test Cage";
     cage.notes = @"This is a test cage";
     
-    /*NSSet *mice = [NSSet array];
+    NSArray *mice = [NSArray array];
     for(int i = 0; i < 5; i++) {
         MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
         mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
      //   mouse.ca
         mice = [mice arrayByAddingObject:mouse];
-    }*/
+    }
     
+    cage.mouseDetails = [NSSet setWithArray:mice];
     
+    // take care of CageEdit View
+    [self.CageInfo.layer setCornerRadius:30.0f];
+    [self.CageInfo.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.CageInfo.layer setBorderWidth:1.5f];
+    
+    [self.CageName setText:cage.cage_name];
+    [self.CageNotes setText:cage.notes];
     
 }
 
