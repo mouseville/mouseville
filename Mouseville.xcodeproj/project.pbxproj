@@ -39,6 +39,7 @@
 		4883414118E22A8600682F5A /* Cage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414018E22A8600682F5A /* Cage.m */; };
 		4883414418E22AAD00682F5A /* Rack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414318E22AAD00682F5A /* Rack.m */; };
 		4883414718E22ACF00682F5A /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414618E22ACF00682F5A /* Mouse.m */; };
+		8493795418E739F9000FFEC9 /* CageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493795318E739F9000FFEC9 /* CageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		4883414318E22AAD00682F5A /* Rack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rack.m; sourceTree = "<group>"; };
 		4883414518E22ACF00682F5A /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mouse.h; sourceTree = "<group>"; };
 		4883414618E22ACF00682F5A /* Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mouse.m; sourceTree = "<group>"; };
+		8493795218E739F9000FFEC9 /* CageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CageViewController.h; sourceTree = "<group>"; };
+		8493795318E739F9000FFEC9 /* CageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 			children = (
 				4883413F18E22A8600682F5A /* Cage.h */,
 				4883414518E22ACF00682F5A /* Mouse.h */,
+				8493795218E739F9000FFEC9 /* CageViewController.h */,
+				8493795318E739F9000FFEC9 /* CageViewController.m */,
 				4883414618E22ACF00682F5A /* Mouse.m */,
 				4883414218E22AAD00682F5A /* Rack.h */,
 				4883414318E22AAD00682F5A /* Rack.m */,
@@ -347,6 +352,7 @@
 				4883407318E2256500682F5A /* AppDelegate.m in Sources */,
 				4883413818E2271C00682F5A /* MouseFamilyDetails.m in Sources */,
 				488340BC18E226AA00682F5A /* UserDetails.m in Sources */,
+				8493795418E739F9000FFEC9 /* CageViewController.m in Sources */,
 				4883413018E2271C00682F5A /* CageDetails.m in Sources */,
 				488340BB18E226AA00682F5A /* RackDetails.m in Sources */,
 				483FF1E518E23DF300EF8AFE /* ViewController.m in Sources */,
