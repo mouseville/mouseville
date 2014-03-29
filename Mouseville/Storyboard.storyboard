@@ -75,6 +75,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="bNe-Rx-nf0"/>
+                    <connections>
+                        <outlet property="NumCagesLabel" destination="QXL-j3-Eis" id="Wsw-8R-A38"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLG-xW-IQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

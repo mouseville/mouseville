@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CageViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *NumCagesLabel;
 
 @end
