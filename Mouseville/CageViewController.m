@@ -76,6 +76,30 @@
     [self.CageName setText:cage.cage_name];
     [self.CageNotes setText:cage.notes];
     
+    // Labels
+    [self.Label1View.layer setCornerRadius:30.f];
+    [self.Label1View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.Label1View.layer setBorderWidth:1.5f];
+    
+    [self.Label2View.layer setCornerRadius:30.f];
+    [self.Label2View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.Label2View.layer setBorderWidth:1.5f];
+    
+    [self.Label3View.layer setCornerRadius:30.f];
+    [self.Label3View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.Label3View.layer setBorderWidth:1.5f];
+    
+    [self.Label4View.layer setCornerRadius:30.f];
+    [self.Label4View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.Label4View.layer setBorderWidth:1.5f];
+    
+    [self.Label5View.layer setCornerRadius:30.f];
+    [self.Label5View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.Label5View.layer setBorderWidth:1.5f];
+    
+    [self.Label6View.layer setCornerRadius:30.f];
+    [self.Label6View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.Label6View.layer setBorderWidth:1.5f];
 }
 
 - (void)didReceiveMemoryWarning
