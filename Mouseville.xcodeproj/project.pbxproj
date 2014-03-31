@@ -40,6 +40,15 @@
 		4883414418E22AAD00682F5A /* Rack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414318E22AAD00682F5A /* Rack.m */; };
 		4883414718E22ACF00682F5A /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414618E22ACF00682F5A /* Mouse.m */; };
 		8493795418E739F9000FFEC9 /* CageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493795318E739F9000FFEC9 /* CageViewController.m */; };
+		9927C23118E7ED7E00CEC051 /* PopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23018E7ED7E00CEC051 /* PopOverViewController.m */; };
+		9927C23C18E7ED9D00CEC051 /* SearchMouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23318E7ED9D00CEC051 /* SearchMouseViewController.m */; };
+		9927C23D18E7ED9D00CEC051 /* CreateMouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23518E7ED9D00CEC051 /* CreateMouseViewController.m */; };
+		9927C23E18E7ED9D00CEC051 /* MouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23718E7ED9D00CEC051 /* MouseViewController.m */; };
+		9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23918E7ED9D00CEC051 /* RackController.m */; };
+		9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23B18E7ED9D00CEC051 /* MainViewController.m */; };
+		9927C24218E7F1BB00CEC051 /* mouseCage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9927C24118E7F1BB00CEC051 /* mouseCage.jpg */; };
+		9927C24418E7F1C600CEC051 /* Rack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9927C24318E7F1C600CEC051 /* Rack.jpg */; };
+		99CF1E3B18E96414003B47B3 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +115,22 @@
 		4883414618E22ACF00682F5A /* Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mouse.m; sourceTree = "<group>"; };
 		8493795218E739F9000FFEC9 /* CageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CageViewController.h; sourceTree = "<group>"; };
 		8493795318E739F9000FFEC9 /* CageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CageViewController.m; sourceTree = "<group>"; };
+		9927C22F18E7ED7E00CEC051 /* PopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopOverViewController.h; sourceTree = "<group>"; };
+		9927C23018E7ED7E00CEC051 /* PopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopOverViewController.m; sourceTree = "<group>"; };
+		9927C23218E7ED9D00CEC051 /* SearchMouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMouseViewController.h; sourceTree = "<group>"; };
+		9927C23318E7ED9D00CEC051 /* SearchMouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMouseViewController.m; sourceTree = "<group>"; };
+		9927C23418E7ED9D00CEC051 /* CreateMouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMouseViewController.h; sourceTree = "<group>"; };
+		9927C23518E7ED9D00CEC051 /* CreateMouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMouseViewController.m; sourceTree = "<group>"; };
+		9927C23618E7ED9D00CEC051 /* MouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseViewController.h; sourceTree = "<group>"; };
+		9927C23718E7ED9D00CEC051 /* MouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseViewController.m; sourceTree = "<group>"; };
+		9927C23818E7ED9D00CEC051 /* RackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RackController.h; sourceTree = "<group>"; };
+		9927C23918E7ED9D00CEC051 /* RackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RackController.m; sourceTree = "<group>"; };
+		9927C23A18E7ED9D00CEC051 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		9927C23B18E7ED9D00CEC051 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		9927C24118E7F1BB00CEC051 /* mouseCage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mouseCage.jpg; path = ../../../mouseCage.jpg; sourceTree = "<group>"; };
+		9927C24318E7F1C600CEC051 /* Rack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Rack.jpg; path = ../../../Rack.jpg; sourceTree = "<group>"; };
+		99CF1E3918E96414003B47B3 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +193,9 @@
 		4883406818E2256500682F5A /* Mouseville */ = {
 			isa = PBXGroup;
 			children = (
+				483FF19A18E2395000EF8AFE /* Storyboard.storyboard */,
+				9927C24118E7F1BB00CEC051 /* mouseCage.jpg */,
+				9927C24318E7F1C600CEC051 /* Rack.jpg */,
 				4883413F18E22A8600682F5A /* Cage.h */,
 				4883414518E22ACF00682F5A /* Mouse.h */,
 				8493795218E739F9000FFEC9 /* CageViewController.h */,
@@ -186,9 +214,22 @@
 				4883407218E2256500682F5A /* AppDelegate.m */,
 				4883407718E2256500682F5A /* Images.xcassets */,
 				4883406918E2256500682F5A /* Supporting Files */,
-				483FF19A18E2395000EF8AFE /* Storyboard.storyboard */,
 				483FF1E318E23DF300EF8AFE /* ViewController.h */,
 				483FF1E418E23DF300EF8AFE /* ViewController.m */,
+				9927C22F18E7ED7E00CEC051 /* PopOverViewController.h */,
+				9927C23018E7ED7E00CEC051 /* PopOverViewController.m */,
+				99CF1E3918E96414003B47B3 /* DatePickerViewController.h */,
+				99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */,
+				9927C23218E7ED9D00CEC051 /* SearchMouseViewController.h */,
+				9927C23618E7ED9D00CEC051 /* MouseViewController.h */,
+				9927C23318E7ED9D00CEC051 /* SearchMouseViewController.m */,
+				9927C23718E7ED9D00CEC051 /* MouseViewController.m */,
+				9927C23418E7ED9D00CEC051 /* CreateMouseViewController.h */,
+				9927C23518E7ED9D00CEC051 /* CreateMouseViewController.m */,
+				9927C23818E7ED9D00CEC051 /* RackController.h */,
+				9927C23918E7ED9D00CEC051 /* RackController.m */,
+				9927C23A18E7ED9D00CEC051 /* MainViewController.h */,
+				9927C23B18E7ED9D00CEC051 /* MainViewController.m */,
 			);
 			path = Mouseville;
 			sourceTree = "<group>";
@@ -326,6 +367,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4883406D18E2256500682F5A /* InfoPlist.strings in Resources */,
+				9927C24218E7F1BB00CEC051 /* mouseCage.jpg in Resources */,
+				9927C24418E7F1C600CEC051 /* Rack.jpg in Resources */,
 				4883407818E2256500682F5A /* Images.xcassets in Resources */,
 				483FF19B18E2395000EF8AFE /* Storyboard.storyboard in Resources */,
 			);
@@ -346,11 +389,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9927C23E18E7ED9D00CEC051 /* MouseViewController.m in Sources */,
+				9927C23D18E7ED9D00CEC051 /* CreateMouseViewController.m in Sources */,
+				9927C23118E7ED7E00CEC051 /* PopOverViewController.m in Sources */,
 				4883413718E2271C00682F5A /* MouseDetails.m in Sources */,
 				4883414118E22A8600682F5A /* Cage.m in Sources */,
 				4883413218E2271C00682F5A /* LabelCageMapping.m in Sources */,
 				4883407318E2256500682F5A /* AppDelegate.m in Sources */,
+				99CF1E3B18E96414003B47B3 /* DatePickerViewController.m in Sources */,
 				4883413818E2271C00682F5A /* MouseFamilyDetails.m in Sources */,
+				9927C23C18E7ED9D00CEC051 /* SearchMouseViewController.m in Sources */,
 				488340BC18E226AA00682F5A /* UserDetails.m in Sources */,
 				8493795418E739F9000FFEC9 /* CageViewController.m in Sources */,
 				4883413018E2271C00682F5A /* CageDetails.m in Sources */,
@@ -358,6 +406,8 @@
 				483FF1E518E23DF300EF8AFE /* ViewController.m in Sources */,
 				4883413418E2271C00682F5A /* MouseCageDetails.m in Sources */,
 				4883414718E22ACF00682F5A /* Mouse.m in Sources */,
+				9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */,
+				9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */,
 				4883413618E2271C00682F5A /* MouseDeceasedDetails.m in Sources */,
 				4883413118E2271C00682F5A /* Genotype.m in Sources */,
 				4883413918E2271C00682F5A /* MouseGenotype.m in Sources */,
