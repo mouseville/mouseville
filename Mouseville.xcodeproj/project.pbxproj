@@ -46,8 +46,6 @@
 		9927C23E18E7ED9D00CEC051 /* MouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23718E7ED9D00CEC051 /* MouseViewController.m */; };
 		9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23918E7ED9D00CEC051 /* RackController.m */; };
 		9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23B18E7ED9D00CEC051 /* MainViewController.m */; };
-		9927C24218E7F1BB00CEC051 /* mouseCage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9927C24118E7F1BB00CEC051 /* mouseCage.jpg */; };
-		9927C24418E7F1C600CEC051 /* Rack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9927C24318E7F1C600CEC051 /* Rack.jpg */; };
 		99CF1E3B18E96414003B47B3 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -127,8 +125,6 @@
 		9927C23918E7ED9D00CEC051 /* RackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RackController.m; sourceTree = "<group>"; };
 		9927C23A18E7ED9D00CEC051 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		9927C23B18E7ED9D00CEC051 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		9927C24118E7F1BB00CEC051 /* mouseCage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mouseCage.jpg; path = ../../../mouseCage.jpg; sourceTree = "<group>"; };
-		9927C24318E7F1C600CEC051 /* Rack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Rack.jpg; path = ../../../Rack.jpg; sourceTree = "<group>"; };
 		99CF1E3918E96414003B47B3 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,8 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				483FF19A18E2395000EF8AFE /* Storyboard.storyboard */,
-				9927C24118E7F1BB00CEC051 /* mouseCage.jpg */,
-				9927C24318E7F1C600CEC051 /* Rack.jpg */,
 				4883413F18E22A8600682F5A /* Cage.h */,
 				4883414518E22ACF00682F5A /* Mouse.h */,
 				8493795218E739F9000FFEC9 /* CageViewController.h */,
@@ -367,8 +361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4883406D18E2256500682F5A /* InfoPlist.strings in Resources */,
-				9927C24218E7F1BB00CEC051 /* mouseCage.jpg in Resources */,
-				9927C24418E7F1C600CEC051 /* Rack.jpg in Resources */,
 				4883407818E2256500682F5A /* Images.xcassets in Resources */,
 				483FF19B18E2395000EF8AFE /* Storyboard.storyboard in Resources */,
 			);
