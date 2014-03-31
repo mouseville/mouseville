@@ -16,10 +16,31 @@
 
 // Labels
 @property (weak, nonatomic) IBOutlet UIView *Label1View;
+@property (weak, nonatomic) IBOutlet UISwitch *Label1Switch;
+@property (weak, nonatomic) IBOutlet UILabel *Label1;
+
 @property (weak, nonatomic) IBOutlet UIView *Label2View;
+@property (weak, nonatomic) IBOutlet UISwitch *Label2Switch;
+@property (weak, nonatomic) IBOutlet UILabel *Label2;
+
 @property (weak, nonatomic) IBOutlet UIView *Label3View;
+@property (weak, nonatomic) IBOutlet UISwitch *Label3Switch;
+@property (weak, nonatomic) IBOutlet UILabel *Label3;
+
 @property (weak, nonatomic) IBOutlet UIView *Label4View;
+@property (weak, nonatomic) IBOutlet UISwitch *Label4Switch;
+@property (weak, nonatomic) IBOutlet UILabel *Label4;
+
 @property (weak, nonatomic) IBOutlet UIView *Label5View;
+@property (weak, nonatomic) IBOutlet UISwitch *Label5Switch;
+@property (weak, nonatomic) IBOutlet UILabel *Label5;
+
 @property (weak, nonatomic) IBOutlet UIView *Label6View;
+@property (weak, nonatomic) IBOutlet UISwitch *Label6Switch;
+@property (weak, nonatomic) IBOutlet UILabel *Label6;
+
+
+
+
 
 @end
