@@ -73,6 +73,11 @@
     [self.CageInfo.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.CageInfo.layer setBorderWidth:1.5f];
     
+    // mouse list container
+    [self.mouseListContainter.layer setCornerRadius:30.0f];
+    [self.mouseListContainter.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.mouseListContainter.layer setBorderWidth:1.5f];
+    
     [self.CageName setText:cage.cage_name];
     [self.CageNotes setText:cage.notes];
     

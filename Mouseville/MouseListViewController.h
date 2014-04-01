@@ -10,4 +10,5 @@
 
 @interface MouseListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
+//@property (weak, nonatomic) IBOutlet UITableView *mouseListContainer;
 @end
