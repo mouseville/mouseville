@@ -33,7 +33,7 @@
 	// Do any additional setup after loading the view.
     
     NSArray *arr =[NSArray arrayWithObjects:@"A:1",@"A:2", nil];
-    popoverView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
+    popoverView = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
     [popoverView setArrData:arr];
     popoverView.delegate = self;
     popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];

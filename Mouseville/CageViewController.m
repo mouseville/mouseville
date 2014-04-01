@@ -80,38 +80,39 @@
     [self.Label1View.layer setCornerRadius:30.f];
     [self.Label1View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label1View.layer setBorderWidth:1.5f];
-    [self.Label1Switch setTintColor:[UIColor redColor]];
-    [self.Label1Switch setOnTintColor:[UIColor redColor]];
+    //[self.Label1Switch setTintColor:[UIColor redColor]];
+    //[self.Label1Switch setOnTintColor:[UIColor redColor]];
     
     [self.Label2View.layer setCornerRadius:30.f];
     [self.Label2View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label2View.layer setBorderWidth:1.5f];
-    [self.Label2Switch setTintColor:[UIColor orangeColor]];
-    [self.Label2Switch setOnTintColor:[UIColor orangeColor]];
+    //[self.Label2Switch setTintColor:[UIColor orangeColor]];
+    //[self.Label2Switch setOnTintColor:[UIColor orangeColor]];
     
     [self.Label3View.layer setCornerRadius:30.f];
     [self.Label3View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label3View.layer setBorderWidth:1.5f];
-    [self.Label3Switch setTintColor:[UIColor yellowColor]];
-    [self.Label3Switch setOnTintColor:[UIColor yellowColor]];
+    //[self.Label3Switch setTintColor:[UIColor yellowColor]];
+    //[self.Label3Switch setOnTintColor:[UIColor yellowColor]];
     
     [self.Label4View.layer setCornerRadius:30.f];
     [self.Label4View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label4View.layer setBorderWidth:1.5f];
-    [self.Label4Switch setTintColor:[UIColor greenColor]];
-    [self.Label4Switch setOnTintColor:[UIColor greenColor]];
+    //[self.Label4Switch setTintColor:[UIColor greenColor]];
+    //[self.Label4Switch setOnTintColor:[UIColor greenColor]];
     
     [self.Label5View.layer setCornerRadius:30.f];
     [self.Label5View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label5View.layer setBorderWidth:1.5f];
-    [self.Label5Switch setTintColor:[UIColor blueColor]];
-    [self.Label5Switch setOnTintColor:[UIColor blueColor]];
+    //[self.Label5Switch setTintColor:[UIColor blueColor]];
+    //[self.Label5Switch setOnTintColor:[UIColor blueColor]];
     
     [self.Label6View.layer setCornerRadius:30.f];
     [self.Label6View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label6View.layer setBorderWidth:1.5f];
-    [self.Label6Switch setTintColor:[UIColor purpleColor]];
-    [self.Label6Switch setOnTintColor:[UIColor purpleColor]];}
+    //[self.Label6Switch setTintColor:[UIColor purpleColor]];
+    //[self.Label6Switch setOnTintColor:[UIColor purpleColor]];
+}
 
 - (void)didReceiveMemoryWarning
 {
