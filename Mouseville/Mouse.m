@@ -10,4 +10,258 @@
 
 @implementation Mouse
 
+
+-(BOOL) addNewMouse:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotypes:(NSSet *)genotypes dateOfBirth:(NSDate *)dateOfBirth rackName:(NSString *)rackName cageName:(NSString *)cageName
+
+{
+    MouseDetails* mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:managedObjectContext];
+    
+    
+    NSEntityDescription* rackEntity = [NSEntityDescription entityForName:@"RackDetails" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription* cageEntity = [NSEntityDescription entityForName:@"CageDetails" inManagedObjectContext:managedObjectContext];
+    
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
+    [fetchRequest setEntity:rackEntity];
+    
+    NSFetchRequest* fetchRequest2 = [[NSFetchRequest alloc]init];
+    
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name == %@", rackName];
+    [fetchRequest setPredicate:predicate];
+    
+    
+    NSError* errorRequest = nil;
+    NSArray* racks = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    
+    [fetchRequest2 setEntity:cageEntity];
+    
+    
+    
+    if(errorRequest)
+    {
+        NSLog(@"Error requesting rack %@ %@", errorRequest, [errorRequest localizedDescription]);
+        return NO;
+    }
+    
+    
+    if([racks count] == 0)
+    {
+        //replace every NSLog with UIAlertView
+        NSLog(@"No rack present with the name %@", rackName);
+    }
+    
+    RackDetails* rack = racks[0];
+    
+    NSPredicate* predicate2 = [NSPredicate predicateWithFormat:@"cage_name == %@ AND rack_id == %@", cageName, [rack rack_id]];
+    
+    [fetchRequest2 setPredicate:predicate2];
+    
+    
+    NSArray* cages = [managedObjectContext executeFetchRequest:fetchRequest2 error:&errorRequest];
+    
+    if(errorRequest)
+    {
+        NSLog(@"Error requesting cage %@ %@", errorRequest, [errorRequest localizedDescription]);
+        return  NO;
+    }
+    
+    if([cages count]==0)
+    {
+        NSLog(@"No cage present with the name %@", cageName);
+        return NO;
+    }
+    
+    CageDetails* cage = cages[0];
+    
+    if(mouse!=nil)
+    {
+        mouse.mouse_name = mouseName;
+        mouse.gender = gender;
+        mouse.genotypes = genotypes;
+        mouse.birth_date = dateOfBirth;
+        mouse.cage_id = cage.cage_id;
+        mouse.mouse_id = [self nextMouseId:cage];
+        mouse.is_deceased = @"NO";
+        mouse.cage_name = cage.cage_name;
+        mouse.cageDetails = cage;
+        [mouse addGenotypes:genotypes];
+        [mouse addMiceFamilyDetails:[self getPotentialParents:cage]];
+        
+        [cage addMouseDetailsObject:mouse];
+        
+        
+        
+    }
+    
+    if(![managedObjectContext save:&errorRequest])
+    {
+        NSLog(@"Error saving new mouse details %@ %@", errorRequest, [errorRequest localizedDescription]);
+    }
+    
+    
+    return NO;
+}
+
+
+-(NSArray*) miceResult:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotype:(NSString *)genotype weekRange:(NSArray *)ageRange
+
+{
+    NSEntityDescription* mouseEntity = [NSEntityDescription entityForName:@"MouseDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:mouseEntity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"mouse_name LIKE '%@'",mouseName];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* errorRequest = nil;
+    
+    NSArray* mouseArray = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    if(errorRequest)
+    {
+        NSLog(@"Error retrieving mouse details getParticularMouse %@ %@",errorRequest, [errorRequest localizedDescription]);
+        return  nil;
+    }
+    
+    if([mouseArray count] == 0)
+    {
+        NSLog(@"Error no such mouse with given mouse name %@",mouseName);
+        return  nil;
+    }
+    
+    NSMutableArray* mouseResult = [[NSMutableArray alloc]init];
+    
+    for(MouseDetails* mouse in mouseArray)
+    {
+        if([[mouse genotypes] containsObject:genotype ] && ([self getWeeksFromDate:mouse.birth_date]>=[[ageRange firstObject] integerValue] && [self getWeeksFromDate:mouse.birth_date]<=[[ageRange lastObject] integerValue]))
+        {
+            [mouseResult addObject:mouse];
+        }
+        
+    }
+    
+    NSArray* result = [[NSArray alloc]initWithArray:mouseResult];
+    return result;
+    
+}
+
+-(MouseDetails*) editMouseDetails:(NSManagedObjectContext *)managedObjectContext mouseDetails:(MouseDetails *)mouseDetails
+{
+    if([mouseDetails.is_deceased  isEqual: @"Yes"])
+    {
+        MouseDeceasedDetails* mouseDeceased = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDeceasedDetails" inManagedObjectContext:managedObjectContext];
+        mouseDeceased.mouse_name = mouseDetails.mouse_name;
+        mouseDeceased.mouse_id = mouseDetails.mouse_id;
+        mouseDeceased.birth_date = mouseDetails.birth_date;
+        mouseDeceased.gender = mouseDetails.gender;
+        mouseDeceased.genotype = mouseDetails.genotypes;
+        mouseDeceased.cage_id = mouseDetails.cage_id;
+        mouseDeceased.cage_name = mouseDetails.cage_name;
+        mouseDeceased.miceFamilyDetails = mouseDetails.miceFamilyDetails;
+        mouseDeceased.is_deceased = @"Yes";
+        
+    }
+    
+    NSError* errorRequest = Nil;
+    
+    [managedObjectContext deleteObject:mouseDetails];
+    
+    if(![managedObjectContext save:&errorRequest])
+    {
+        NSLog(@"Error saving editMouseDetails %@ %@", errorRequest, [errorRequest localizedDescription]);
+        return nil;
+    }
+    
+    return mouseDetails;
+    
+}
+
+
+-(BOOL) markMousedDeceased:(NSManagedObjectContext *)managedObjectContext mouseDetails:(MouseDetails *)mouseDetails
+{
+    
+    MouseDeceasedDetails* mouseDeceased = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDeceasedDetails" inManagedObjectContext:managedObjectContext];
+    mouseDeceased.mouse_name = mouseDetails.mouse_name;
+    mouseDeceased.mouse_id = mouseDetails.mouse_id;
+    mouseDeceased.birth_date = mouseDetails.birth_date;
+    mouseDeceased.gender = mouseDetails.gender;
+    mouseDeceased.genotype = mouseDetails.genotypes;
+    mouseDeceased.cage_id = mouseDetails.cage_id;
+    mouseDeceased.cage_name = mouseDetails.cage_name;
+    mouseDeceased.miceFamilyDetails = mouseDetails.miceFamilyDetails;
+    mouseDeceased.is_deceased = @"Yes";
+    
+    
+    
+    NSError* errorRequest = Nil;
+    
+    [managedObjectContext deleteObject:mouseDetails];
+    
+    if(![managedObjectContext save:&errorRequest])
+    {
+        NSLog(@"Error saving markMouseDeceased %@ %@", errorRequest, [errorRequest localizedDescription]);
+        return NO;
+    }
+    
+    return YES;
+    
+}
+
+
+-(NSSet*) getPotentialParents:(CageDetails *)cageDetails
+{
+    
+    //mice having age greater than equal to 2 weeks is parent
+    
+    NSMutableArray* potentialParents = [[NSMutableArray alloc]init];
+    
+    for(MouseDetails* mouse in cageDetails.mouseDetails)
+    {
+        if([self getWeeksFromDate:[mouse birth_date]]>=2)
+        {
+            [potentialParents addObject:mouse];
+        }
+    }
+    
+    NSArray* potentialParentsArray = [[NSArray alloc] initWithArray:potentialParents];
+    
+    NSSet* potentialParentsSet = [NSSet setWithArray:potentialParentsArray] ;
+    
+    return potentialParentsSet;
+    
+    
+}
+
+
+-(int) getWeeksFromDate: (NSDate*) date
+{
+    //NSDateFormatter if format error
+    
+    NSDate* currentDate = [[NSDate alloc] init];
+    NSCalendar* gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit;
+    
+    NSDateComponents* components = [gregorian components:unitFlags fromDate:date toDate:currentDate options:0];
+    
+    NSInteger weeks = [components week];
+    
+    int numberOFWeeks = weeks;
+    
+    return numberOFWeeks;
+}
+
+-(NSNumber*) nextMouseId:(CageDetails *)cageDetails
+{
+    NSUInteger currentMice = [[cageDetails mouseDetails] count];
+    currentMice = currentMice + 1;
+    
+    NSNumber* nextID = [NSNumber numberWithUnsignedInteger:currentMice];
+    return  nextID;
+    
+}
+
+
 @end

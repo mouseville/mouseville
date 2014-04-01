@@ -18,8 +18,18 @@
 @interface Mouse : NSObject
 
 
+-(BOOL)addNewMouse: (NSManagedObjectContext*) managedObjectContext mouseName:(NSString*) mouseName gender:(NSString*)gender genotypes:(NSSet*)genotypes dateOfBirth:(NSDate*)dateOfBirth rackName:(NSString*)rackName cageName:(NSString*)cageName;
 
+-(NSArray*) miceResult: (NSManagedObjectContext*) managedObjectContext mouseName:(NSString*)mouseName gender:(NSString*)gender genotype:(NSString*)genotype weekRange:(NSArray*)ageRange;
 
+-(MouseDetails*) editMouseDetails: (NSManagedObjectContext*) managedObjectContext mouseDetails:(MouseDetails*)mouseDetails;
 
+-(BOOL) markMousedDeceased: (NSManagedObjectContext*) managedObjectContext mouseDetails:(MouseDetails*)MouseDetails;
+
+-(NSNumber*) nextMouseId: (CageDetails*) cageDetails;
+
+-(NSSet*) getPotentialParents: (CageDetails*) cageDetails;
+
+-(int) getWeeksFromDate: (NSDate*) date;
 
 @end
