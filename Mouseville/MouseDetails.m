@@ -1,8 +1,8 @@
 //
 //  MouseDetails.m
-//  Mouseville
+//  MouseVilleCoreData
 //
-//  Created by abhang on 3/24/14.
+//  Created by abhang on 3/29/14.
 //  Copyright (c) 2014 CapstoneProject. All rights reserved.
 //
 
@@ -21,8 +21,8 @@
 @dynamic is_deceased;
 @dynamic mouse_id;
 @dynamic mouse_name;
+@dynamic cageDetails;
 @dynamic genotypes;
 @dynamic miceFamilyDetails;
-@dynamic cageDetails;
 
 @end

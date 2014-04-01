@@ -1,8 +1,8 @@
 //
 //  MouseDetails.h
-//  Mouseville
+//  MouseVilleCoreData
 //
-//  Created by abhang on 3/24/14.
+//  Created by abhang on 3/29/14.
 //  Copyright (c) 2014 CapstoneProject. All rights reserved.
 //
 
@@ -20,9 +20,9 @@
 @property (nonatomic, retain) NSString * is_deceased;
 @property (nonatomic, retain) NSNumber * mouse_id;
 @property (nonatomic, retain) NSString * mouse_name;
-@property (nonatomic, retain) NSSet *genotypes;
-@property (nonatomic, retain) MouseFamilyDetails *miceFamilyDetails;
 @property (nonatomic, retain) CageDetails *cageDetails;
+@property (nonatomic, retain) NSSet *genotypes;
+@property (nonatomic, retain) NSSet *miceFamilyDetails;
 @end
 
 @interface MouseDetails (CoreDataGeneratedAccessors)
@@ -31,5 +31,10 @@
 - (void)removeGenotypesObject:(Genotype *)value;
 - (void)addGenotypes:(NSSet *)values;
 - (void)removeGenotypes:(NSSet *)values;
+
+- (void)addMiceFamilyDetailsObject:(MouseFamilyDetails *)value;
+- (void)removeMiceFamilyDetailsObject:(MouseFamilyDetails *)value;
+- (void)addMiceFamilyDetails:(NSSet *)values;
+- (void)removeMiceFamilyDetails:(NSSet *)values;
 
 @end

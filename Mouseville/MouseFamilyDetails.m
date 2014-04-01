@@ -1,12 +1,13 @@
 //
 //  MouseFamilyDetails.m
-//  Mouseville
+//  MouseVilleCoreData
 //
-//  Created by abhang on 3/24/14.
+//  Created by abhang on 3/29/14.
 //  Copyright (c) 2014 CapstoneProject. All rights reserved.
 //
 
 #import "MouseFamilyDetails.h"
+#import "MouseDeceasedDetails.h"
 #import "MouseDetails.h"
 
 
@@ -16,5 +17,6 @@
 @dynamic notes;
 @dynamic parent_id;
 @dynamic mouseDetails;
+@dynamic mouseDeceasedDetails;
 
 @end

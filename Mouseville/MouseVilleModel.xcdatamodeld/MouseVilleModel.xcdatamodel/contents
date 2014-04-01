@@ -8,7 +8,7 @@
         <attribute name="rack_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="row_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Labels" inverseName="cageDetails" inverseEntity="Labels" syncable="YES"/>
-        <relationship name="mouseDetails" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MouseDetails" inverseName="cageDetails" inverseEntity="MouseDetails" syncable="YES"/>
+        <relationship name="mouseDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MouseDetails" inverseName="cageDetails" inverseEntity="MouseDetails" syncable="YES"/>
         <relationship name="rackDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RackDetails" inverseName="cages" inverseEntity="RackDetails" syncable="YES"/>
     </entity>
     <entity name="Genotype" representedClassName="Genotype" syncable="YES">
@@ -45,6 +45,7 @@
         <attribute name="mouse_id" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="mouse_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="genotype" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genotype" inverseName="mouseDeceasedDetails" inverseEntity="Genotype" syncable="YES"/>
+        <relationship name="miceFamilyDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MouseFamilyDetails" inverseName="mouseDeceasedDetails" inverseEntity="MouseFamilyDetails" syncable="YES"/>
     </entity>
     <entity name="MouseDetails" representedClassName="MouseDetails" syncable="YES">
         <attribute name="birth_date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -56,12 +57,13 @@
         <attribute name="mouse_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cageDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CageDetails" inverseName="mouseDetails" inverseEntity="CageDetails" syncable="YES"/>
         <relationship name="genotypes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Genotype" inverseName="mouseDetails" inverseEntity="Genotype" syncable="YES"/>
-        <relationship name="miceFamilyDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MouseFamilyDetails" inverseName="mouseDetails" inverseEntity="MouseFamilyDetails" syncable="YES"/>
+        <relationship name="miceFamilyDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MouseFamilyDetails" inverseName="mouseDetails" inverseEntity="MouseFamilyDetails" syncable="YES"/>
     </entity>
     <entity name="MouseFamilyDetails" representedClassName="MouseFamilyDetails" syncable="YES">
         <attribute name="child_id" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parent_id" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="mouseDeceasedDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MouseDeceasedDetails" inverseName="miceFamilyDetails" inverseEntity="MouseDeceasedDetails" syncable="YES"/>
         <relationship name="mouseDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MouseDetails" inverseName="miceFamilyDetails" inverseEntity="MouseDetails" syncable="YES"/>
     </entity>
     <entity name="MouseGenotype" representedClassName="MouseGenotype" syncable="YES">
@@ -82,17 +84,17 @@
         <attribute name="user_name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CageDetails" positionX="-137" positionY="495" width="128" height="178"/>
+        <element name="CageDetails" positionX="-207" positionY="513" width="128" height="178"/>
         <element name="Genotype" positionX="216" positionY="261" width="128" height="88"/>
         <element name="LabelCageMapping" positionX="-189" positionY="62" width="128" height="73"/>
         <element name="Labels" positionX="169" positionY="540" width="128" height="88"/>
         <element name="MouseCageDetails" positionX="286" positionY="99" width="128" height="88"/>
         <element name="MouseCageDetailsOld" positionX="-360" positionY="72" width="128" height="88"/>
-        <element name="MouseDetails" positionX="-27" positionY="252" width="128" height="178"/>
-        <element name="MouseFamilyDetails" positionX="-11" positionY="9" width="128" height="103"/>
+        <element name="MouseDeceasedDetails" positionX="-29" positionY="27" width="128" height="178"/>
+        <element name="MouseDetails" positionX="-108" positionY="243" width="128" height="193"/>
+        <element name="MouseFamilyDetails" positionX="223" positionY="-0" width="128" height="118"/>
         <element name="MouseGenotype" positionX="169" positionY="387" width="128" height="73"/>
         <element name="RackDetails" positionX="-324" positionY="234" width="128" height="148"/>
         <element name="UserDetails" positionX="-423" positionY="456" width="128" height="73"/>
-        <element name="MouseDeceasedDetails" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
