@@ -95,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKw-14-fAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2218" y="-1806"/>
+            <point key="canvasLocation" x="-1694" y="-2502"/>
         </scene>
         <!--Cage View Controller-->
         <scene sceneID="1CK-LG-Mlu">
@@ -297,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLG-xW-IQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1556" y="-4290"/>
+            <point key="canvasLocation" x="-2356" y="-4986"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kdr-LT-zCZ">
@@ -315,7 +315,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHa-Fe-HVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="-1818"/>
+            <point key="canvasLocation" x="-3268" y="-2514"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="IUA-Zh-1sa">
@@ -348,6 +348,35 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ipo-sR-qJb" userLabel="View-racks">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E29-bd-3OH">
+                                        <rect key="frame" x="46" y="247" width="677" height="736"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H7D-qk-DC9">
+                                            <size key="itemSize" width="122" height="161"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5HV-W3-JOJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="122" height="161"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="122" height="161"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bu6-7j-sb3">
+                                                            <rect key="frame" x="36" y="56" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -402,7 +431,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3751" y="-1059"/>
+            <point key="canvasLocation" x="-161" y="-1755"/>
         </scene>
         <!--Search Mouse View Controller - Search Mouse-->
         <scene sceneID="SQq-XB-XGr">
@@ -506,7 +535,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2901" y="-231"/>
+            <point key="canvasLocation" x="-1011" y="-927"/>
         </scene>
         <!--Pop Over View Controller-->
         <scene sceneID="uGW-c5-ozk">
@@ -538,7 +567,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hP-di-Mpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="658" y="-2405"/>
+            <point key="canvasLocation" x="-3254" y="-3101"/>
         </scene>
         <!--Mouse View Controller-->
         <scene sceneID="jzO-bJ-9FT">
@@ -654,7 +683,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7rw-JQ-jWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3186" y="-3896"/>
+            <point key="canvasLocation" x="-726" y="-4592"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="BMw-Qv-dum">
@@ -711,7 +740,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHS-dx-VGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="-2373"/>
+            <point key="canvasLocation" x="-2900" y="-3069"/>
         </scene>
         <!--View Controller - Mouse Details-->
         <scene sceneID="bi5-Kk-aaC">
@@ -738,7 +767,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeI-yq-c7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5059" y="-1143"/>
+            <point key="canvasLocation" x="1147" y="-1839"/>
         </scene>
         <!--Rack Controller - Create a New Rack-->
         <scene sceneID="9Sd-r0-mlX">
@@ -862,7 +891,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2di-rH-Od2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4129" y="-2813"/>
+            <point key="canvasLocation" x="217" y="-3509"/>
         </scene>
     </scenes>
     <resources>
