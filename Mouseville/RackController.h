@@ -15,6 +15,7 @@
 //@end
 
 @interface RackController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *rackNameText;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *rowLabel;

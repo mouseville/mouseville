@@ -19,5 +19,7 @@
 
 -(BOOL)deleteRack: (NSManagedObjectContext*) managedObjectContext rackName:(NSString*)rackName;
 
+-(NSNumber*) getCurrentRackCount: (NSManagedObjectContext*) managedObjectContext;
+
 
 @end

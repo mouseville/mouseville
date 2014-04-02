@@ -7,7 +7,8 @@
 //
 
 #import "RackController.h"
-
+#import "RackDetails.h"
+#import "Rack.h"
 
 @implementation RackController
 
@@ -95,6 +96,48 @@
     
     
     return cell;
+}
+
+
+-(NSManagedObjectContext*) managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication]delegate];
+    if([delegate performSelector:@selector(managedObjectContext)])
+    {
+        context = [delegate managedObjectContext];
+    }
+    
+    return context;
+}
+
+- (IBAction)insertNewRack:(id)sender {
+
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSString* rackName = self.rackNameText.text;
+    NSNumber* number_rows = [[NSNumber alloc]initWithDouble:self.rowStepper.value];
+    NSNumber* number_columns = [[NSNumber alloc]initWithDouble:self.columnStepper.value];
+    
+    
+    Rack* rack = [[Rack alloc]init];
+    
+   if([rack addNewRack:context name:rackName rows:number_rows columns:number_columns])
+   {
+       UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"New Rack has been created" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+       [alert show];
+   }
+   else{
+       
+       UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"ERROR!" message:@"Error creating new rack!!!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+       [alert show];
+       
+   }
+
+    
+    
+    
+    
+    
 }
 
 @end

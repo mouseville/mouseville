@@ -44,6 +44,9 @@
     [popoverView setArrData:arr];
         popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];
     
+    [popoverView setIdentifier:@"genotypeDropdown"];
+    
+    
     datePickerView=[[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"datepicker"];
     datePickerController= [[UIPopoverController alloc]initWithContentViewController:datePickerView];
     
@@ -53,10 +56,12 @@
 
 -(void)didClickDropdown:(NSString *)string{
     
+    if([ popoverView.identifier isEqual:@"genotypeDropDown"])
     NSLog(@"Selected:%@",string);
     [popoverController dismissPopoverAnimated:YES];
     
 }
+
 
 -(void) didClickDatePicker:(NSString *)string{
 
