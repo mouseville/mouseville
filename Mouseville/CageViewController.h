@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *CageName;
 @property (weak, nonatomic) IBOutlet UITextView *CageNotes;
 
+@property (weak, nonatomic) IBOutlet UIView *mouseListContainter;
+
+
 // Labels
 @property (weak, nonatomic) IBOutlet UIView *Label1View;
 @property (weak, nonatomic) IBOutlet UISwitch *Label1Switch;
