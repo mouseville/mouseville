@@ -21,11 +21,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mouse"];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"mouse"];
-    }
+    UILabel *mouseName = (UILabel *)[cell viewWithTag:132];
+    MouseDetails *mouse = [self.miceArray objectAtIndex:indexPath.row];
+    mouseName.text = mouse.mouse_name;
     
-    cell.textLabel.text = @"Mouse";
+    UILabel *mouseDesc = (UILabel *)[cell viewWithTag:133];
+    mouseDesc.text = @"Genotype / DoB";
     
     return cell;
 }
@@ -43,6 +44,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    NSLog(@"%d mice", [self.mice count]);
+    
+    self.miceArray = [self.mice allObjects];
 }
 
 - (void)didReceiveMemoryWarning
