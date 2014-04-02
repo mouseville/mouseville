@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MouseDetails.h"
 
 @interface MouseListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
-//@property (weak, nonatomic) IBOutlet UITableView *mouseListContainer;
+@property (strong, nonatomic) NSSet *mice;
+@property (strong, nonatomic) NSArray *miceArray;
+
 @end

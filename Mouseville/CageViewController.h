@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CageDetails.h"
 
 @interface CageViewController : UIViewController
+
+@property (strong, nonatomic) CageDetails *cage;
+
 @property (weak, nonatomic) IBOutlet UILabel *NumCagesLabel;
 @property (weak, nonatomic) IBOutlet UIView *CageInfo;
 @property (weak, nonatomic) IBOutlet UILabel *CageName;
