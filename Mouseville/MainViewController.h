@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *miceView;
 @property (weak, nonatomic) IBOutlet UIView *rackView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedBar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedController;
 
 - (IBAction)createMice:(id)sender;
 
 - (IBAction)segmentedValueChanged:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UICollectionView *rackCollection;
+@property (nonatomic, copy) NSArray* allRacks;
 
 
 

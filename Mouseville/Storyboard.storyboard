@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="F5H-VO-f7V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="F5H-VO-f7V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -369,7 +369,7 @@
                                             <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5HV-W3-JOJ">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Rack" id="5HV-W3-JOJ">
                                                 <rect key="frame" x="10" y="10" width="166" height="286"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -380,7 +380,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="166" height="237"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0w-YM-mjg">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0w-YM-mjg">
                                                             <rect key="frame" x="62" y="250" width="42" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -415,6 +415,7 @@
                             </segments>
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
+                                <action selector="mainViewChanged:" destination="ESk-1B-GpQ" eventType="valueChanged" id="g0Q-3f-ppW"/>
                                 <action selector="segmentedValueChanged:" destination="ESk-1B-GpQ" eventType="valueChanged" id="yF4-KR-yTf"/>
                             </connections>
                         </segmentedControl>
@@ -429,9 +430,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="miceView" destination="1op-Dy-5xj" id="fvV-Sy-Aul"/>
+                        <outlet property="rackCollection" destination="E29-bd-3OH" id="YCX-EZ-JoX"/>
                         <outlet property="rackView" destination="ipo-sR-qJb" id="1ZO-ry-VlX"/>
                         <outlet property="searchDisplayController" destination="GRT-m4-ZI9" id="8kL-oa-xq5"/>
                         <outlet property="segmentedBar" destination="Bzw-6H-0t6" id="4N9-L2-qXD"/>
+                        <outlet property="segmentedController" destination="Bzw-6H-0t6" id="9qe-zJ-siK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zF3-1u-sqd" sceneMemberID="firstResponder"/>
@@ -452,7 +455,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-161" y="-1755"/>
+            <point key="canvasLocation" x="-161" y="-1535"/>
         </scene>
         <!--Search Mouse View Controller - Search Mouse-->
         <scene sceneID="SQq-XB-XGr">
@@ -899,12 +902,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Create a New Rack" id="AmH-uO-j8d">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="Dzf-Qn-PJP"/>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="qKd-z2-fA9"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="qKd-z2-fA9">
+                            <connections>
+                                <action selector="insertNewRack:" destination="0lG-vS-wde" id="k6F-RV-gii"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="columnLabel" destination="Ojq-AO-tds" id="JTO-eD-YCm"/>
                         <outlet property="columnStepper" destination="WUt-vM-yQm" id="OXf-Um-XRy"/>
+                        <outlet property="rackNameText" destination="gK9-Ug-Reh" id="yDi-0s-I7y"/>
                         <outlet property="rowLabel" destination="lNu-tR-HRG" id="ajW-Nn-JwE"/>
                         <outlet property="rowStepper" destination="9rn-jO-mbd" id="uh9-n2-meo"/>
                         <outlet property="tableCollection" destination="YvV-2y-FTJ" id="Z8P-Cw-KEv"/>

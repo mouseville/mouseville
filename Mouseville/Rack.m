@@ -22,7 +22,7 @@
         
         
         
-        NSNumber* currentCount = [rack valueForKeyPath:@"count"];
+        NSNumber* currentCount = [self getCurrentRackCount:managedObjectContext];
         int value = [currentCount intValue];
         currentCount = [NSNumber numberWithInteger:value+1];
         rack.rack_id = currentCount;
@@ -69,6 +69,24 @@
     return NO;
 }
 
+-(NSNumber*) getCurrentRackCount:(NSManagedObjectContext *)managedObjectContext
+{
+    NSEntityDescription* rackEntity = [NSEntityDescription entityForName:@"RackDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
+    [fetchRequest setEntity:rackEntity];
+    
+    NSError* errorRequest = Nil;
+    
+    NSArray* racks = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    NSNumber* rackCount = [[NSNumber alloc]initWithInteger:[racks count]];
+    
+    return rackCount;
+    
+    
+    
+}
 
 -(NSArray*)getAllRacks:(NSManagedObjectContext *)managedObjectContext
 {
