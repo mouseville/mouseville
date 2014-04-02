@@ -17,5 +17,13 @@
 - (IBAction)chooseGenotype:(id)sender;
 
 
+;
+@property (weak, nonatomic) IBOutlet UISlider *slider2;
+
+
+- (IBAction)slider2ValueChanged:(id)sender;
+
+@property (nonatomic, copy) NSNumber *minAge;
+@property (nonatomic, copy) NSNumber *maxAge;
 
 @end

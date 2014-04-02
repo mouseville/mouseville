@@ -38,6 +38,13 @@
     popoverView.delegate = self;
     popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];
     
+    
+    self.slider.maximumValue= 100;
+    self.slider.minimumValue=0;
+    
+    self.slider2.maximumValue=100;
+    self.slider2.minimumValue=0;
+
 
     
     
@@ -56,18 +63,44 @@
 
 - (IBAction)sliderValueChanged:(id)sender {
     
-    self.label1.text= [NSString stringWithFormat:@"%.0f", self.slider.value];
-    self.slider.maximumValue= 36;
-    self.slider.minimumValue=3;
+    if(self.slider.value>self.slider2.value)
+    {
+        self.slider2.value=self.slider.value;
+    }
     
+    self.label1.text =[NSString stringWithFormat:@"%.0f to %.0f weeks", self.slider.value, self.slider2.value];
+    
+    
+    
+    
+    
+    /*
     if(self.slider.value == 0)
     {
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"0!" message:@"Mice with age 0 will be those born today." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
         [alert show];
     }
+    */
+    
+   
+   //  self.label1.text= [NSString stringWithFormat:@"%.0f", self.slider.value];
     
 }
+
+
 - (IBAction)chooseGenotype:(id)sender {
      [popoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+- (IBAction)slider2ValueChanged:(id)sender {
+    
+    
+    if(self.slider.value>self.slider2.value)
+    {
+        self.slider.value=self.slider2.value;
+    }
+    
+    self.label1.text =[NSString stringWithFormat:@"%.0f to %.0f weeks", self.slider.value, self.slider2.value];
+    
+    
 }
 @end
