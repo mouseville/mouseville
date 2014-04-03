@@ -37,17 +37,26 @@
     [popoverView setArrData:arr];
     popoverView.delegate = self;
     popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];
-    
+    [popoverView setIdentifier:@"searchMouseGenotypePopover"];
 
     
     
 }
--(void)didClickDropdown:(NSString *)string{
+
+/*-(void)didClickDropdown:(NSString *)string{
     
     NSLog(@"Selected:%@",string);
     [popoverController dismissPopoverAnimated:YES];
     
+}*/
+
+-(void) didClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
+{
+    NSLog(@"Selected:%@",string);
+    [popoverController dismissPopoverAnimated:YES];
 }
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

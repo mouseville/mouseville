@@ -59,10 +59,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+ 
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    self.selectedValue = selectedCell.textLabel.text;
+    [self.delegate didClickDropdown:[self.arrData objectAtIndex:indexPath.row] popoverIdentifier:self.identifier ] ;
     
-     [self.delegate didClickDropdown:[self.arrData objectAtIndex:indexPath.row]];
     
 }
-
-
 @end
