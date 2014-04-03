@@ -35,4 +35,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 10;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 7;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RCell" forIndexPath:indexPath];
+    
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    label.text = @"";
+    
+    [cell.layer setBorderWidth:1.0f];
+    [cell.layer setBorderColor:[UIColor blackColor].CGColor];
+    [cell.layer setBackgroundColor:[UIColor grayColor].CGColor];
+    
+    return cell;
+}
+
 @end
