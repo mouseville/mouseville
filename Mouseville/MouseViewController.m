@@ -9,6 +9,9 @@
 #import "MouseViewController.h"
 #import "PopOverViewController.h"
 #import "DatePickerViewController.h"
+#import "Rack.h"
+#import "Cage.h"
+#import "RackDetails.h"
 
 
 @interface MouseViewController ()
@@ -18,6 +21,14 @@
     
     UIPopoverController *datePickerController;
     DatePickerViewController *datePickerView;
+    
+    UIPopoverController *rackPopoverController;
+    PopOverViewController *rackPopoverViewController;
+    
+    UIPopoverController *cagePopoverController;
+    PopOverViewController *cagePopoverViewController;
+    
+    
     
 }
 @end
@@ -37,14 +48,46 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
- 
+    
+    Rack *rack = [[Rack alloc]init];
+    
+    NSArray* racks = [rack getAllRacks:[self managedObjectContext]];
+    
+    NSMutableArray* rackNames = [[NSMutableArray alloc]init];
+    
+    for (RackDetails *individualRack in racks)
+    {
+        [rackNames addObject:individualRack.rack_name];
+    }
+    
+    
+    rackPopoverViewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
+    
+    [rackPopoverViewController setArrData:[NSArray arrayWithArray:rackNames]];
+    
+    
+    rackPopoverController = [[UIPopoverController alloc]initWithContentViewController:rackPopoverViewController];
+    
+    [rackPopoverViewController setIdentifier:@"rackDropDown"];
+    
+      
+    cagePopoverViewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
+    
+    cagePopoverController = [[UIPopoverController alloc] initWithContentViewController:cagePopoverViewController];
+    
+    [cagePopoverViewController setIdentifier:@"cageDropDown"];
+    
+    rackPopoverViewController.delegate = self;
+    cagePopoverViewController.delegate = self;
+    
+    
     NSArray *arr =[NSArray arrayWithObjects:@"A:1",@"A:2", nil];
     popoverView = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
     [popoverView setArrData:arr];
         popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];
+    popoverView.delegate = self;
+    [popoverView setIdentifier:@"genotypeDropDown"];
     
-    [popoverView setIdentifier:@"genotypeDropdown"];
     
     
     datePickerView=[[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"datepicker"];
@@ -54,12 +97,83 @@
 
 }
 
+
+-(NSArray*) getCageNames:(RackDetails*) rackDetails
+{
+    NSMutableArray* cageNames = [[NSMutableArray alloc]init];
+    
+    for(CageDetails* cage in rackDetails.cages)
+    {
+        NSString* row = [NSString stringWithFormat:@"%d",[cage.row_id intValue]];
+        NSString* column = [NSString stringWithFormat:@"%d",[cage.column_id intValue]];
+        NSMutableString* cageName = [[NSMutableString alloc]init];
+        [cageName appendString:row];
+        [cageName appendString:column];
+        
+        [cageNames addObject:[NSString stringWithString:cageName]];
+        
+        
+    }
+    
+    return [NSArray arrayWithArray:cageNames];
+}
+
+/*
 -(void)didClickDropdown:(NSString *)string{
     
     if([ popoverView.identifier isEqual:@"genotypeDropDown"])
-    NSLog(@"Selected:%@",string);
+         NSLog(@"Selected:%@",string);
     [popoverController dismissPopoverAnimated:YES];
+}*/
+
+-(void)didClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
+{
+   
+    if([popoverIdentifier isEqual:@"genotypeDropDown"])
+    {
+        /*UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"rack" message:string delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [popoverController dismissPopoverAnimated:YES];
+        */
+        
+        [[self btnChooseGenotype] setTitle:string forState:UIControlStateNormal];
+        [popoverController dismissPopoverAnimated:YES];
+        
+    }
     
+    if([popoverIdentifier isEqual:@"rackDropDown"])
+    {
+        [[self btnSelectRack]setTitle:string forState:UIControlStateNormal];
+        [self setRackName:string];
+        [self resetCageButton];
+        [rackPopoverController dismissPopoverAnimated:YES];
+    }
+    
+    if([popoverIdentifier isEqual:@"cageDropDown" ])
+    {
+        [[self btnSelectCage]setTitle:string forState:UIControlStateNormal ];
+        [self setCageName:string];
+        [cagePopoverController dismissPopoverAnimated:YES];
+    }
+    
+}
+
+-(void) resetCageButton
+{
+    Rack* rack = [[Rack alloc]init];
+    RackDetails* rackDetail = [rack getParticularRack:[self managedObjectContext] rackName:[self rackName]];
+    
+    cagePopoverViewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
+    
+    cagePopoverController = [[UIPopoverController alloc] initWithContentViewController:cagePopoverViewController];
+    
+    [cagePopoverViewController setIdentifier:@"cageDropDown"];
+    
+    [cagePopoverViewController setArrData:[self getCageNames:rackDetail]];
+    
+    cagePopoverViewController.delegate = self;
+    
+    [[self btnSelectCage]setTitle:@"select cage" forState:UIControlStateNormal];
 }
 
 
@@ -89,6 +203,20 @@
 
 }
 
+-(NSManagedObjectContext*) managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication]delegate];
+    if([delegate performSelector:@selector(managedObjectContext)])
+    {
+        context = [delegate managedObjectContext];
+    }
+    
+    return context;
+}
+
+
+
+
 - (IBAction)selectDate:(id)sender {
     
     
@@ -96,5 +224,15 @@
     
    // self.dateOfBirthText.text = [[NSString alloc]initWithFormat:@"%@", currentDate];
   //    self.DatePickerView.hidden = YES;
+}
+- (IBAction)selectRack:(id)sender {
+    [rackPopoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+    
+}
+
+- (IBAction)selectCage:(id)sender {
+    
+    [cagePopoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 @end

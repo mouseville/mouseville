@@ -109,7 +109,7 @@
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
     [fetchRequest setEntity:rackEntity];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name == %@",rackName];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name LIKE %@",rackName];
     
     [fetchRequest setPredicate:predicate];
     
