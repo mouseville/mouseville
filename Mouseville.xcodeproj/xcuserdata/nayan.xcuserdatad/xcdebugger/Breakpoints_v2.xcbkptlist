@@ -9,14 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mouseville/CageViewController.m"
-            timestampString = "418179297.898361"
+            filePath = "Mouseville/ViewRacksController.m"
+            timestampString = "418175572.65937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "@interface ViewRacksController()"
+            landmarkType = "2">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
