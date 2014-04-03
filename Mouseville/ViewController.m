@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CageViewController.h"
 #import "AppDelegate.h"
 #import "UserDetails.h"
 
@@ -67,6 +68,18 @@
         
     }
     
+    //create a dummy cage with mice
+    self.cage = [NSEntityDescription insertNewObjectForEntityForName:@"CageDetails" inManagedObjectContext:context];
+    self.cage.cage_name = @"Test Cage";
+    self.cage.notes = @"This is a test cage";
+    
+    for(int i = 0; i < 5; i++) {
+        MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
+        mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
+        [self.cage addMouseDetailsObject:mouse];
+    }
+    
+    NSLog(@"CageView viewDidLoad %d mice", [self.cage.mouseDetails count]);
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -91,7 +104,14 @@
     
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    CageViewController *transferVC = segue.destinationViewController;
+    
+    if ([segue.identifier isEqualToString:@"cageViewSegue"]) {
+        transferVC.cage = self.cage;
+    }
+}
 
 
 - (void)didReceiveMemoryWarning

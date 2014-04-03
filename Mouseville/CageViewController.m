@@ -19,7 +19,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MouseListViewController *transferVC = segue.destinationViewController;
-    NSLog(@"%d mice", [self.cage.mouseDetails count]);
+    NSLog(@"prepareForSeque: %d mice", [self.cage.mouseDetails count]);
     transferVC.mice = self.cage.mouseDetails;
 }
 
@@ -39,21 +39,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        //create a dummy cage with mice
-        NSManagedObjectContext *context = [self managedObjectContext];        self.cage = [NSEntityDescription insertNewObjectForEntityForName:@"CageDetails" inManagedObjectContext:context];
         
-        self.cage.cage_name = @"Test Cage";
-        self.cage.notes = @"This is a test cage";
-        
-        NSArray *mice = [NSArray array];
-        for(int i = 0; i < 5; i++) {
-            MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
-            mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
-            //   mouse.ca
-            mice = [mice arrayByAddingObject:mouse];
-        }
-        
-        self.cage.mouseDetails = [NSSet setWithArray:mice];    }
+    }
     return self;
 }
 
@@ -72,6 +59,21 @@
     NSArray *cages = [context executeFetchRequest:fetchRequest error:&error];
     
     [self.NumCagesLabel setText:[NSString stringWithFormat:@"%d cages in DB", [cages count]]];
+    
+    /*//create a dummy cage with mice
+    self.cage.cage_name = @"Test Cage";
+    self.cage.notes = @"This is a test cage";
+    
+    NSArray *mice = [NSArray array];
+    for(int i = 0; i < 5; i++) {
+        MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
+        mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
+        //   mouse.ca
+        mice = [mice arrayByAddingObject:mouse];
+    }
+    
+    self.cage.mouseDetails = [NSSet setWithArray:mice];
+    NSLog(@"CageView viewDidLoad %d mice", [self.cage.mouseDetails count]);*/
     
     // take care of CageEdit View
     [self.CageInfo.layer setCornerRadius:30.0f];

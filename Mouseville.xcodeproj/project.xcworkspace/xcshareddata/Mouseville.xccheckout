@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>24D84878-8562-4878-8678-357EC75C5739</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Mouseville</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>49CBEBD5-1C0F-44F3-AE87-DD28403B6617</key>
+		<string>https://github.com/mouseville/mouseville.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Mouseville.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>49CBEBD5-1C0F-44F3-AE87-DD28403B6617</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mouseville/mouseville.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>49CBEBD5-1C0F-44F3-AE87-DD28403B6617</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>49CBEBD5-1C0F-44F3-AE87-DD28403B6617</string>
+			<key>IDESourceControlWCCName</key>
+			<string>mouseville</string>
+		</dict>
+	</array>
+</dict>
+</plist>
