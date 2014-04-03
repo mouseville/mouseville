@@ -36,7 +36,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-<<<<<<< HEAD
+
     Rack* rack = [[Rack alloc]init];
     
     self.allRacks = [rack getAllRacks:[self managedObjectContext]];
@@ -73,10 +73,7 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self.allRacks count];
-=======
-    
-    
->>>>>>> neha_branch
+
 }
 
 - (void)didReceiveMemoryWarning
