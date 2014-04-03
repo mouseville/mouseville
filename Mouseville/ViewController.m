@@ -78,8 +78,6 @@
         mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
         [self.cage addMouseDetailsObject:mouse];
     }
-    
-    NSLog(@"CageView viewDidLoad %d mice", [self.cage.mouseDetails count]);
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

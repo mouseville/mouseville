@@ -17,6 +17,25 @@
 
 @implementation CageViewController
 
+- (IBAction)editButtonClicked:(id)sender {
+    if (self.cageName.enabled == NO) {
+        
+        self.cageName.enabled = YES;
+        self.cageName.borderStyle = UITextBorderStyleRoundedRect;
+        self.CageNotes.editable = YES;
+        [self.CageNotes.layer setCornerRadius:8.0f];
+        [self.CageNotes.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+        [self.CageNotes.layer setBorderWidth:1.5f];
+    
+    } else {
+    
+        self.cageName.enabled = NO;
+        self.cageName.borderStyle = UITextBorderStyleNone;
+        self.CageNotes.editable = NO;
+        [self.CageNotes.layer setBorderWidth:0.0f];
+    }
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MouseListViewController *transferVC = segue.destinationViewController;
     NSLog(@"prepareForSeque: %d mice", [self.cage.mouseDetails count]);
@@ -85,7 +104,7 @@
     [self.mouseListContainter.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.mouseListContainter.layer setBorderWidth:1.5f];
     
-    [self.CageName setText:self.cage.cage_name];
+    [self.cageName setText:self.cage.cage_name];
     [self.CageNotes setText:self.cage.notes];
     
     // Labels
