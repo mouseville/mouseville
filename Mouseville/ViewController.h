@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CageDetails.h"
+#import "MouseDetails.h"
 
 @interface ViewController : UIViewController
+
+@property (strong, nonatomic) CageDetails *cage;
 @property (weak, nonatomic) IBOutlet UILabel *Label;
 @property (weak, nonatomic) IBOutlet UIButton *CageButton;
 - (IBAction)PushCageButton:(id)sender;

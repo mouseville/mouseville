@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectDateButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnChooseGenotype;
 
 @property (weak, nonatomic) IBOutlet UITextField *dateOfBirthText;
 
@@ -22,5 +23,14 @@
 
 - (IBAction)selectDate:(id)sender;
 - (IBAction)showDatePicker:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnSelectRack;
+@property (weak, nonatomic) IBOutlet UIButton *btnSelectCage;
 
+@property (assign, nonatomic) NSString* rackName;
+@property (assign, nonatomic) NSString* cageName;
+
+- (IBAction)selectRack:(id)sender;
+
+
+- (IBAction)selectCage:(id)sender;
 @end
