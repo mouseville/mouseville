@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CageDetails.h"
 
-@interface CageViewController : UIViewController
+@interface CageViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate>
 
 @property (strong, nonatomic) CageDetails *cage;
 

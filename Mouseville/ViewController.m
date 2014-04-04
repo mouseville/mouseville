@@ -67,17 +67,8 @@
         [alert show];
         
     }
-    
-    //create a dummy cage with mice
-    self.cage = [NSEntityDescription insertNewObjectForEntityForName:@"CageDetails" inManagedObjectContext:context];
-    self.cage.cage_name = @"Test Cage";
-    self.cage.notes = @"This is a test cage";
-    
-    for(int i = 0; i < 5; i++) {
-        MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
-        mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
-        [self.cage addMouseDetailsObject:mouse];
-    }
+
+    [self createTestRack];
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -107,7 +98,7 @@
     CageViewController *transferVC = segue.destinationViewController;
     
     if ([segue.identifier isEqualToString:@"cageViewSegue"]) {
-        transferVC.cage = self.cage;
+        transferVC.cage = [self.testRack.cages anyObject];
     }
 }
 
@@ -118,9 +109,35 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-
 - (IBAction)PushCageButton:(id)sender {
+}
+
+- (void)createTestRack {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    self.testRack = [NSEntityDescription insertNewObjectForEntityForName:@"RackDetails" inManagedObjectContext:context];
+    
+    self.testRack.created_date = [NSDate date];
+    self.testRack.notes = @"This is a test rack";
+    self.testRack.number_columns = [NSNumber numberWithInt:3];
+    self.testRack.number_rows = [NSNumber numberWithInt:2];
+    self.testRack.rack_name = @"Test Rack";
+    
+    for (int x = 0; x < 3; x++) {
+        for (int y = 0; y < 2; y++) {
+            //create a dummy cage with mice
+            CageDetails *cage = [NSEntityDescription insertNewObjectForEntityForName:@"CageDetails" inManagedObjectContext:context];
+            cage.cage_name = [NSString stringWithFormat:@"Test Cage %d.%d", y + 1, x + 1];
+            cage.notes = @"This is a test cage";
+            for(int i = 0; i < 5; i++) {
+                MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
+                mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d.%d.%d", y + 1, x + 1, i + 1];
+                [cage addMouseDetailsObject:mouse];
+            }
+            cage.row_id = [NSNumber numberWithInt:y + 1];
+            cage.column_id = [NSNumber numberWithInt:x + 1];
+            [self.testRack addCagesObject:cage];
+        }
+    }
+    
 }
 @end

@@ -17,7 +17,7 @@
 
 @implementation CageViewController
 
-- (IBAction)editButtonClicked:(id)sender {
+- (void)swapEditState {
     if (self.cageName.enabled == NO) {
         
         self.cageName.enabled = YES;
@@ -26,14 +26,24 @@
         [self.CageNotes.layer setCornerRadius:8.0f];
         [self.CageNotes.layer setBorderColor:[UIColor lightGrayColor].CGColor];
         [self.CageNotes.layer setBorderWidth:1.5f];
-    
+        
     } else {
-    
+        
         self.cageName.enabled = NO;
         self.cageName.borderStyle = UITextBorderStyleNone;
         self.CageNotes.editable = NO;
         [self.CageNotes.layer setBorderWidth:0.0f];
     }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self swapEditState];
+    return YES;
+}
+
+- (IBAction)editButtonClicked:(id)sender {
+    [self swapEditState];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
