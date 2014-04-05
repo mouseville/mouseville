@@ -1,4 +1,4 @@
-//
+    //
 //  MouseViewController.m
 //  Mouseville
 //
@@ -49,6 +49,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.genotypeMutableArray = [[NSMutableArray alloc]init];
+    
     Rack *rack = [[Rack alloc]init];
     
     NSArray* racks = [rack getAllRacks:[self managedObjectContext]];
@@ -87,7 +89,7 @@
         popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];
     popoverView.delegate = self;
     [popoverView setIdentifier:@"genotypeDropDown"];
-    
+    popoverView.tableView.allowsMultipleSelection = YES;
     
     
     datePickerView=[[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"datepicker"];
@@ -104,7 +106,7 @@
     
     for(CageDetails* cage in rackDetails.cages)
     {
-        NSString* row = [NSString stringWithFormat:@"%d",[cage.row_id intValue]];
+        NSString* row = [self numberToAlphabet:cage.row_id];
         NSString* column = [NSString stringWithFormat:@"%d",[cage.column_id intValue]];
         NSMutableString* cageName = [[NSMutableString alloc]init];
         [cageName appendString:row];
@@ -115,8 +117,23 @@
         
     }
     
-    return [NSArray arrayWithArray:cageNames];
+    return [cageNames sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
 }
+
+
+-(NSString*) numberToAlphabet: (NSNumber* )number
+{
+    
+    NSString* allAlphabets =  @"A,B,C,D,E,F,G,H,I,J";
+    
+    NSArray* alphabetArray = [[NSArray alloc]initWithArray:[allAlphabets componentsSeparatedByString:@","]];
+    
+    return [alphabetArray objectAtIndex:([number intValue]-1)];
+    
+}
+
+
+
 
 /*
 -(void)didClickDropdown:(NSString *)string{
@@ -136,8 +153,9 @@
         [popoverController dismissPopoverAnimated:YES];
         */
         
-        [[self btnChooseGenotype] setTitle:string forState:UIControlStateNormal];
-        [popoverController dismissPopoverAnimated:YES];
+       //[[self btnChooseGenotype] setTitle:string forState:UIControlStateNormal];
+       //[popoverController dismissPopoverAnimated:YES];
+        [self.genotypeMutableArray addObject:string];
         
     }
     
@@ -157,6 +175,27 @@
     }
     
 }
+
+-(void)didDeSelectClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
+{
+    
+    if([popoverIdentifier isEqual:@"genotypeDropDown"])
+    {
+        [self.genotypeMutableArray removeObject:string];
+    }
+}
+
+-(void)dropDownWillDisappear:(NSString *)popoverIdentifier
+{
+    if([popoverIdentifier isEqual:@"genotypeDropDown"])
+    {
+        if([self.genotypeMutableArray count]!=0)
+        [[self btnChooseGenotype]setTitle:[self.genotypeMutableArray componentsJoinedByString:@","]forState:UIControlStateNormal];
+        else
+            [[self btnChooseGenotype]setTitle:@"Choose Genotype" forState:UIControlStateNormal];
+    }
+}
+
 
 -(void) resetCageButton
 {

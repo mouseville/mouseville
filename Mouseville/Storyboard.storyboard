@@ -94,6 +94,16 @@
                                     <segue destination="X8E-RA-kIM" kind="push" id="WoO-Oo-qwg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJf-mz-HxP">
+                                <rect key="frame" x="303" y="693" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="EXPORT">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnExport:" destination="CiX-ED-Flm" eventType="touchUpInside" id="5Kt-RH-8nH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -2076,7 +2086,7 @@
                                 <rect key="frame" x="489" y="230" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Select">
+                                <state key="normal" title="Choose Genotype">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -2126,7 +2136,7 @@
                     <navigationItem key="navigationItem" title="Search Mouse" id="ceW-Me-ZNq"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="chooseGenotype" destination="POT-V1-JNM" id="x73-8h-T3x"/>
+                        <outlet property="btnChooseGenotype" destination="POT-V1-JNM" id="bod-z1-ZkS"/>
                         <outlet property="label1" destination="Hg6-jd-OKE" id="68o-04-Zu0"/>
                         <outlet property="searchDisplayController" destination="QKV-hP-fgx" id="c53-Nb-msS"/>
                         <outlet property="slider" destination="nLW-oe-LKH" id="sdX-JZ-NfY"/>
@@ -2172,6 +2182,9 @@
                     <value key="contentSizeForViewInPopover" type="size" width="240" height="320"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="GuL-ZL-xGG" id="2As-Ne-LGI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hP-di-Mpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

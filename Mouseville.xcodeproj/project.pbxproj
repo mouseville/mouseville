@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		33B2D01C18EB694400AE5543 /* rack.png in Resources */ = {isa = PBXBuildFile; fileRef = 33B2D01B18EB694400AE5543 /* rack.png */; };
+		4810EA7E18EE7F7E00CC6DA2 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4810EA7D18EE7F7E00CC6DA2 /* CHCSVParser.m */; };
+		4810EA8018EEBE4C00CC6DA2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4810EA7F18EEBE4C00CC6DA2 /* MessageUI.framework */; };
+		48241DA818EFDF0E00FB803A /* GenotypeLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 48241DA718EFDF0E00FB803A /* GenotypeLabels.m */; };
 		483FF19B18E2395000EF8AFE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483FF19A18E2395000EF8AFE /* Storyboard.storyboard */; };
 		483FF1E518E23DF300EF8AFE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483FF1E418E23DF300EF8AFE /* ViewController.m */; };
 		4883406118E2256500682F5A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4883406018E2256500682F5A /* Foundation.framework */; };
@@ -64,6 +67,11 @@
 
 /* Begin PBXFileReference section */
 		33B2D01B18EB694400AE5543 /* rack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rack.png; sourceTree = "<group>"; };
+		4810EA7C18EE7F7E00CC6DA2 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		4810EA7D18EE7F7E00CC6DA2 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		4810EA7F18EEBE4C00CC6DA2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		48241DA618EFDF0E00FB803A /* GenotypeLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenotypeLabels.h; sourceTree = "<group>"; };
+		48241DA718EFDF0E00FB803A /* GenotypeLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenotypeLabels.m; sourceTree = "<group>"; };
 		483FF19A18E2395000EF8AFE /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		483FF1E318E23DF300EF8AFE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		483FF1E418E23DF300EF8AFE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4810EA8018EEBE4C00CC6DA2 /* MessageUI.framework in Frameworks */,
 				4883406318E2256500682F5A /* CoreGraphics.framework in Frameworks */,
 				4883406718E2256500682F5A /* CoreData.framework in Frameworks */,
 				4883406518E2256500682F5A /* UIKit.framework in Frameworks */,
@@ -185,6 +194,7 @@
 		4883405F18E2256500682F5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4810EA7F18EEBE4C00CC6DA2 /* MessageUI.framework */,
 				4883406018E2256500682F5A /* Foundation.framework */,
 				4883406218E2256500682F5A /* CoreGraphics.framework */,
 				4883406418E2256500682F5A /* UIKit.framework */,
@@ -243,6 +253,8 @@
 		4883406918E2256500682F5A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4810EA7C18EE7F7E00CC6DA2 /* CHCSVParser.h */,
+				4810EA7D18EE7F7E00CC6DA2 /* CHCSVParser.m */,
 				4883406A18E2256500682F5A /* Mouseville-Info.plist */,
 				4883406B18E2256500682F5A /* InfoPlist.strings */,
 				4883406E18E2256500682F5A /* main.m */,
@@ -275,6 +287,8 @@
 				E5DEA55418EB6914000E3B82 /* MouseDeceasedDetails.h */,
 				E5DEA55518EB6914000E3B82 /* MouseDeceasedDetails.m */,
 				E5DEA55118EB68D6000E3B82 /* MouseVilleModel.xcdatamodeld */,
+				48241DA618EFDF0E00FB803A /* GenotypeLabels.h */,
+				48241DA718EFDF0E00FB803A /* GenotypeLabels.m */,
 				E5DEA54B18EB6877000E3B82 /* MouseDetails.h */,
 				E5DEA54C18EB6877000E3B82 /* MouseDetails.m */,
 				E5DEA54D18EB6877000E3B82 /* MouseFamilyDetails.h */,
@@ -403,11 +417,13 @@
 				4883413218E2271C00682F5A /* LabelCageMapping.m in Sources */,
 				4883407318E2256500682F5A /* AppDelegate.m in Sources */,
 				99CF1E3B18E96414003B47B3 /* DatePickerViewController.m in Sources */,
+				4810EA7E18EE7F7E00CC6DA2 /* CHCSVParser.m in Sources */,
 				9927C23C18E7ED9D00CEC051 /* SearchMouseViewController.m in Sources */,
 				488340BC18E226AA00682F5A /* UserDetails.m in Sources */,
 				8493795418E739F9000FFEC9 /* CageViewController.m in Sources */,
 				4883413018E2271C00682F5A /* CageDetails.m in Sources */,
 				488340BB18E226AA00682F5A /* RackDetails.m in Sources */,
+				48241DA818EFDF0E00FB803A /* GenotypeLabels.m in Sources */,
 				E5DEA55618EB6914000E3B82 /* MouseDeceasedDetails.m in Sources */,
 				483FF1E518E23DF300EF8AFE /* ViewController.m in Sources */,
 				4883413418E2271C00682F5A /* MouseCageDetails.m in Sources */,

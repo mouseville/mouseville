@@ -13,7 +13,7 @@
 
 @implementation Rack
 
--(BOOL)addNewRack:(NSManagedObjectContext *)managedObjectContext name:(NSString*)name rows:(NSNumber *) rows columns:(NSNumber *)columns
+-(BOOL)addNewRack:(NSManagedObjectContext*) managedObjectContext name:(NSString*)name rows:(NSNumber*)rows columns:(NSNumber*)columns
 {
     RackDetails* rack = [NSEntityDescription insertNewObjectForEntityForName:@"RackDetails"inManagedObjectContext:managedObjectContext];
     

@@ -10,10 +10,15 @@
 
 @protocol DropDownDelegate
 -(void)didClickDropdown:(NSString*)string popoverIdentifier:(NSString*)popoverIdentifier ;
+-(void)didDeSelectClickDropdown: (NSString*) string popoverIdentifier: (NSString*)popoverIdentifier;
+
+-(void)dropDownWillDisappear: (NSString*)popoverIdentifier;
+
 @end
 
 @interface PopOverViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray * arrData;
 @property (nonatomic, copy) NSString* identifier;
 @property (nonatomic, copy) NSString* selectedIndex;
