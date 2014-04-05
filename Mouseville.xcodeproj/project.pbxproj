@@ -44,6 +44,7 @@
 		9927C23E18E7ED9D00CEC051 /* MouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23718E7ED9D00CEC051 /* MouseViewController.m */; };
 		9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23918E7ED9D00CEC051 /* RackController.m */; };
 		9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23B18E7ED9D00CEC051 /* MainViewController.m */; };
+		992DFC0B18EFD3FD00AF8BD7 /* EditMouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992DFC0A18EFD3FD00AF8BD7 /* EditMouseViewController.m */; };
 		997C69E918EE9D85006F813D /* ManageGenotypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997C69E818EE9D85006F813D /* ManageGenotypesViewController.m */; };
 		99CF1E3B18E96414003B47B3 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */; };
 		BD6E6AC618EC9D5000B539E8 /* ViewRacksController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E6AC518EC9D5000B539E8 /* ViewRacksController.m */; };
@@ -125,6 +126,8 @@
 		9927C23918E7ED9D00CEC051 /* RackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RackController.m; sourceTree = "<group>"; };
 		9927C23A18E7ED9D00CEC051 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		9927C23B18E7ED9D00CEC051 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		992DFC0918EFD3FD00AF8BD7 /* EditMouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMouseViewController.h; sourceTree = "<group>"; };
+		992DFC0A18EFD3FD00AF8BD7 /* EditMouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMouseViewController.m; sourceTree = "<group>"; };
 		997C69E718EE9D84006F813D /* ManageGenotypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageGenotypesViewController.h; sourceTree = "<group>"; };
 		997C69E818EE9D85006F813D /* ManageGenotypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageGenotypesViewController.m; sourceTree = "<group>"; };
 		99CF1E3918E96414003B47B3 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				BD6E6AC518EC9D5000B539E8 /* ViewRacksController.m */,
 				997C69E718EE9D84006F813D /* ManageGenotypesViewController.h */,
 				997C69E818EE9D85006F813D /* ManageGenotypesViewController.m */,
+				992DFC0918EFD3FD00AF8BD7 /* EditMouseViewController.h */,
+				992DFC0A18EFD3FD00AF8BD7 /* EditMouseViewController.m */,
 			);
 			path = Mouseville;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				E5DEA55318EB68D6000E3B82 /* MouseVilleModel.xcdatamodeld in Sources */,
 				E5DEA54F18EB6877000E3B82 /* MouseDetails.m in Sources */,
 				4883414718E22ACF00682F5A /* Mouse.m in Sources */,
+				992DFC0B18EFD3FD00AF8BD7 /* EditMouseViewController.m in Sources */,
 				E5DEA55018EB6877000E3B82 /* MouseFamilyDetails.m in Sources */,
 				997C69E918EE9D85006F813D /* ManageGenotypesViewController.m in Sources */,
 				9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */,
