@@ -218,4 +218,30 @@
     
 }
 
++(NSString*) numberToAlphabet:(NSNumber *)cageNumber
+{
+    NSString* alphabetString = @"A,B,C,D,E,F,G,H,I,J";
+    NSArray* alphabetArray = [alphabetString componentsSeparatedByString:@","];
+    
+    return [alphabetArray objectAtIndex:(int)([cageNumber intValue]-1)];
+    
+}
+
++(NSNumber*) alphabetToNumber:(NSString *)cageLetter
+{
+    NSString* alphabetString = @"A,B,C,D,E,F,G,H,I,J";
+    NSArray* alphabetArray = [alphabetString componentsSeparatedByString:@","];
+    
+    NSUInteger integerValue = ([alphabetArray indexOfObject:cageLetter]+1);
+    
+    NSNumber* value = [NSNumber numberWithInteger:integerValue];
+    
+    return value;
+                          
+    
+    
+    
+    
+}
+
 @end

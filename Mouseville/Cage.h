@@ -27,4 +27,8 @@
 
 -(CageDetails*) moveMouseToDifferentCage: (NSManagedObjectContext *) managedObjectContext rack:(RackDetails*)rack cageDetails:(CageDetails*)cageObject mouseDetails:(MouseDetails*)mouseDetails rowToMove:(NSNumber*)row columnToMove:(NSNumber*)column;
 
++(NSString*) numberToAlphabet: (NSNumber*) cageNumber;
++(NSNumber*) alphabetToNumber: (NSString*) cageLetter;
+
+
 @end
