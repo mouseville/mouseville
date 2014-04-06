@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewRacksController.h"
 
-@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>{
+    ViewRacksController *viewRacks ;
+}
 @property (weak, nonatomic) IBOutlet UIView *miceView;
 @property (weak, nonatomic) IBOutlet UIView *rackView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedBar;
@@ -19,6 +22,7 @@
 - (IBAction)segmentedValueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *rackCollection;
 @property (nonatomic, copy) NSArray* allRacks;
+
 
 
 

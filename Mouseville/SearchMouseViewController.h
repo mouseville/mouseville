@@ -26,4 +26,7 @@
 @property (nonatomic, copy) NSNumber *minAge;
 @property (nonatomic, copy) NSNumber *maxAge;
 
+@property (weak, nonatomic) IBOutlet UITableView *searchMouseTable;
+
+
 @end

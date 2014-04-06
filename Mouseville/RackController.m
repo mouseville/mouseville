@@ -81,9 +81,9 @@
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    NSInteger numberRows = self.columnStepper.value;
+    NSInteger counter = self.columnStepper.value;
     
-    return numberRows;
+    return counter;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

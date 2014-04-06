@@ -16,7 +16,7 @@
 @implementation MainViewController
 @synthesize rackView, miceView;
 
-
+NSInteger selectedIndex;
 
 -(NSManagedObjectContext*) managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -83,6 +83,9 @@
 }
 
 - (IBAction)createMice:(id)sender {
+   
+    
+    //[self.rackView  addSubview:viewRacks.view];
 }
 
 - (IBAction)segmentedValueChanged:(UISegmentedControl *)sender {
@@ -100,4 +103,30 @@
             break;
     }
 }
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    selectedIndex = indexPath.row;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showRackDetails"]){
+        NSManagedObjectContext *context = [self managedObjectContext];
+        
+        
+        UICollectionViewCell *cel = (UICollectionViewCell *)[[sender superview] superview];
+        
+        UILabel *lab = (UILabel *)[cel.contentView viewWithTag:3];
+        
+        NSString* rackName = lab.text;
+        
+        
+        Rack* rack = [[Rack alloc]init];
+        
+        RackDetails *rackDetailss = [rack getParticularRack:context rackName:rackName];
+        
+        ViewRacksController *viewRacksController = (ViewRacksController *)segue.destinationViewController;
+        viewRacksController.viewRackDetails = rackDetailss;
+        viewRacksController.rackLabel = rackName;
+    }
+}
+
 @end

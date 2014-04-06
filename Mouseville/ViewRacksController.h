@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RackDetails.h"
 
 @interface ViewRacksController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *rackCollection;
+@property (weak, nonatomic) IBOutlet UICollectionView *viewRackCollection;
+
+@property (nonatomic) RackDetails *viewRackDetails;
+
+@property (nonatomic) NSString *rackLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *rackNameLabel;
 
 @end
