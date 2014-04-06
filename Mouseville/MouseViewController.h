@@ -1,4 +1,4 @@
-//
+				//
 //  MouseViewController.h
 //  Mouseville
 //
@@ -28,6 +28,7 @@
 
 @property (assign, nonatomic) NSString* rackName;
 @property (assign, nonatomic) NSString* cageName;
+@property  NSMutableArray* genotypeMutableArray;
 
 - (IBAction)selectRack:(id)sender;
 

@@ -67,19 +67,8 @@
         [alert show];
         
     }
-    
-    //create a dummy cage with mice
-    self.cage = [NSEntityDescription insertNewObjectForEntityForName:@"CageDetails" inManagedObjectContext:context];
-    self.cage.cage_name = @"Test Cage";
-    self.cage.notes = @"This is a test cage";
-    
-    for(int i = 0; i < 5; i++) {
-        MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
-        mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
-        [self.cage addMouseDetailsObject:mouse];
-    }
-    
-    NSLog(@"CageView viewDidLoad %d mice", [self.cage.mouseDetails count]);
+
+    //[self createTestRack];
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -109,7 +98,7 @@
     CageViewController *transferVC = segue.destinationViewController;
     
     if ([segue.identifier isEqualToString:@"cageViewSegue"]) {
-        transferVC.cage = self.cage;
+        transferVC.cage = [self.testRack.cages anyObject];
     }
 }
 
@@ -120,9 +109,174 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-
 - (IBAction)PushCageButton:(id)sender {
 }
+
+- (void)createTestRack {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    self.testRack = [NSEntityDescription insertNewObjectForEntityForName:@"RackDetails" inManagedObjectContext:context];
+    
+    self.testRack.created_date = [NSDate date];
+    self.testRack.notes = @"This is a test rack";
+    self.testRack.number_columns = [NSNumber numberWithInt:3];
+    self.testRack.number_rows = [NSNumber numberWithInt:2];
+    self.testRack.rack_name = @"Test Rack";
+    
+    for (int x = 0; x < 3; x++) {
+        for (int y = 0; y < 2; y++) {
+            //create a dummy cage with mice
+            CageDetails *cage = [NSEntityDescription insertNewObjectForEntityForName:@"CageDetails" inManagedObjectContext:context];
+            cage.cage_name = [NSString stringWithFormat:@"Test Cage %d.%d", y + 1, x + 1];
+            cage.notes = @"This is a test cage";
+            for(int i = 0; i < 5; i++) {
+                MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
+                mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d.%d.%d", y + 1, x + 1, i + 1];
+                [cage addMouseDetailsObject:mouse];
+            }
+            cage.row_id = [NSNumber numberWithInt:y + 1];
+            cage.column_id = [NSNumber numberWithInt:x + 1];
+            [self.testRack addCagesObject:cage];
+        }
+    }
+    
+}
+- (IBAction)btnExport:(id)sender {
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
+    NSString* csvPath = [self generateCSV];
+    
+    [spinner stopAnimating];
+    
+    [self  mail:csvPath];
+    
+}
+
+-(void) mail:(NSString*) filePath
+{
+    if([MFMailComposeViewController canSendMail])
+    {
+        NSData* csvFile = [NSData dataWithContentsOfFile:filePath];
+        
+        MFMailComposeViewController* mailer = [[MFMailComposeViewController alloc]init];
+        mailer.mailComposeDelegate = self;
+        [mailer setSubject:@"Mouseville CSV File"];
+        [mailer addAttachmentData:csvFile mimeType:@"text/csv" fileName:[filePath lastPathComponent]];
+        
+      //  [self presentViewController:mailer animated:YES completion:nil];
+        
+        [self presentViewController:mailer animated:YES completion:nil];
+        
+    
+        
+    }
+    
+    else{
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Device is not configured to send mail. Please check that you have set up your email and that netwoerk is available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+
+
+-(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+   
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+- (NSString*) generateCSV
+{
+    
+    @try {
+        NSArray* documentsPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSSystemDomainMask, YES);
+        NSString* documentDir = [documentsPath objectAtIndex:0];
+        NSString* csvPath = [documentDir stringByAppendingPathComponent:@"export.csv"];
+        
+        Rack* rackObject = [[Rack alloc]init];
+        
+        NSArray* allRacks = [rackObject getAllRacks:[self managedObjectContext]];
+        NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"MM/dd/yyyy"];
+        
+        
+        
+        CHCSVWriter* csvWriter = [[CHCSVWriter alloc]initForWritingToCSVFile:csvPath];
+        
+    
+        
+        NSMutableString* comment = [[NSMutableString alloc]init];
+        
+        [comment appendString:@"This file was generated on "];
+        [comment appendString:[formatter stringFromDate:[NSDate date]]];
+        
+        [csvWriter writeComment:[NSString stringWithString:comment]];
+        
+        [csvWriter writeField:@"Rack Name"];
+        [csvWriter writeField:@"Cage Name"];
+        [csvWriter writeField:@"Mouse Name"];
+        [csvWriter writeField:@"BirthDate"];
+        [csvWriter writeField:@"Gender"];
+        [csvWriter writeField:@"Genotype"];
+        [csvWriter writeField:@"Family Details"];
+        [csvWriter writeField:@"Is deceased"];
+        [csvWriter finishLine];
+        
+    
+        
+        for(RackDetails* rack in allRacks)
+        {
+            for(CageDetails* cage in rack.cages)
+            {
+                if([cage.mouseDetails count]!=0)
+                {
+                    for(MouseDetails* mouse in cage.mouseDetails)
+                    {
+                        
+                        
+                        // sanition before writing
+                        NSString* birthDate = [formatter stringFromDate:mouse.birth_date];
+                        NSString* genoTypes = [[mouse.genotypes allObjects] componentsJoinedByString:@","];
+                        NSString* familyDetails = [[mouse.miceFamilyDetails allObjects] componentsJoinedByString:@","];
+                        NSMutableArray* tempArray = [[NSMutableArray alloc]init];
+                        [tempArray addObject:rack.rack_name];
+                        [tempArray addObject:cage.cage_name];
+                        [tempArray addObject:mouse.mouse_name];
+                        [tempArray addObject:birthDate];
+                        [tempArray addObject:mouse.gender];
+                        [tempArray addObject:genoTypes];
+                        [tempArray addObject:familyDetails];
+                        [tempArray addObject:mouse.is_deceased];
+
+                        [csvWriter writeLineOfFields:tempArray];
+                        
+                       
+                        
+                    }
+                }
+            }
+        }
+        
+        
+      		  return csvPath;
+
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@     %@",exception, [exception reason]);
+    }
+    @finally {
+        
+    }
+    
+}
+
+
+
 @end

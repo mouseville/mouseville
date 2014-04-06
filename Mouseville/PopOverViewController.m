@@ -29,6 +29,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+   
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,8 +64,21 @@
  
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     self.selectedValue = selectedCell.textLabel.text;
-    [self.delegate didClickDropdown:[self.arrData objectAtIndex:indexPath.row] popoverIdentifier:self.identifier ] ;
+   [self.delegate didClickDropdown:[self.arrData objectAtIndex:indexPath.row] popoverIdentifier:self.identifier ] ;
     
     
 }
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell* deselectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    self.selectedValue = deselectedCell.textLabel.text;
+    [self.delegate didDeSelectClickDropdown:[self.arrData objectAtIndex:indexPath.row] popoverIdentifier:self.identifier];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.delegate dropDownWillDisappear:self.identifier];
+}
+
+
 @end

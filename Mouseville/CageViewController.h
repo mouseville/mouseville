@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CageDetails.h"
 
-@interface CageViewController : UIViewController
+@interface CageViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate>
 
 @property (strong, nonatomic) CageDetails *cage;
 
 @property (weak, nonatomic) IBOutlet UILabel *NumCagesLabel;
 @property (weak, nonatomic) IBOutlet UIView *CageInfo;
-@property (weak, nonatomic) IBOutlet UILabel *CageName;
+@property (weak, nonatomic) IBOutlet UITextField *cageName;
 @property (weak, nonatomic) IBOutlet UITextView *CageNotes;
 
 @property (weak, nonatomic) IBOutlet UIView *mouseListContainter;

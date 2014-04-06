@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 - (IBAction)sliderValueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
-@property (weak, nonatomic) IBOutlet UIButton *chooseGenotype;
+@property (weak, nonatomic) IBOutlet UIButton *btnChooseGenotype;
 - (IBAction)chooseGenotype:(id)sender;
 
 
@@ -25,6 +25,7 @@
 
 @property (nonatomic, copy) NSNumber *minAge;
 @property (nonatomic, copy) NSNumber *maxAge;
+@property NSMutableArray* genotypeMutableArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *searchMouseTable;
 

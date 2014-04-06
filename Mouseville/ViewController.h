@@ -7,12 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
+
+
+//required for generating an
+#import "Rack.h"
+#import "RackDetails.h"
 #import "CageDetails.h"
 #import "MouseDetails.h"
+#import "CHCSVParser.h"
 
-@interface ViewController : UIViewController
 
-@property (strong, nonatomic) CageDetails *cage;
+
+@interface ViewController : UIViewController <MFMailComposeViewControllerDelegate>
+
+@property (strong, nonatomic) RackDetails *testRack;
 @property (weak, nonatomic) IBOutlet UILabel *Label;
 @property (weak, nonatomic) IBOutlet UIButton *CageButton;
 - (IBAction)PushCageButton:(id)sender;

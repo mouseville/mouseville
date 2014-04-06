@@ -40,6 +40,8 @@
     [popoverView setIdentifier:@"searchMouseGenotypePopover"];
     
     
+    self.genotypeMutableArray = [[NSMutableArray alloc]init];
+    
     self.slider.maximumValue= 100;
     self.slider.minimumValue=0;
     
@@ -48,6 +50,16 @@
 
 
     
+    
+}
+
+-(void)didDeSelectClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
+{
+    
+}
+
+-(void)dropDownWillDisappear:(NSString *)popoverIdentifier
+{
     
 }
 
