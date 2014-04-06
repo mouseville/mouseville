@@ -11,7 +11,6 @@
 		4810EA7E18EE7F7E00CC6DA2 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4810EA7D18EE7F7E00CC6DA2 /* CHCSVParser.m */; };
 		4810EA8018EEBE4C00CC6DA2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4810EA7F18EEBE4C00CC6DA2 /* MessageUI.framework */; };
 		48241DA818EFDF0E00FB803A /* GenotypeLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 48241DA718EFDF0E00FB803A /* GenotypeLabels.m */; };
-		483FF19B18E2395000EF8AFE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483FF19A18E2395000EF8AFE /* Storyboard.storyboard */; };
 		483FF1E518E23DF300EF8AFE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483FF1E418E23DF300EF8AFE /* ViewController.m */; };
 		4883406118E2256500682F5A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4883406018E2256500682F5A /* Foundation.framework */; };
 		4883406318E2256500682F5A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4883406218E2256500682F5A /* CoreGraphics.framework */; };
@@ -27,18 +26,19 @@
 		4883408218E2256600682F5A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4883406618E2256500682F5A /* CoreData.framework */; };
 		4883408A18E2256600682F5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4883408818E2256600682F5A /* InfoPlist.strings */; };
 		4883408C18E2256600682F5A /* MousevilleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883408B18E2256600682F5A /* MousevilleTests.m */; };
-		488340BB18E226AA00682F5A /* RackDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 488340B818E226AA00682F5A /* RackDetails.m */; };
 		488340BC18E226AA00682F5A /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 488340BA18E226AA00682F5A /* UserDetails.m */; };
 		4883413018E2271C00682F5A /* CageDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883411D18E2271C00682F5A /* CageDetails.m */; };
-		4883413118E2271C00682F5A /* Genotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883411F18E2271C00682F5A /* Genotype.m */; };
 		4883413218E2271C00682F5A /* LabelCageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883412118E2271C00682F5A /* LabelCageMapping.m */; };
-		4883413318E2271C00682F5A /* Labels.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883412318E2271C00682F5A /* Labels.m */; };
 		4883413418E2271C00682F5A /* MouseCageDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883412518E2271C00682F5A /* MouseCageDetails.m */; };
 		4883413518E2271C00682F5A /* MouseCageDetailsOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883412718E2271C00682F5A /* MouseCageDetailsOld.m */; };
 		4883413918E2271C00682F5A /* MouseGenotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883412F18E2271C00682F5A /* MouseGenotype.m */; };
 		4883414118E22A8600682F5A /* Cage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414018E22A8600682F5A /* Cage.m */; };
 		4883414418E22AAD00682F5A /* Rack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414318E22AAD00682F5A /* Rack.m */; };
 		4883414718E22ACF00682F5A /* Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4883414618E22ACF00682F5A /* Mouse.m */; };
+		489772ED18F124E500D85220 /* RackDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 489772EC18F124E500D85220 /* RackDetails.m */; };
+		489772F018F124E600D85220 /* Genotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 489772EF18F124E600D85220 /* Genotype.m */; };
+		489772F318F124E600D85220 /* Labels.m in Sources */ = {isa = PBXBuildFile; fileRef = 489772F218F124E600D85220 /* Labels.m */; };
+		48AC6C3C18F0F80A00926C92 /* Storyboard 22-46-48-095.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48AC6C3B18F0F80A00926C92 /* Storyboard 22-46-48-095.storyboard */; };
 		8490408D18EAF43500694343 /* MouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8490408C18EAF43500694343 /* MouseListViewController.m */; };
 		8493795418E739F9000FFEC9 /* CageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493795318E739F9000FFEC9 /* CageViewController.m */; };
 		9927C23118E7ED7E00CEC051 /* PopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23018E7ED7E00CEC051 /* PopOverViewController.m */; };
@@ -74,7 +74,6 @@
 		4810EA7F18EEBE4C00CC6DA2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		48241DA618EFDF0E00FB803A /* GenotypeLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenotypeLabels.h; sourceTree = "<group>"; };
 		48241DA718EFDF0E00FB803A /* GenotypeLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenotypeLabels.m; sourceTree = "<group>"; };
-		483FF19A18E2395000EF8AFE /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		483FF1E318E23DF300EF8AFE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		483FF1E418E23DF300EF8AFE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4883405D18E2256500682F5A /* Mouseville.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mouseville.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,18 +93,12 @@
 		4883408718E2256600682F5A /* MousevilleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MousevilleTests-Info.plist"; sourceTree = "<group>"; };
 		4883408918E2256600682F5A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4883408B18E2256600682F5A /* MousevilleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MousevilleTests.m; sourceTree = "<group>"; };
-		488340B718E226AA00682F5A /* RackDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RackDetails.h; sourceTree = "<group>"; };
-		488340B818E226AA00682F5A /* RackDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RackDetails.m; sourceTree = "<group>"; };
 		488340B918E226AA00682F5A /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
 		488340BA18E226AA00682F5A /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
 		4883411C18E2271C00682F5A /* CageDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CageDetails.h; sourceTree = "<group>"; };
 		4883411D18E2271C00682F5A /* CageDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CageDetails.m; sourceTree = "<group>"; };
-		4883411E18E2271C00682F5A /* Genotype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genotype.h; sourceTree = "<group>"; };
-		4883411F18E2271C00682F5A /* Genotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Genotype.m; sourceTree = "<group>"; };
 		4883412018E2271C00682F5A /* LabelCageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelCageMapping.h; sourceTree = "<group>"; };
 		4883412118E2271C00682F5A /* LabelCageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelCageMapping.m; sourceTree = "<group>"; };
-		4883412218E2271C00682F5A /* Labels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Labels.h; sourceTree = "<group>"; };
-		4883412318E2271C00682F5A /* Labels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Labels.m; sourceTree = "<group>"; };
 		4883412418E2271C00682F5A /* MouseCageDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseCageDetails.h; sourceTree = "<group>"; };
 		4883412518E2271C00682F5A /* MouseCageDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseCageDetails.m; sourceTree = "<group>"; };
 		4883412618E2271C00682F5A /* MouseCageDetailsOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseCageDetailsOld.h; sourceTree = "<group>"; };
@@ -118,6 +111,13 @@
 		4883414318E22AAD00682F5A /* Rack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rack.m; sourceTree = "<group>"; };
 		4883414518E22ACF00682F5A /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mouse.h; sourceTree = "<group>"; };
 		4883414618E22ACF00682F5A /* Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mouse.m; sourceTree = "<group>"; };
+		489772EB18F124E500D85220 /* RackDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RackDetails.h; sourceTree = "<group>"; };
+		489772EC18F124E500D85220 /* RackDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RackDetails.m; sourceTree = "<group>"; };
+		489772EE18F124E600D85220 /* Genotype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genotype.h; sourceTree = "<group>"; };
+		489772EF18F124E600D85220 /* Genotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Genotype.m; sourceTree = "<group>"; };
+		489772F118F124E600D85220 /* Labels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Labels.h; sourceTree = "<group>"; };
+		489772F218F124E600D85220 /* Labels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Labels.m; sourceTree = "<group>"; };
+		48AC6C3B18F0F80A00926C92 /* Storyboard 22-46-48-095.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard 22-46-48-095.storyboard"; sourceTree = "<group>"; };
 		8490408B18EAF43500694343 /* MouseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseListViewController.h; sourceTree = "<group>"; };
 		8490408C18EAF43500694343 /* MouseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseListViewController.m; sourceTree = "<group>"; };
 		8493795218E739F9000FFEC9 /* CageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CageViewController.h; sourceTree = "<group>"; };
@@ -224,18 +224,14 @@
 				4883414218E22AAD00682F5A /* Rack.h */,
 				4883414318E22AAD00682F5A /* Rack.m */,
 				4883414018E22A8600682F5A /* Cage.m */,
-				488340B718E226AA00682F5A /* RackDetails.h */,
-				488340B818E226AA00682F5A /* RackDetails.m */,
-				488340B918E226AA00682F5A /* UserDetails.h */,
-				488340BA18E226AA00682F5A /* UserDetails.m */,
 				4883409818E2264500682F5A /* CoreDataFiles */,
 				4883407118E2256500682F5A /* AppDelegate.h */,
 				4883407218E2256500682F5A /* AppDelegate.m */,
 				4883407718E2256500682F5A /* Images.xcassets */,
 				4883406918E2256500682F5A /* Supporting Files */,
 				483FF1E318E23DF300EF8AFE /* ViewController.h */,
-				483FF19A18E2395000EF8AFE /* Storyboard.storyboard */,
 				483FF1E418E23DF300EF8AFE /* ViewController.m */,
+				48AC6C3B18F0F80A00926C92 /* Storyboard 22-46-48-095.storyboard */,
 				9927C22F18E7ED7E00CEC051 /* PopOverViewController.h */,
 				9927C23018E7ED7E00CEC051 /* PopOverViewController.m */,
 				99CF1E3918E96414003B47B3 /* DatePickerViewController.h */,
@@ -294,6 +290,14 @@
 		4883409818E2264500682F5A /* CoreDataFiles */ = {
 			isa = PBXGroup;
 			children = (
+				489772F118F124E600D85220 /* Labels.h */,
+				489772F218F124E600D85220 /* Labels.m */,
+				489772EE18F124E600D85220 /* Genotype.h */,
+				488340B918E226AA00682F5A /* UserDetails.h */,
+				488340BA18E226AA00682F5A /* UserDetails.m */,
+				489772EF18F124E600D85220 /* Genotype.m */,
+				489772EB18F124E500D85220 /* RackDetails.h */,
+				489772EC18F124E500D85220 /* RackDetails.m */,
 				E5DEA55418EB6914000E3B82 /* MouseDeceasedDetails.h */,
 				E5DEA55518EB6914000E3B82 /* MouseDeceasedDetails.m */,
 				E5DEA55118EB68D6000E3B82 /* MouseVilleModel.xcdatamodeld */,
@@ -305,12 +309,8 @@
 				E5DEA54E18EB6877000E3B82 /* MouseFamilyDetails.m */,
 				4883411C18E2271C00682F5A /* CageDetails.h */,
 				4883411D18E2271C00682F5A /* CageDetails.m */,
-				4883411E18E2271C00682F5A /* Genotype.h */,
-				4883411F18E2271C00682F5A /* Genotype.m */,
 				4883412018E2271C00682F5A /* LabelCageMapping.h */,
 				4883412118E2271C00682F5A /* LabelCageMapping.m */,
-				4883412218E2271C00682F5A /* Labels.h */,
-				4883412318E2271C00682F5A /* Labels.m */,
 				4883412418E2271C00682F5A /* MouseCageDetails.h */,
 				4883412518E2271C00682F5A /* MouseCageDetails.m */,
 				4883412618E2271C00682F5A /* MouseCageDetailsOld.h */,
@@ -398,9 +398,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B2D01C18EB694400AE5543 /* rack.png in Resources */,
+				48AC6C3C18F0F80A00926C92 /* Storyboard 22-46-48-095.storyboard in Resources */,
 				4883406D18E2256500682F5A /* InfoPlist.strings in Resources */,
 				4883407818E2256500682F5A /* Images.xcassets in Resources */,
-				483FF19B18E2395000EF8AFE /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,10 +432,11 @@
 				488340BC18E226AA00682F5A /* UserDetails.m in Sources */,
 				8493795418E739F9000FFEC9 /* CageViewController.m in Sources */,
 				4883413018E2271C00682F5A /* CageDetails.m in Sources */,
-				488340BB18E226AA00682F5A /* RackDetails.m in Sources */,
+				489772F318F124E600D85220 /* Labels.m in Sources */,
 				48241DA818EFDF0E00FB803A /* GenotypeLabels.m in Sources */,
 				E5DEA55618EB6914000E3B82 /* MouseDeceasedDetails.m in Sources */,
 				483FF1E518E23DF300EF8AFE /* ViewController.m in Sources */,
+				489772F018F124E600D85220 /* Genotype.m in Sources */,
 				4883413418E2271C00682F5A /* MouseCageDetails.m in Sources */,
 				E5DEA55318EB68D6000E3B82 /* MouseVilleModel.xcdatamodeld in Sources */,
 				E5DEA54F18EB6877000E3B82 /* MouseDetails.m in Sources */,
@@ -445,10 +446,9 @@
 				997C69E918EE9D85006F813D /* ManageGenotypesViewController.m in Sources */,
 				9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */,
 				9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */,
-				4883413118E2271C00682F5A /* Genotype.m in Sources */,
 				4883413918E2271C00682F5A /* MouseGenotype.m in Sources */,
+				489772ED18F124E500D85220 /* RackDetails.m in Sources */,
 				4883414418E22AAD00682F5A /* Rack.m in Sources */,
-				4883413318E2271C00682F5A /* Labels.m in Sources */,
 				BD6E6AC618EC9D5000B539E8 /* ViewRacksController.m in Sources */,
 				4883413518E2271C00682F5A /* MouseCageDetailsOld.m in Sources */,
 				4883406F18E2256500682F5A /* main.m in Sources */,

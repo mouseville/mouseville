@@ -12,6 +12,7 @@
 #import "Rack.h"
 #import "Cage.h"
 #import "RackDetails.h"
+#import "Mouse.h"
 
 
 @interface MouseViewController ()
@@ -19,14 +20,13 @@
     UIPopoverController *popoverController;
     PopOverViewController *popoverView;
     
-    UIPopoverController *datePickerController;
-    DatePickerViewController *datePickerView;
-    
     UIPopoverController *rackPopoverController;
     PopOverViewController *rackPopoverViewController;
     
     UIPopoverController *cagePopoverController;
     PopOverViewController *cagePopoverViewController;
+    
+    UIPopoverController* popoverDateController;
     
     
     
@@ -91,11 +91,6 @@
     [popoverView setIdentifier:@"genotypeDropDown"];
     popoverView.tableView.allowsMultipleSelection = YES;
     
-    
-    datePickerView=[[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"datepicker"];
-    datePickerController= [[UIPopoverController alloc]initWithContentViewController:datePickerView];
-    
-    
 
 }
 
@@ -132,7 +127,19 @@
     
 }
 
-
+-(NSNumber*) alphabetToNumber: (NSString*) alphabet
+{
+ 
+    
+    NSString* allAlphabets =  @"A,B,C,D,E,F,G,H,I,J";
+    
+    NSArray* alphabetArray = [[NSArray alloc]initWithArray:[allAlphabets componentsSeparatedByString:@","]];
+    
+    NSUInteger index = [alphabetArray indexOfObject:alphabet]+1;
+    
+    return [NSNumber numberWithInteger:index];
+    
+}
 
 
 /*
@@ -190,7 +197,7 @@
     if([popoverIdentifier isEqual:@"genotypeDropDown"])
     {
         if([self.genotypeMutableArray count]!=0)
-        [[self btnChooseGenotype]setTitle:[self.genotypeMutableArray componentsJoinedByString:@","]forState:UIControlStateNormal];
+        [[self btnChooseGenotype]setTitle:[[self.genotypeMutableArray sortedArrayUsingSelector:@selector(localizedStandardCompare:)]componentsJoinedByString:@","] forState:UIControlStateNormal];
         else
             [[self btnChooseGenotype]setTitle:@"Choose Genotype" forState:UIControlStateNormal];
     }
@@ -212,16 +219,9 @@
     
     cagePopoverViewController.delegate = self;
     
-    [[self btnSelectCage]setTitle:@"select cage" forState:UIControlStateNormal];
+    [[self btnSelectCage]setTitle:@"Select Cage" forState:UIControlStateNormal];
 }
 
-
--(void) didClickDatePicker:(NSString *)string{
-
-    self.dateOfBirthText.text = string;
-    [datePickerController dismissPopoverAnimated:YES];
-    
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -229,13 +229,61 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)showDatePicker:(id)sender {
+
+- (IBAction)btnDateClick:(id)sender {
     
-    [datePickerController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    UIViewController* popoverContent = [[UIViewController alloc] init]; //ViewController
+    
+    UIView *popoverDateView = [[UIView alloc] init];   //view
+    //popoverDateView.backgroundColor = [UIColor blackColor];
+    
+    //Date picker
+    UIDatePicker *datePicker=[[UIDatePicker alloc]init];
+    datePicker.frame=CGRectMake(0,44,320, 216);
+    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    [datePicker setMinuteInterval:5];
+    [datePicker setTag:10];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    datePicker.maximumDate = [NSDate date];
+    [datePicker addTarget:self action:@selector(result:) forControlEvents:UIControlEventValueChanged];
+    [popoverDateView addSubview:datePicker];
+    
+//    if(self..text.length>0)
+//    {
+//        @try {
+//            NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+//            [formatter setDateFormat:@"MM/dd/yyyy"];
+//            NSDate * dateToSet = [formatter dateFromString:self.dateOfBirthText.text];
+//            datePicker.date = dateToSet;
+//        }
+//        @catch (NSException *exception) {
+//            
+//            datePicker.date = [NSDate date];
+//            
+//        }
+//    }
+    
+    
+    popoverContent.view = popoverDateView;
+    popoverDateController = [[UIPopoverController alloc] initWithContentViewController:popoverContent];
+    popoverDateController.delegate=self;
+    
+    [popoverDateController setPopoverContentSize:CGSizeMake(320, 264) animated:NO];
+    [popoverDateController presentPopoverFromRect:[[self btnDate] frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];//tempButton.frame where you need you can put that frame
 
     
-
 }
+
+
+-(void) result: (id)sender
+{
+    NSDate* dateSelected = ((UIDatePicker*)sender).date;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"MM/dd/yyyy"];
+    //self.dateOfBirthText.text = [formatter stringFromDate:dateSelected];
+    self.lblDate.text = [formatter stringFromDate:dateSelected];
+}
+
 - (IBAction)chooseGenotype:(id)sender {
     
     [popoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -255,15 +303,73 @@
 
 
 
+- (IBAction)btnDoneClick:(id)sender {
+    
+    if(![self sanityCheck])
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Unablt to insert mouse details. Please ensure that all the values on this page are set" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc]init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSMutableArray* tempMutableArray = [[NSMutableArray alloc]init];
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    [self.btnSelectCage.currentTitle enumerateSubstringsInRange:NSMakeRange(0, self.btnSelectCage.currentTitle.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        [tempMutableArray addObject:substring];
+    }];
 
-- (IBAction)selectDate:(id)sender {
+    NSNumber* cageRow = [self alphabetToNumber:[tempMutableArray objectAtIndex:0 ]];
+    NSInteger cageColumnInteger = [[tempMutableArray objectAtIndex:1]intValue];
+    NSNumber* cageColumn = [NSNumber numberWithInteger:cageColumnInteger];
+    
+    NSString* rackName = self.btnSelectRack.currentTitle;
+    NSString* mouseName = self.txtMouseName.text;
+    NSString* gender = [self.segGenderControl titleForSegmentAtIndex:self.segGenderControl.selectedSegmentIndex];
+    NSDate* dateOfBirth = [dateFormatter dateFromString:self.lblDate.text];
+    
+    NSSet* genotypes = [NSSet setWithArray:[self.btnChooseGenotype.currentTitle componentsSeparatedByString:@","]];
     
     
-   // NSDate *currentDate = self.datePicker.date;
+    Mouse* mouseHelper = [[Mouse alloc]init];
     
-   // self.dateOfBirthText.text = [[NSString alloc]initWithFormat:@"%@", currentDate];
-  //    self.DatePickerView.hidden = YES;
+    if(![mouseHelper addNewMouse:[self managedObjectContext] mouseName:mouseName gender:gender genotypes:genotypes dateOfBirth:dateOfBirth rackName:rackName cageRow:cageRow cageColoumn:cageColumn])
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was a problem while entering the mouse details. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse details were entered successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    
+    
+    
+    
+
 }
+
+-(BOOL)sanityCheck
+{
+    if(self.txtMouseName.text.length==0)
+        return NO;
+    if([self.btnChooseGenotype.currentTitle isEqual:@"Choose Genotype"])
+        return NO;
+    if(self.lblDate.text.length==0)
+        return NO;
+    if([self.btnSelectRack.currentTitle isEqual:@"Select Rack"])
+        return NO;
+    if([self.btnSelectCage.currentTitle isEqual:@"Select Cage"])
+        return NO;
+        
+    return YES;
+}
+
 - (IBAction)selectRack:(id)sender {
     [rackPopoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     
@@ -274,4 +380,6 @@
     
     [cagePopoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
+
+
 @end

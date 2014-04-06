@@ -48,10 +48,11 @@
 - (IBAction)datePicked:(UIDatePicker *)sender {
     
     
-    NSDate *currentDate = self.datePicker.date;
+    NSDate *currentDate = self.datePicker.date;   
     
-    
-    [self.delegate didClickDatePicker:[[NSString alloc]initWithFormat:@"%@", currentDate]];
-
+    [self.delegate didClickDatePick:[[NSString alloc]initWithFormat:@"%@", currentDate]];
 }
+
+
+
 @end

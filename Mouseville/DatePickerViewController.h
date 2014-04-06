@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @protocol DatePickerDelegate
--(void)didClickDatePicker:(NSString*) string;
+-(void)didClickDatePick:(NSString*) string;
 @end
 
 @interface DatePickerViewController : UIViewController
+
 @property (nonatomic, assign) id<DatePickerDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 - (IBAction)datePicked:(UIDatePicker *)sender;
 
 @end

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditMouseViewController : UIViewController
+@interface EditMouseViewController : UIViewController <UIPopoverControllerDelegate>
+
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDate;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *btnDate;
+
 
 @end
