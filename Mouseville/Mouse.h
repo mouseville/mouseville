@@ -18,7 +18,7 @@
 @interface Mouse : NSObject
 
 
--(BOOL)addNewMouse: (NSManagedObjectContext*) managedObjectContext mouseName:(NSString*) mouseName gender:(NSString*)gender genotypes:(NSSet*)genotypes dateOfBirth:(NSDate*)dateOfBirth rackName:(NSString*)rackName cageName:(NSString*)cageName;
+-(BOOL) addNewMouse:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotypes:(NSSet *)genotypes dateOfBirth:(NSDate *)dateOfBirth rackName:(NSString *)rackName cageRow:(NSNumber*)cageRow cageColoumn:(NSNumber*)cageColumn;
 
 -(NSArray*) miceResult: (NSManagedObjectContext*) managedObjectContext mouseName:(NSString*)mouseName gender:(NSString*)gender genotype:(NSString*)genotype weekRange:(NSArray*)ageRange;
 

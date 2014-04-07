@@ -7,13 +7,14 @@
 //
 
 #import "Mouse.h"
-
+#import "Genotype.h"
 @implementation Mouse
 
 
--(BOOL) addNewMouse:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotypes:(NSSet *)genotypes dateOfBirth:(NSDate *)dateOfBirth rackName:(NSString *)rackName cageName:(NSString *)cageName
+-(BOOL) addNewMouse:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotypes:(NSSet *)genotypes dateOfBirth:(NSDate *)dateOfBirth rackName:(NSString *)rackName cageRow:(NSNumber*)cageRow cageColoumn:(NSNumber*)cageColumn
 
 {
+
     MouseDetails* mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:managedObjectContext];
     
     
@@ -27,7 +28,7 @@
     NSFetchRequest* fetchRequest2 = [[NSFetchRequest alloc]init];
     
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name == %@", rackName];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name LIKE %@", rackName];
     [fetchRequest setPredicate:predicate];
     
     
@@ -52,48 +53,87 @@
         NSLog(@"No rack present with the name %@", rackName);
     }
     
-    RackDetails* rack = racks[0];
+    RackDetails* rack ;
     
-    NSPredicate* predicate2 = [NSPredicate predicateWithFormat:@"cage_name == %@ AND rack_id == %@", cageName, [rack rack_id]];
-    
-    [fetchRequest2 setPredicate:predicate2];
-    
-    
-    NSArray* cages = [managedObjectContext executeFetchRequest:fetchRequest2 error:&errorRequest];
-    
-    if(errorRequest)
+    for(RackDetails* eachRack in racks)
     {
-        NSLog(@"Error requesting cage %@ %@", errorRequest, [errorRequest localizedDescription]);
-        return  NO;
+        if([eachRack.rack_name isEqual:rackName])
+        {
+            rack = eachRack;
+            break;
+        }
     }
     
-    if([cages count]==0)
+//    NSPredicate* predicate2 = [NSPredicate predicateWithFormat:@"cage_name == %@ AND rack_id == %@", cageName, [rack rack_id]];
+//    
+//    [fetchRequest2 setPredicate:predicate2];
+//    
+//    
+//    NSArray* cages = [managedObjectContext executeFetchRequest:fetchRequest2 error:&errorRequest];
+//    
+//    if(errorRequest)
+//    {
+//        NSLog(@"Error requesting cage %@ %@", errorRequest, [errorRequest localizedDescription]);
+//        return  NO;
+//    }
+//    
+//    if([cages count]==0)
+//    {
+//        NSLog(@"No cage present with the name %@", cageName);
+//        return NO;
+//    }
+//    
+//    CageDetails* cage = cages[0];
+    
+    
+    CageDetails* cage;
+    
+    for(CageDetails* eachCage in rack.cages)
     {
-        NSLog(@"No cage present with the name %@", cageName);
-        return NO;
+        
+        
+        if( [eachCage.row_id intValue] == [cageRow intValue] && [eachCage.column_id intValue] == [cageColumn intValue])
+        {
+            cage = eachCage;
+            break;
+        }
     }
     
-    CageDetails* cage = cages[0];
     
-    if(mouse!=nil)
+    if(cage!=nil)
     {
         mouse.mouse_name = mouseName;
         mouse.gender = gender;
-        mouse.genotypes = genotypes;
         mouse.birth_date = dateOfBirth;
         mouse.cage_id = cage.cage_id;
         mouse.mouse_id = [self nextMouseId:cage];
         mouse.is_deceased = @"NO";
         mouse.cage_name = cage.cage_name;
         mouse.cageDetails = cage;
-        [mouse addGenotypes:genotypes];
-        [mouse addMiceFamilyDetails:[self getPotentialParents:cage]];
+       [mouse addMiceFamilyDetails:[self getPotentialParents:cage]];
+        
+        for(NSString* insertGenotypeString in genotypes)
+        {
+            Genotype* genotypeEntity = [NSEntityDescription insertNewObjectForEntityForName:@"Genotype" inManagedObjectContext:managedObjectContext];
+            
+            genotypeEntity.genotype_name = insertGenotypeString;
+            
+            [mouse addGenotypesObject:genotypeEntity];
+      
+            
+            
+        }
+        
         
         [cage addMouseDetailsObject:mouse];
         
-        
-        
     }
+    
+    else
+    {
+        return NO;
+    }
+    
     
     if(![managedObjectContext save:&errorRequest])
     {
@@ -101,7 +141,7 @@
     }
     
     
-    return NO;
+    return YES;
 }
 
 
@@ -150,6 +190,9 @@
 
 -(MouseDetails*) editMouseDetails:(NSManagedObjectContext *)managedObjectContext mouseDetails:(MouseDetails *)mouseDetails
 {
+    
+    
+    
     if([mouseDetails.is_deceased  isEqual: @"Yes"])
     {
         MouseDeceasedDetails* mouseDeceased = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDeceasedDetails" inManagedObjectContext:managedObjectContext];

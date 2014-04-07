@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenotypeLabels.h"
+#import "Genotype.h"
+#import "GenotypeManager.h"
+
 
 @interface ManageGenotypesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *genotypeTableView;
 
 @property (strong, nonatomic) NSMutableArray *genotypes;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnEditBarButton;
+
 
 - (IBAction)insertNewGenotype:(id)sender;
 @end

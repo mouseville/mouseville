@@ -12,10 +12,9 @@
         <relationship name="rackDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RackDetails" inverseName="cages" inverseEntity="RackDetails" syncable="YES"/>
     </entity>
     <entity name="Genotype" representedClassName="Genotype" syncable="YES">
-        <attribute name="genotype_id" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="genotype_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mouseDeceasedDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MouseDeceasedDetails" inverseName="genotype" inverseEntity="MouseDeceasedDetails" syncable="YES"/>
-        <relationship name="mouseDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MouseDetails" inverseName="genotypes" inverseEntity="MouseDetails" syncable="YES"/>
+        <relationship name="mouseDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MouseDetails" inverseName="genotypes" inverseEntity="MouseDetails" syncable="YES"/>
     </entity>
     <entity name="GenotypeLabels" representedClassName="GenotypeLabels" syncable="YES">
         <attribute name="genotypeLabel" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,9 +24,9 @@
         <attribute name="label_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Labels" representedClassName="Labels" syncable="YES">
-        <attribute name="label_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="label_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cageDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CageDetails" inverseName="labels" inverseEntity="CageDetails" syncable="YES"/>
+        <relationship name="rackDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RackDetails" inverseName="labels" inverseEntity="RackDetails" syncable="YES"/>
     </entity>
     <entity name="MouseCageDetails" representedClassName="MouseCageDetails" syncable="YES">
         <attribute name="cage_id" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -81,6 +80,7 @@
         <attribute name="rack_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="rack_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CageDetails" inverseName="rackDetails" inverseEntity="CageDetails" syncable="YES"/>
+        <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Labels" inverseName="rackDetails" inverseEntity="Labels" syncable="YES"/>
     </entity>
     <entity name="UserDetails" representedClassName="UserDetails" syncable="YES">
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
@@ -89,6 +89,7 @@
     <elements>
         <element name="CageDetails" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Genotype" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="GenotypeLabels" positionX="0" positionY="0" width="0" height="0"/>
         <element name="LabelCageMapping" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Labels" positionX="0" positionY="0" width="0" height="0"/>
         <element name="MouseCageDetails" positionX="0" positionY="0" width="0" height="0"/>
@@ -99,6 +100,5 @@
         <element name="MouseGenotype" positionX="0" positionY="0" width="0" height="0"/>
         <element name="RackDetails" positionX="0" positionY="0" width="0" height="0"/>
         <element name="UserDetails" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="GenotypeLabels" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

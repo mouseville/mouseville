@@ -1,4 +1,4 @@
-//
+    //
 //  ManageGenotypesViewController.m
 //  Mouseville
 //
@@ -32,9 +32,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
    
-    genotypes= [[NSMutableArray alloc] initWithObjects:@"gene1", @"gene2", @"gene3", nil];
+   // genotypes= [[NSMutableArray alloc] init:@"gene1", @"gene2", @"gene3", nil];
+   
+    GenotypeManager* genotypeManager = [[GenotypeManager alloc]init];
+    NSArray* allGenotypeLabels = [genotypeManager getAllgenotypes:[self managedObjectContext]];
+    genotypes = [[NSMutableArray alloc]init];
     
-    self.navigationItem.rightBarButtonItem=self.editButtonItem;
+    for(GenotypeLabels* individualGenotypeLable in allGenotypeLabels)
+    {
+        [genotypes addObject:individualGenotypeLable.genotypeLabel];
+    }
+    
+   self.navigationItem.rightBarButtonItem=self.editButtonItem;
     
 }
 
@@ -43,6 +52,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(NSManagedObjectContext*) managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication]delegate];
+    if([delegate performSelector:@selector(managedObjectContext)])
+    {
+        context = [delegate managedObjectContext];
+    }
+    
+    return context;
+}
+
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
@@ -89,6 +111,30 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
+}
+
+-(void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    GenotypeManager* genotypeManager = [[GenotypeManager alloc]init];
+//    
+//    if(![genotypeManager updateAllGenotypes:[self managedObjectContext] genotypeLabelsArray:[NSArray arrayWithArray:genotypes]])
+//    {
+//        UIAlertView* alertView =[[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was error in saving genotype to the database. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alertView show];
+//    }
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    GenotypeManager* genotypeManager = [[GenotypeManager alloc]init];
+    
+    if(![genotypeManager updateAllGenotypes:[self managedObjectContext] genotypeLabelsArray:[NSArray arrayWithArray:genotypes]])
+    {
+        UIAlertView* alertView =[[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was error in saving genotype to the database. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+    }
+
 }
 
 - (IBAction)insertNewGenotype:(id)sender {

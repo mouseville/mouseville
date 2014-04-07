@@ -48,7 +48,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MouseListViewController *transferVC = segue.destinationViewController;
-    NSLog(@"prepareForSeque: %d mice", [self.cage.mouseDetails count]);
+    NSLog(@"prepareForSeque: %lu mice", (unsigned long)[self.cage.mouseDetails count]);
     transferVC.mice = self.cage.mouseDetails;
 }
 
@@ -87,7 +87,7 @@
     
     NSArray *cages = [context executeFetchRequest:fetchRequest error:&error];
     
-    [self.NumCagesLabel setText:[NSString stringWithFormat:@"%d cages in DB", [cages count]]];
+    [self.NumCagesLabel setText:[NSString stringWithFormat:@"%lu cages in DB", (unsigned long)[cages count]]];
     
     /*//create a dummy cage with mice
     self.cage.cage_name = @"Test Cage";

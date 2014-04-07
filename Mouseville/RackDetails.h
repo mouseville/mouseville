@@ -2,14 +2,14 @@
 //  RackDetails.h
 //  Mouseville
 //
-//  Created by abhang on 3/24/14.
+//  Created by abhang on 4/6/14.
 //  Copyright (c) 2014 CapstoneProject. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CageDetails;
+@class CageDetails, Labels;
 
 @interface RackDetails : NSManagedObject
 
@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSNumber * rack_id;
 @property (nonatomic, retain) NSString * rack_name;
 @property (nonatomic, retain) NSSet *cages;
+@property (nonatomic, retain) NSSet *labels;
 @end
 
 @interface RackDetails (CoreDataGeneratedAccessors)
@@ -28,5 +29,10 @@
 - (void)removeCagesObject:(CageDetails *)value;
 - (void)addCages:(NSSet *)values;
 - (void)removeCages:(NSSet *)values;
+
+- (void)addLabelsObject:(Labels *)value;
+- (void)removeLabelsObject:(Labels *)value;
+- (void)addLabels:(NSSet *)values;
+- (void)removeLabels:(NSSet *)values;
 
 @end

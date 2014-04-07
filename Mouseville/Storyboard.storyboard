@@ -111,6 +111,17 @@
                                     <segue destination="DWZ-fF-YUL" kind="push" id="HJS-qk-3kS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uH3-nZ-cA3">
+                                <rect key="frame" x="291" y="724" width="154" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Export">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnExport:" destination="CiX-ED-Flm" eventType="touchUpInside" id="kuf-Gd-8Nb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -779,7 +790,7 @@
                     <navigationItem key="navigationItem" title="Search Mouse" id="ceW-Me-ZNq"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="chooseGenotype" destination="POT-V1-JNM" id="x73-8h-T3x"/>
+                        <outlet property="btnChooseGenotype" destination="POT-V1-JNM" id="ELb-yL-ehZ"/>
                         <outlet property="label1" destination="Hg6-jd-OKE" id="68o-04-Zu0"/>
                         <outlet property="searchDisplayController" destination="QKV-hP-fgx" id="c53-Nb-msS"/>
                         <outlet property="searchMouseTable" destination="Gqx-aT-9zn" id="hxA-7Y-o5H"/>
@@ -835,10 +846,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Manage Genotypes" id="WgY-YR-uWs">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="paV-As-PWi"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="paV-As-PWi">
+                            <connections>
+                                <action selector="btnEditBarButtonClick:" destination="ZWN-vl-opA" id="lmg-SI-WNw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="btnEditBarButton" destination="paV-As-PWi" id="oNZ-JN-Wzj"/>
                         <outlet property="genotypeTableView" destination="vwW-u5-nUg" id="wyp-B7-Fgz"/>
                     </connections>
                 </viewController>
@@ -873,6 +889,9 @@
                     <value key="contentSizeForViewInPopover" type="size" width="240" height="320"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="GuL-ZL-xGG" id="FZM-ro-4qv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hP-di-Mpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -910,12 +929,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="select date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-Zg-2fP">
-                                <rect key="frame" x="333" y="560" width="188" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dg0-WL-Njp">
                                 <rect key="frame" x="164" y="269" width="65" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -944,6 +957,16 @@
                                     <action selector="chooseGenotype:" destination="y1M-tU-aHR" eventType="touchUpInside" id="v7Y-XT-2Np"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Yp-YJ-PN5">
+                                <rect key="frame" x="578" y="569" width="114" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Date">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnDateClick:" destination="y1M-tU-aHR" eventType="touchUpInside" id="3vS-23-I7J"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date of Birth:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMO-BG-8MT">
                                 <rect key="frame" x="164" y="569" width="128" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -959,7 +982,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDz-lo-qVU">
                                 <rect key="frame" x="318" y="653" width="143" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="select rack">
+                                <state key="normal" title="Select Rack">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -969,7 +992,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4E-76-IFU">
                                 <rect key="frame" x="318" y="744" width="143" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="select cage">
+                                <state key="normal" title="Select Cage">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -982,28 +1005,34 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuj-oc-ZWz">
-                                <rect key="frame" x="556" y="560" width="46" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrt-MP-QLM">
+                                <rect key="frame" x="338" y="573" width="123" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Date">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showDatePicker:" destination="y1M-tU-aHR" eventType="touchUpInside" id="tgT-uI-rf5"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="QvE-TZ-nIJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Wto-D7-Abo"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Wto-D7-Abo">
+                            <connections>
+                                <action selector="btnDoneClick:" destination="y1M-tU-aHR" id="yaw-l8-LeF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnChooseGenotype" destination="lFM-vT-CBU" id="1mh-kj-trd"/>
+                        <outlet property="btnDate" destination="8Yp-YJ-PN5" id="GnR-eZ-D8G"/>
+                        <outlet property="btnDone" destination="Wto-D7-Abo" id="54w-WP-NEG"/>
                         <outlet property="btnSelectCage" destination="y4E-76-IFU" id="QTI-96-oLX"/>
                         <outlet property="btnSelectRack" destination="aDz-lo-qVU" id="HAs-77-LHc"/>
+                        <outlet property="lblDate" destination="xrt-MP-QLM" id="Dll-NN-SbA"/>
+                        <outlet property="segGenderControl" destination="A9I-0s-XGf" id="7bO-ci-rna"/>
+                        <outlet property="txtMouseName" destination="XJs-2z-npQ" id="mmm-hO-BtA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7rw-JQ-jWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1028,6 +1057,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJR-Y3-31J">
+                                <rect key="frame" x="336" y="560" width="178" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J2G-PD-QHs">
                                 <rect key="frame" x="307" y="260" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1041,14 +1076,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFN-li-SVt">
-                                <rect key="frame" x="545" y="551" width="46" height="30"/>
+                                <rect key="frame" x="553" y="555" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showDatePicker:" destination="y1M-tU-aHR" eventType="touchUpInside" id="IQd-kW-jfk"/>
+                                    <action selector="btnDateClick:" destination="DWZ-fF-YUL" eventType="touchUpInside" id="nrp-4b-uU0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZd-NU-LDJ">
@@ -1059,15 +1094,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="btnChooseGenotypeClick:" destination="DWZ-fF-YUL" eventType="touchUpInside" id="pjM-Mn-Atm"/>
                                     <action selector="chooseGenotype:" destination="y1M-tU-aHR" eventType="touchUpInside" id="R5F-y7-oJR"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="select date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LlM-bK-aOh">
-                                <rect key="frame" x="307" y="553" width="188" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jcS-lK-bHB">
                                 <rect key="frame" x="307" y="360" width="123" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1088,7 +1118,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEl-HB-toI">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEl-HB-toI">
                                 <rect key="frame" x="307" y="643" width="143" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1111,7 +1141,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztI-km-h4q">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztI-km-h4q">
                                 <rect key="frame" x="307" y="735" width="143" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1142,9 +1172,23 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit Mouse Details" id="nyy-Ep-774">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="cWt-u8-p67"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="cWt-u8-p67">
+                            <connections>
+                                <action selector="btnSaveClick:" destination="DWZ-fF-YUL" id="r94-Rh-rrB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="btnChooseGenotype" destination="dZd-NU-LDJ" id="Nkt-NH-6hJ"/>
+                        <outlet property="btnDate" destination="hFN-li-SVt" id="0cX-kx-lY6"/>
+                        <outlet property="btnSelectCage" destination="ztI-km-h4q" id="JgN-Gu-VdU"/>
+                        <outlet property="btnSelectRack" destination="GEl-HB-toI" id="15i-3n-X0E"/>
+                        <outlet property="lblDate" destination="MJR-Y3-31J" id="OS0-RK-NXP"/>
+                        <outlet property="segMouseDeceased" destination="cDl-KU-Afm" id="Jgj-3G-CTI"/>
+                        <outlet property="segMouseGender" destination="jcS-lK-bHB" id="ob9-PF-QiF"/>
+                        <outlet property="txtMouseName" destination="J2G-PD-QHs" id="kN0-Ke-Ocf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YV7-Bw-c53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

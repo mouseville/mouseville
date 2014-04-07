@@ -17,8 +17,8 @@
 @end
 
 @interface PopOverViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, copy) NSArray * arrData;
 @property (nonatomic, copy) NSString* identifier;
 @property (nonatomic, copy) NSString* selectedIndex;

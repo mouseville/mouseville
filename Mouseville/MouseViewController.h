@@ -10,25 +10,27 @@
 #import  "PopOverViewController.h"
 #import "DatePickerViewController.h"
 
-@interface MouseViewController : UIViewController<DropDownDelegate, DatePickerDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *showButton;
+@interface MouseViewController : UIViewController<DropDownDelegate, UIPopoverControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *selectDateButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *btnChooseGenotype;
-
-@property (weak, nonatomic) IBOutlet UITextField *dateOfBirthText;
 
 - (IBAction)chooseGenotype:(id)sender;
 
-- (IBAction)selectDate:(id)sender;
-- (IBAction)showDatePicker:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *btnSelectRack;
-@property (weak, nonatomic) IBOutlet UIButton *btnSelectCage;
 
+
+
+@property (weak, nonatomic) IBOutlet UIButton *btnChooseGenotype;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnDone;
 @property (assign, nonatomic) NSString* rackName;
 @property (assign, nonatomic) NSString* cageName;
 @property  NSMutableArray* genotypeMutableArray;
+@property (weak, nonatomic) IBOutlet UIButton *btnSelectRack;
+@property (weak, nonatomic) IBOutlet UIButton *btnSelectCage;
+@property (weak, nonatomic) IBOutlet UIButton *btnDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblDate;
+@property (weak, nonatomic) IBOutlet UITextField *txtMouseName;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segGenderControl;
+
 
 - (IBAction)selectRack:(id)sender;
 
