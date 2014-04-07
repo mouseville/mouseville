@@ -121,6 +121,15 @@
     
 }
 
+
+//-(RackDetails*) editRack:(NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack
+//{
+//    
+//    
+//    
+//}
+
+
 -(BOOL)deleteRack:(NSManagedObjectContext *)managedObjectContext rackName:(NSString *)rackName
 
 {
