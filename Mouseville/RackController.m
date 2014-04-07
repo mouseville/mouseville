@@ -37,13 +37,13 @@
     
     
     NSUInteger numberOfRows = self.rowStepper.value;
-    self.rowLabel.text = [NSString stringWithFormat:@"%2d", numberOfRows];
+    self.rowLabel.text = [NSString stringWithFormat:@"%2lu", (unsigned long)numberOfRows];
     
     
     self.columnStepper.minimumValue = 1;
     self.columnStepper.maximumValue = 7;
     NSUInteger numberOfColumns = self.columnStepper.value;
-    self.columnLabel.text = [NSString stringWithFormat:@"%2d", numberOfColumns];
+    self.columnLabel.text = [NSString stringWithFormat:@"%2lu", (unsigned long)numberOfColumns];
     
     
     //self.delegate = self;
@@ -60,7 +60,7 @@
 
 - (IBAction)onRowChange:(UIStepper *)sender {
     NSUInteger numberOfRow  = sender.value;
-    self.rowLabel.text = [NSString stringWithFormat:@"%2d", numberOfRow];
+    self.rowLabel.text = [NSString stringWithFormat:@"%2lu", (unsigned long)numberOfRow];
     
     [self.tableCollection reloadData];
 }
@@ -68,7 +68,7 @@
 - (IBAction)onColumnAction:(UIStepper *)sender {
     
     NSUInteger numberOfColumns = self.columnStepper.value;
-    self.columnLabel.text = [NSString stringWithFormat:@"%2d", numberOfColumns];
+    self.columnLabel.text = [NSString stringWithFormat:@"%2lu", (unsigned long)numberOfColumns];
     [self.tableCollection reloadData];
 }
 

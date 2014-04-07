@@ -11,14 +11,9 @@
 #import "DatePickerViewController.h"
 
 @interface MouseViewController : UIViewController<DropDownDelegate, UIPopoverControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *showButton;
-
 
 
 - (IBAction)chooseGenotype:(id)sender;
-
-- (IBAction)selectDate:(id)sender;
-
 
 
 

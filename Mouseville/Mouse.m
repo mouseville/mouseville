@@ -190,6 +190,9 @@
 
 -(MouseDetails*) editMouseDetails:(NSManagedObjectContext *)managedObjectContext mouseDetails:(MouseDetails *)mouseDetails
 {
+    
+    
+    
     if([mouseDetails.is_deceased  isEqual: @"Yes"])
     {
         MouseDeceasedDetails* mouseDeceased = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDeceasedDetails" inManagedObjectContext:managedObjectContext];

@@ -45,7 +45,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    NSLog(@"MouseList viewDidLoad %d mice", [self.mice count]);
+    NSLog(@"MouseList viewDidLoad %lu mice", (unsigned long)[self.mice count]);
     
     self.miceArray = [self.mice allObjects];
 }

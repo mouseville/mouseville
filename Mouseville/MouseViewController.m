@@ -13,7 +13,7 @@
 #import "Cage.h"
 #import "RackDetails.h"
 #import "Mouse.h"
-
+#import "GenotypeManager.h"
 
 @interface MouseViewController ()
 {
@@ -83,7 +83,20 @@
     cagePopoverViewController.delegate = self;
     
     
-    NSArray *arr =[NSArray arrayWithObjects:@"A:1",@"A:2", nil];
+    GenotypeManager* genotypeManager = [[GenotypeManager alloc]init];
+    
+    
+    
+    NSArray *allGenotypeLabels =[genotypeManager getAllgenotypes:[self managedObjectContext]];
+    
+    NSMutableArray* arr = [[NSMutableArray alloc]init];
+    
+    for(GenotypeLabels* individualGenotypeLable in allGenotypeLabels)
+    {
+        [arr addObject:individualGenotypeLable.genotypeLabel];
+    }
+    
+    
     popoverView = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
     [popoverView setArrData:arr];
         popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];
@@ -339,12 +352,12 @@
     
     if(![mouseHelper addNewMouse:[self managedObjectContext] mouseName:mouseName gender:gender genotypes:genotypes dateOfBirth:dateOfBirth rackName:rackName cageRow:cageRow cageColoumn:cageColumn])
     {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was a problem while entering the mouse details. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was a problem while saving the mouse details. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse details were entered successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse details were saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     
