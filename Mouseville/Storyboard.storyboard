@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="F5H-VO-f7V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="F5H-VO-f7V">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller - Menu-->
@@ -657,6 +657,7 @@
                     </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="786" height="1024"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="miceView" destination="1op-Dy-5xj" id="fvV-Sy-Aul"/>
                         <outlet property="rackCollection" destination="E29-bd-3OH" id="YCX-EZ-JoX"/>
@@ -783,12 +784,17 @@
                                 <rect key="frame" x="20" y="543" width="667" height="364"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hQU-Jf-xsR" id="eHG-nU-YXK"/>
+                                    <outlet property="delegate" destination="hQU-Jf-xsR" id="s4k-Db-QwW"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search Mouse" id="ceW-Me-ZNq"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="700" height="933"/>
                     <connections>
                         <outlet property="btnChooseGenotype" destination="POT-V1-JNM" id="ELb-yL-ehZ"/>
                         <outlet property="label1" destination="Hg6-jd-OKE" id="68o-04-Zu0"/>
@@ -853,6 +859,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="btnEditBarButton" destination="paV-As-PWi" id="oNZ-JN-Wzj"/>
                         <outlet property="genotypeTableView" destination="vwW-u5-nUg" id="wyp-B7-Fgz"/>
@@ -889,6 +896,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="240" height="320"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="240" height="320"/>
                     <connections>
                         <outlet property="tableView" destination="GuL-ZL-xGG" id="FZM-ro-4qv"/>
                     </connections>
@@ -1243,6 +1251,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="240"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="216"/>
                     <connections>
                         <outlet property="datePicker" destination="N6W-k2-0Pa" id="3QT-n3-urQ"/>
                     </connections>
