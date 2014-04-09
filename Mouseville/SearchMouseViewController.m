@@ -17,6 +17,9 @@
 @end
 
 @implementation SearchMouseViewController
+{
+    NSArray *racklist;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,8 +52,25 @@
     self.slider2.minimumValue=0;
 
 
+    racklist = [NSArray arrayWithObjects:@"Apples",@"Oranges",@"Kiwis",@"Popcorn",nil];
     
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [racklist count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *tableIdentifier = @"tableCell";
     
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableIdentifier];
+    }
+    
+    cell.textLabel.text = [racklist objectAtIndex:indexPath.row];
+    return cell;
 }
 
 -(void)didDeSelectClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
