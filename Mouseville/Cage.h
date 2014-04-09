@@ -17,6 +17,8 @@
 
 -(CageDetails*) getParticularCage: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack row:(NSNumber*)row column:(NSNumber*)column;
 
+-(CageDetails*) getParticularCage: (NSManagedObjectContext*) managedObjectContext rackId:(NSNumber*)rackId cageId:(NSNumber*)cageId;
+
 -(BOOL)deleteParticularCage: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack row:(NSNumber*)row column:(NSNumber*)column cageObject:(CageDetails*)cageObject;
 
 -(CageDetails*) editParticularCage: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack row:(NSNumber*)row column:(NSNumber*)column cageObject:(CageDetails*)cageObject;
@@ -26,6 +28,8 @@
 -(CageDetails*) removeMouseFromCage: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack row:(NSNumber*)row column:(NSNumber*)column cageDetails:(CageDetails*)cageObject mouseDetails:(MouseDetails*)mouseDetails;
 
 -(CageDetails*) moveMouseToDifferentCage: (NSManagedObjectContext *) managedObjectContext rack:(RackDetails*)rack cageDetails:(CageDetails*)cageObject mouseDetails:(MouseDetails*)mouseDetails rowToMove:(NSNumber*)row columnToMove:(NSNumber*)column;
+
+-(NSArray *)getAllCages: (NSManagedObjectContext *) managedObjectContext rackId:(NSNumber*) rackId;
 
 +(NSString*) numberToAlphabet: (NSNumber*) cageNumber;
 +(NSNumber*) alphabetToNumber: (NSString*) cageLetter;

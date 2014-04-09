@@ -46,8 +46,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *Label6Switch;
 @property (weak, nonatomic) IBOutlet UILabel *Label6;
 
-
-
-
-
+@property (nonatomic) CageDetails *particularCageDetails;
+@property (nonatomic) RackDetails *particularRackDetails;
 @end

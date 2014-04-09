@@ -19,4 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *rackNameLabel;
 
+@property (nonatomic) NSArray *cageDetailsForRack;
+
 @end

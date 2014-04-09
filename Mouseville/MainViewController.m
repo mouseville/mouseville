@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "Rack.h"
+#import "Cage.h"
 
 @interface MainViewController ()
 
@@ -16,7 +17,7 @@
 @implementation MainViewController
 @synthesize rackView, miceView;
 
-NSInteger selectedIndex;
+
 
 -(NSManagedObjectContext*) managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -103,9 +104,7 @@ NSInteger selectedIndex;
             break;
     }
 }
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-    selectedIndex = indexPath.row;
-}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showRackDetails"]){
@@ -120,12 +119,15 @@ NSInteger selectedIndex;
         
         
         Rack* rack = [[Rack alloc]init];
+        Cage* cage = [[Cage alloc] init];
         
         RackDetails *rackDetailss = [rack getParticularRack:context rackName:rackName];
+        NSArray *cageDetailss = [cage getAllCages:context rackId:rackDetailss.rack_id];
         
         ViewRacksController *viewRacksController = (ViewRacksController *)segue.destinationViewController;
         viewRacksController.viewRackDetails = rackDetailss;
         viewRacksController.rackLabel = rackName;
+        viewRacksController.cageDetailsForRack = cageDetailss;
     }
 }
 

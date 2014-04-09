@@ -28,6 +28,25 @@
     
 }
 
+-(CageDetails*)getParticularCage:(NSManagedObjectContext *)managedObjectContext rackId:(NSNumber *)rackId cageId:(NSNumber *)cageId
+{
+    NSEntityDescription* cageEntity = [NSEntityDescription entityForName:@"CageDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:cageEntity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_id == %@ AND cage_id == %@", rackId,cageId];
+    
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* error = nil;
+    
+    CageDetails* cage = [managedObjectContext executeFetchRequest:fetchRequest error:&error][0];
+    
+    return cage;
+    
+}
 -(BOOL)deleteParticularCage:(NSManagedObjectContext *)managedObjectContext rack:(RackDetails *)rack row:(NSNumber *)row column:(NSNumber *)column cageObject:(CageDetails *)cageObject
 {
     
@@ -237,11 +256,26 @@
     NSNumber* value = [NSNumber numberWithInteger:integerValue];
     
     return value;
-                          
-    
-    
     
     
 }
 
+-(NSArray*)getAllCages:(NSManagedObjectContext *)managedObjectContext rackId:(NSNumber *)rackId
+{
+    NSEntityDescription* cageEntity = [NSEntityDescription entityForName:@"CageDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:cageEntity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_id == %@ ", rackId];
+    
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* error = nil;
+    
+    NSArray* cages = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return cages;
+}
 @end
