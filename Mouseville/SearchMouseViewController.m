@@ -18,7 +18,8 @@
 
 @implementation SearchMouseViewController
 {
-    NSArray *racklist;
+    NSDictionary *racklist;
+    NSArray *rackSectionTitles;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -52,25 +53,43 @@
     self.slider2.minimumValue=0;
 
 
-    racklist = [NSArray arrayWithObjects:@"Apples",@"Oranges",@"Kiwis",@"Popcorn",nil];
+    racklist = @{@"Rack 1" : @[@"Mouse 1A", @"Mouse 2A", @"Mouse 3A", @"Mouse 4A"],
+                 @"Rack 2" : @[@"Mouse 1B", @"Mouse 2B", @"Mouse 3B", @"Mouse 4B"],
+                 @"Rack 3" : @[@"Mouse 1C", @"Mouse 2C", @"Mouse 3C", @"Mouse 4C"],
+                 @"Rack 4" : @[@"Mouse 1D", @"Mouse 2D", @"Mouse 3D", @"Mouse 4D"]};
+    
+    rackSectionTitles = [[racklist allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [racklist count];
+    NSString *sectionTitle = [rackSectionTitles objectAtIndex:section];
+    NSArray *sectionRacks = [racklist objectForKey:sectionTitle];
+    return [sectionRacks count];
+}
+
+- (NSInteger)numberofSectionsInTableView:(UITableView *)tableView {
+    return [rackSectionTitles count];
+}
+
+- (NSArray *)sectionIndexTilesForTableView:(UITableView *)tableView {
+    return rackSectionTitles;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *tableIdentifier = @"tableCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableIdentifier];
-    }
+    NSString *sectionTitle = [rackSectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionRacks = [racklist objectForKey:sectionTitle];
+    NSString *rack = [sectionRacks objectAtIndex:indexPath.row];
+    cell.textLabel.text = rack;
     
-    cell.textLabel.text = [racklist objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [rackSectionTitles objectAtIndex:section];
 }
 
 -(void)didDeSelectClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
