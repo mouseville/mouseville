@@ -121,8 +121,7 @@
         
        
         CageViewController *viewCageController = (CageViewController *)segue.destinationViewController;
-        viewCageController.particularCageDetails = cageDetailss;
-        viewCageController.particularRackDetails = rackDetailss;
+        viewCageController.cage = cageDetailss;
     }
 }
 @end

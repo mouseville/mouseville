@@ -15,7 +15,7 @@
 @implementation MouseListViewController
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [self.mice count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -23,8 +23,9 @@
     
     UILabel *mouseName = (UILabel *)[cell viewWithTag:132];
     MouseDetails *mouse = [self.miceArray objectAtIndex:indexPath.row];
-    mouseName.text = mouse.mouse_name;
     
+    mouseName.text = mouse.mouse_name;
+            
     UILabel *mouseDesc = (UILabel *)[cell viewWithTag:133];
     mouseDesc.text = @"Genotype / DoB";
     
@@ -44,9 +45,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    NSLog(@"MouseList viewDidLoad %lu mice", (unsigned long)[self.mice count]);
-    
+        
     self.miceArray = [self.mice allObjects];
 }
 

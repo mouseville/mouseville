@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CageDetails.h"
+#import "Cage.h"
 
 @interface CageViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate>
 
@@ -45,7 +46,4 @@
 @property (weak, nonatomic) IBOutlet UIView *Label6View;
 @property (weak, nonatomic) IBOutlet UISwitch *Label6Switch;
 @property (weak, nonatomic) IBOutlet UILabel *Label6;
-
-@property (nonatomic) CageDetails *particularCageDetails;
-@property (nonatomic) RackDetails *particularRackDetails;
 @end

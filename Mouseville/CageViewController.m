@@ -48,7 +48,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MouseListViewController *transferVC = segue.destinationViewController;
-    NSLog(@"prepareForSeque: %lu mice", (unsigned long)[self.cage.mouseDetails count]);
     transferVC.mice = self.cage.mouseDetails;
 }
 
@@ -78,32 +77,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription* userDetailsEntity = [NSEntityDescription entityForName:@"CageDetails" inManagedObjectContext:context];
-    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
-    [fetchRequest setEntity:userDetailsEntity];
-    
-    NSError *error = nil;
-    
-    NSArray *cages = [context executeFetchRequest:fetchRequest error:&error];
-    
-    [self.NumCagesLabel setText:[NSString stringWithFormat:@"%lu cages in DB", (unsigned long)[cages count]]];
-    
-    /*//create a dummy cage with mice
-    self.cage.cage_name = @"Test Cage";
-    self.cage.notes = @"This is a test cage";
-    
-    NSArray *mice = [NSArray array];
-    for(int i = 0; i < 5; i++) {
-        MouseDetails *mouse = [NSEntityDescription insertNewObjectForEntityForName:@"MouseDetails" inManagedObjectContext:context];
-        mouse.mouse_name = [NSString stringWithFormat:@"Mouse %d", i];
-        //   mouse.ca
-        mice = [mice arrayByAddingObject:mouse];
-    }
-    
-    self.cage.mouseDetails = [NSSet setWithArray:mice];
-    NSLog(@"CageView viewDidLoad %d mice", [self.cage.mouseDetails count]);*/
-    
     // take care of CageEdit View
     [self.CageInfo.layer setCornerRadius:30.0f];
     [self.CageInfo.layer setBorderColor:[UIColor lightGrayColor].CGColor];
@@ -114,8 +87,19 @@
     [self.mouseListContainter.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.mouseListContainter.layer setBorderWidth:1.5f];
     
-    [self.cageName setText:self.cage.cage_name];
-    [self.CageNotes setText:self.cage.notes];
+    // check if cage name is empty
+    if (self.cage.cage_name == nil) {
+        self.cageName.text = [NSString stringWithFormat:@"Cage %@%@", [Cage numberToAlphabet:self.cage.column_id], self.cage.row_id];
+    } else {
+        self.cageName.text = self.cage.cage_name;
+    }
+    
+    // check if cage notes is empty
+    if (self.cage.notes == nil) {
+        self.CageNotes.text = @"Enter noters here.";
+    } else {
+        self.CageNotes.text = self.cage.notes;
+    }
     
     // Labels
     [self.Label1View.layer setCornerRadius:30.f];
