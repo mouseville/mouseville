@@ -30,6 +30,8 @@
 
 -(NSSet*) getPotentialParents: (CageDetails*) cageDetails;
 
+-(NSArray*) getAllDeceasedMice: (NSManagedObjectContext*) managedObjectContext;
+
 -(int) getWeeksFromDate: (NSDate*) date;
 
 @end

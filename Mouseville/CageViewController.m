@@ -34,7 +34,9 @@
         self.cage.notes = self.CageNotes.text;
         
         NSManagedObjectContext *context = [self managedObjectContext];
-        Cage *tmp;
+        
+        Cage *tmp = [[Cage alloc]init];
+        
         [tmp editParticularCage:context rack:self.cage.rackDetails row:self.cage.row_id column:self.cage.column_id cageObject:self.cage];
         
         self.cageName.enabled = NO;

@@ -114,6 +114,13 @@
 
 - (IBAction)insertNewRack:(id)sender {
 
+    if(![self sanityCheck])
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Unable to create rack. Please ensure that all the values on this page are set" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
     NSManagedObjectContext *context = [self managedObjectContext];
     
     NSString* rackName = self.rackNameText.text;
@@ -134,12 +141,15 @@
        [alert show];
        
    }
-
-    
-    
-    
     
     
 }
 
+-(BOOL)sanityCheck
+{
+    if(self.rackNameText.text.length==0)
+        return NO;
+    
+    return YES;
+}
 @end
