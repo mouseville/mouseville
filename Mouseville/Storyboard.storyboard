@@ -576,7 +576,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E29-bd-3OH">
-                                        <rect key="frame" x="46" y="260" width="677" height="706"/>
+                                        <rect key="frame" x="45" y="247" width="677" height="706"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H7D-qk-DC9">
@@ -620,11 +620,12 @@
                                             <outlet property="delegate" destination="ESk-1B-GpQ" id="0cZ-g3-hGj"/>
                                         </connections>
                                     </collectionView>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V80-x7-2L7">
-                                        <rect key="frame" x="98" y="121" width="545" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Z4-wL-jnK" userLabel="Search Racks">
+                                        <rect key="frame" x="143" y="133" width="491" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                    </searchBar>
+                                    </textField>
                                 </subviews>
                             </view>
                         </subviews>
@@ -661,6 +662,7 @@
                         <outlet property="rackCollection" destination="E29-bd-3OH" id="YCX-EZ-JoX"/>
                         <outlet property="rackView" destination="ipo-sR-qJb" id="1ZO-ry-VlX"/>
                         <outlet property="searchDisplayController" destination="GRT-m4-ZI9" id="8kL-oa-xq5"/>
+                        <outlet property="searchRacksText" destination="0Z4-wL-jnK" id="HJh-fl-Nny"/>
                         <outlet property="segmentedBar" destination="Bzw-6H-0t6" id="4N9-L2-qXD"/>
                         <outlet property="segmentedController" destination="Bzw-6H-0t6" id="9qe-zJ-siK"/>
                     </connections>
@@ -1507,7 +1509,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <resources>
         <image name="edit_icon-32" width="32" height="32"/>
         <image name="edit_icon-48" width="48" height="48"/>
-        <image name="label1checked-32" width="32" height="32"/>
         <image name="mouseville_icon-32" width="32" height="32"/>
         <image name="move_icon-32" width="32" height="32"/>
         <image name="rack.png" width="480" height="695"/>
