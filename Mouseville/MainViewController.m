@@ -18,7 +18,6 @@
 @synthesize rackView, miceView;
 
 
-
 -(NSManagedObjectContext*) managedObjectContext {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication]delegate];
@@ -41,6 +40,12 @@
     Rack* rack = [[Rack alloc]init];
     
     self.allRacks = [rack getAllRacks:[self managedObjectContext]];
+    
+    self.filteredRacks = [NSMutableArray arrayWithCapacity:[self.allRacks count]];
+    
+    [self.filteredRacks addObjectsFromArray:self.allRacks];
+    
+    [self.searchRacksText addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
 }
 
@@ -66,15 +71,14 @@
 {
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rack" forIndexPath:indexPath];
     UILabel* label = (UILabel*) [cell viewWithTag:3];
-    [label setText:[[self.allRacks objectAtIndex:indexPath.row]rack_name]];
+    [label setText:[[self.filteredRacks objectAtIndex:indexPath.row]rack_name]];
     return cell;
     
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.allRacks count];
-
+    return [self.filteredRacks count];
 }
 
 - (void)didReceiveMemoryWarning
@@ -129,6 +133,33 @@
         viewRacksController.rackLabel = rackName;
         viewRacksController.cageDetailsForRack = cageDetailss;
     }
+}
+
+
+-(void) textDidChange:(id)sender
+{
+    
+    UITextField* searchField = (UITextField *) sender;
+    
+    if(searchField.text.length == 0)
+    {
+        self.isFiltered = FALSE;
+        [self.filteredRacks removeAllObjects];
+        [self.filteredRacks addObjectsFromArray:self.allRacks];
+    }
+    else
+    {
+        self.isFiltered = true;
+        [self.filteredRacks removeAllObjects];
+        self.filteredRacks = [[NSMutableArray alloc] init];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.rack_name contains[c] %@",searchField.text];
+        self.filteredRacks = [NSMutableArray arrayWithArray:[self.allRacks filteredArrayUsingPredicate:predicate]];
+        
+    }
+    
+    [self.rackCollection reloadData];
+    
 }
 
 @end

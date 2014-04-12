@@ -24,6 +24,9 @@
 @property (nonatomic, copy) NSArray* allRacks;
 
 
+@property (nonatomic, retain) NSMutableArray* filteredRacks;
 
+@property (weak, nonatomic) IBOutlet UITextField *searchRacksText;
 
+@property (assign) BOOL isFiltered;
 @end
