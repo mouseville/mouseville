@@ -93,8 +93,10 @@
     UILabel *label = (UILabel *) [cell viewWithTag:2];
     label.text = @"";
     
+    [cell.layer setCornerRadius:5.f
+     ];
    [cell.layer setBorderWidth:1.0f];
-  [cell.layer setBorderColor:[UIColor blackColor].CGColor];
+  [cell.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     
     
     return cell;
