@@ -9,6 +9,10 @@
 #import "MouseListViewController.h"
 
 @interface MouseListViewController ()
+{
+    UIPopoverController *popoverController;
+    PopOverViewController *popoverView;
+}
 
 @end
 
@@ -27,7 +31,9 @@
     mouseName.text = mouse.mouse_name;
             
     UILabel *mouseDesc = (UILabel *)[cell viewWithTag:133];
-    mouseDesc.text = @"Genotype / DoB";
+    NSDateFormatter *date = [[NSDateFormatter alloc] init];
+    [date setDateFormat:@"yyyy.MM.dd"];
+    mouseDesc.text = [NSString stringWithFormat:@"%@ / %@", @"Genotype", [date stringFromDate:mouse.birth_date]];
     
     return cell;
 }
@@ -41,12 +47,37 @@
     return self;
 }
 
+-(void)didDeSelectClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier {
+    
+}
+
+-(void)dropDownWillDisappear:(NSString *)popoverIdentifier {
+    
+}
+
+-(void)didClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier {
+    
+}
+
+- (IBAction)chooseCage:(id)sender {
+    [popoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
         
     self.miceArray = [self.mice allObjects];
+    
+    NSArray *cageNames = [NSArray arrayWithObjects:@"Cage A1", @"Cage A2", nil];
+    
+    popoverView = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"dropdown"];
+    
+    [popoverView setArrData:cageNames];
+    popoverView.delegate = self;
+    popoverController = [[UIPopoverController alloc] initWithContentViewController:popoverView];
+    [popoverView setIdentifier:@"cageNamesPopover"];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MouseDetails.h"
+#import "PopOverViewController.h"
 
-@interface MouseListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface MouseListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,DropDownDelegate>
 
 @property (strong, nonatomic) NSSet *mice;
 @property (strong, nonatomic) NSArray *miceArray;
