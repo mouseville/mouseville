@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "Rack.h"
 #import "Cage.h"
+#import "RackController.h"
 
 @interface MainViewController ()
 
@@ -16,6 +17,7 @@
 
 @implementation MainViewController
 @synthesize rackView, miceView;
+
 
 
 -(NSManagedObjectContext*) managedObjectContext {
@@ -98,10 +100,12 @@
         case 0:
             self.rackView.hidden=NO;
             self.miceView.hidden= YES;
+            self.selectedIndexSegment = 0;
             break;
         case 1:
             self.rackView.hidden=YES;
             self.miceView.hidden= NO;
+            self.selectedIndexSegment = 1;
             break;
             
         default:
@@ -162,4 +166,14 @@
     
 }
 
+
+- (IBAction)segmentedAdd:(id)sender {
+    NSLog(@"Selected index , %d",self.selectedIndexSegment);
+    if (self.selectedIndexSegment == 0) {
+        [self performSegueWithIdentifier:@"addRackSegue" sender:self];
+    }else if (self.selectedIndexSegment == 1){
+        [self performSegueWithIdentifier:@"addMouseSegue" sender:self];
+    }
+    
+}
 @end
