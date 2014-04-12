@@ -16,7 +16,7 @@
 }
 @end
 
-@implementation SearchMouseViewController
+@implementation SearchMouseViewController 
 {
     NSDictionary *racklist;
     NSArray *rackSectionTitles;
