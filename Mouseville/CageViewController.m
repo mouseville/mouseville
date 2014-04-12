@@ -10,6 +10,7 @@
 #import "MouseDetails.h"
 #import "CageDetails.h"
 #import "MouseListViewController.h"
+#import "Cage.h"
 
 @interface CageViewController ()
 

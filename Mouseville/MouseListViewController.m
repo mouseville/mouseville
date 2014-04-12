@@ -7,6 +7,7 @@
 //
 
 #import "MouseListViewController.h"
+#import "Cage.h"
 
 @interface MouseListViewController ()
 {
@@ -63,6 +64,27 @@
     [popoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
+
+-(NSArray*) getCageNames:(RackDetails*) rackDetails
+{
+    NSMutableArray* cageNames = [[NSMutableArray alloc]init];
+    
+    for(CageDetails* tmpcage in rackDetails.cages)
+    {
+        NSString* row = [Cage numberToAlphabet:tmpcage.row_id];
+        NSString* column = [NSString stringWithFormat:@"%d",[tmpcage.column_id intValue]];
+        NSMutableString* cageName = [[NSMutableString alloc]init];
+        [cageName appendString:row];
+        [cageName appendString:column];
+        
+        [cageNames addObject:[NSString stringWithString:cageName]];
+        
+        
+    }
+    
+    return [cageNames sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -70,7 +92,9 @@
         
     self.miceArray = [self.mice allObjects];
     
-    NSArray *cageNames = [NSArray arrayWithObjects:@"Cage A1", @"Cage A2", nil];
+    MouseDetails *tmpmouse = self.miceArray[0];
+    
+    NSArray *cageNames = [self getCageNames:tmpmouse.cageDetails.rackDetails];
     
     popoverView = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"dropdown"];
     
