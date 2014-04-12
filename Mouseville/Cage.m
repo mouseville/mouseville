@@ -28,6 +28,25 @@
     
 }
 
+-(NSArray*)getLabelsForCage: (NSManagedObjectContext*) managedObjectContext cage:(CageDetails*) cage
+{
+    
+    NSMutableSet* currentCageLabels = [NSMutableSet setWithSet:cage.labels];
+    
+    NSMutableSet* currentRackLabels = [NSMutableSet setWithSet:cage.rackDetails.labels];
+    
+    if([currentRackLabels count] != 0 && [currentCageLabels count]!=0)
+    {
+        [currentCageLabels intersectSet:currentRackLabels];
+    }
+    
+    NSArray* arrayWithLabels = [NSArray arrayWithArray:[currentCageLabels allObjects]];
+    
+    return arrayWithLabels;
+    
+}
+
+
 -(BOOL)deleteParticularCage:(NSManagedObjectContext *)managedObjectContext rack:(RackDetails *)rack row:(NSNumber *)row column:(NSNumber *)column cageObject:(CageDetails *)cageObject
 {
     
@@ -66,6 +85,7 @@
     return YES;
     
 }
+
 
 -(CageDetails*) editParticularCage:(NSManagedObjectContext *)managedObjectContext rack:(RackDetails *)rack row:(NSNumber *)row column:(NSNumber *)column cageObject:(CageDetails *)cageObject
 {
