@@ -37,7 +37,7 @@
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_id == %@ AND cage_id == %@", rackId,cageId];
     
-    
+
     [fetchRequest setPredicate:predicate];
     
     NSError* error = nil;
@@ -64,6 +64,20 @@
     return arrayWithLabels;
     
 }
+
+-(NSArray*)setLabelsForCage: (NSManagedObjectContext*) managedObjectContext cage:(CageDetails*)cage labels:(NSArray*)labels
+{
+    
+    NSEntityDescription* cageEntity = [NSEntityDescription entityForName:@"CageDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:cageEntity];
+    
+
+    return NULL;
+    
+}
+
 
 
 -(BOOL)deleteParticularCage:(NSManagedObjectContext *)managedObjectContext rack:(RackDetails *)rack row:(NSNumber *)row column:(NSNumber *)column cageObject:(CageDetails *)cageObject

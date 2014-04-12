@@ -69,6 +69,105 @@
     return NO;
 }
 
+-(BOOL) editParticularRack:(NSManagedObjectContext*)managedObjectContext rack:(RackDetails*) rack newRackName:(NSString*)newRackName
+
+{
+    NSEntityDescription* rackEntity = [NSEntityDescription entityForName:@"RackDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
+    [fetchRequest setEntity:rackEntity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name LIKE %@", rack.rack_name];
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* errorRequest = Nil;
+    
+    NSArray* rackResult = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    RackDetails* rackToSave = nil;
+    
+    if(errorRequest==nil)
+    {
+        for(RackDetails* individualRack in rackResult)
+        {
+            if([individualRack.rack_name isEqual:rack.rack_name])
+            {
+                rackToSave = individualRack;
+                break;
+            }
+        }
+        
+        [rackToSave setRack_name:newRackName];
+        
+    }
+    else
+    {
+        return NO;
+    }
+  
+    if(![managedObjectContext save:&errorRequest])
+    {
+        NSLog(@"Error editing rack details %@ ", [errorRequest localizedDescription]);
+        return NO;
+    }
+    
+    else
+    {
+        return YES;
+    }
+    
+}
+
+-(BOOL) setRackLabels: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack labels:(NSArray*)labels
+{
+    NSEntityDescription* rackEntity = [NSEntityDescription entityForName:@"RackDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
+    [fetchRequest setEntity:rackEntity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name LIKE %@", rack.rack_name];
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* errorRequest = Nil;
+    
+    NSArray* rackResult = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    RackDetails* rackToSave = nil;
+    
+    if(errorRequest==nil)
+    {
+        for(RackDetails* individualRack in rackResult)
+        {
+            if([individualRack.rack_name isEqual:rack.rack_name])
+            {
+                rackToSave = individualRack;
+                break;
+            }
+        }
+        
+        rackToSave.labels = [NSSet setWithArray:labels];
+        
+    }
+    else
+    {
+        return NO;
+    }
+
+    if(![managedObjectContext save:&errorRequest])
+    {
+        NSLog(@"Error editing rack details %@ ", [errorRequest localizedDescription]);
+        return NO;
+    }
+    
+    else
+    {
+        return YES;
+    }    
+    
+}
+
 -(NSNumber*) getCurrentRackCount:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription* rackEntity = [NSEntityDescription entityForName:@"RackDetails" inManagedObjectContext:managedObjectContext];

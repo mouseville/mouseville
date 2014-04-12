@@ -246,6 +246,7 @@
                         NSString* genoTypes = [[mouse.genotypes allObjects] componentsJoinedByString:@","];
                         NSString* familyDetails = [[mouse.miceFamilyDetails allObjects] componentsJoinedByString:@","];
                         NSMutableArray* tempArray = [[NSMutableArray alloc]init];
+                    
                         [tempArray addObject:rack.rack_name];
                         [tempArray addObject:cage.cage_name];
                         [tempArray addObject:mouse.mouse_name];

@@ -29,7 +29,15 @@
 
 -(CageDetails*) moveMouseToDifferentCage: (NSManagedObjectContext *) managedObjectContext rack:(RackDetails*)rack cageDetails:(CageDetails*)cageObject mouseDetails:(MouseDetails*)mouseDetails rowToMove:(NSNumber*)row columnToMove:(NSNumber*)column;
 
+
 -(NSArray *)getAllCages: (NSManagedObjectContext *) managedObjectContext rackId:(NSNumber*) rackId;
+
+
+-(NSArray*)setLabelsForCage: (NSManagedObjectContext*) managedObjectContext cage:(CageDetails*)cage labels:(NSArray*)labels;
+
+
+-(NSArray*)getLabelsForCage: (NSManagedObjectContext*) managedObjectContext cage:(CageDetails*) cage;
+
 
 +(NSString*) numberToAlphabet: (NSNumber*) cageNumber;
 +(NSNumber*) alphabetToNumber: (NSString*) cageLetter;
