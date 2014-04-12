@@ -14,6 +14,7 @@
 
 @interface EditMouseViewController : UIViewController <DropDownDelegate, UIPopoverControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *editMouseView;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet UITextField *txtMouseName;

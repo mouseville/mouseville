@@ -49,6 +49,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    [self.createMouseView.layer setCornerRadius:30.0f];
+    [self.createMouseView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.createMouseView.layer setBorderWidth:1.5f];
+    
     self.genotypeMutableArray = [[NSMutableArray alloc]init];
     
     Rack *rack = [[Rack alloc]init];
@@ -363,8 +368,6 @@
     
     
     
-    
-
 }
 
 -(BOOL)sanityCheck
