@@ -144,6 +144,32 @@
     return YES;
 }
 
+-(NSArray*)getAllDeceasedMice:(NSManagedObjectContext *)managedObjectContext
+{
+    
+    
+    NSEntityDescription* mouseDeceasedEntity = [NSEntityDescription entityForName:@"MouseDeceasedDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:mouseDeceasedEntity];
+    
+    NSError* errorRequest = nil;
+    
+    NSArray* mouseDeceasedDetails = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    if(errorRequest==nil)
+    {
+        return mouseDeceasedDetails;
+    }
+    else
+    {
+        
+        NSLog(@"Error retreiving deceased mouse %@",[errorRequest localizedDescription]);
+        return nil;
+        
+    }
+}
+
 
 -(NSArray*) miceResult:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotype:(NSString *)genotype weekRange:(NSArray *)ageRange
 
@@ -190,7 +216,30 @@
 
 -(MouseDetails*) editMouseDetails:(NSManagedObjectContext *)managedObjectContext mouseDetails:(MouseDetails *)mouseDetails
 {
+ 
+    NSEntityDescription* mouseEntity = [NSEntityDescription entityForName:@"MouseDetails" inManagedObjectContext:managedObjectContext];
     
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:mouseEntity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"mouse_name LIKE '%@'",mouseDetails];
+    [fetchRequest setPredicate:predicate];
+    
+   
+    NSError* errorRequest = nil;
+    
+    NSArray* mouseArray = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    MouseDetails* mouseToEdit = nil;
+    
+    for(MouseDetails* individualMouse in mouseArray)
+    {
+        if(individualMouse.cage_id == mouseDetails.cage_id && individualMouse.cage_name == mouseDetails.cage_name && [individualMouse.mouse_name isEqual:mouseDetails.mouse_name])
+        {
+            mouseToEdit = individualMouse;
+        }
+    }
     
     
     if([mouseDetails.is_deceased  isEqual: @"Yes"])
@@ -206,19 +255,34 @@
         mouseDeceased.miceFamilyDetails = mouseDetails.miceFamilyDetails;
         mouseDeceased.is_deceased = @"Yes";
         
+        
+        [managedObjectContext deleteObject:mouseToEdit];
+        
+        if(![managedObjectContext save:&errorRequest])
+        {
+            NSLog(@"Error saving editMouseDetails %@ %@", errorRequest, [errorRequest localizedDescription]);
+            return nil;
+        }
+        
+        return nil;
+
     }
     
-    NSError* errorRequest = Nil;
     
-    [managedObjectContext deleteObject:mouseDetails];
+    mouseToEdit.mouse_name = mouseDetails.mouse_name;
+    mouseToEdit.gender = mouseDetails.gender;
+    mouseToEdit.genotypes = mouseDetails.genotypes;
+    mouseToEdit.birth_date = mouseDetails.birth_date;
     
     if(![managedObjectContext save:&errorRequest])
     {
-        NSLog(@"Error saving editMouseDetails %@ %@", errorRequest, [errorRequest localizedDescription]);
+        NSLog(@"Error saving mouse details %@", [errorRequest localizedDescription]);
         return nil;
     }
-    
-    return mouseDetails;
+    else
+    {
+        return mouseToEdit;
+    }
     
 }
 
