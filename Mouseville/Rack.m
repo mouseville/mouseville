@@ -124,9 +124,7 @@
 
 //-(RackDetails*) editRack:(NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack
 //{
-//    
-//    
-//    
+    
 //}
 
 
