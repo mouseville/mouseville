@@ -29,4 +29,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchRacksText;
 
 @property (assign) BOOL isFiltered;
+
+- (IBAction)segmentedAdd:(id)sender;
+
+@property (nonatomic) NSInteger selectedIndexSegment;
+
 @end

@@ -580,7 +580,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E29-bd-3OH">
-                                        <rect key="frame" x="45" y="247" width="677" height="706"/>
+                                        <rect key="frame" x="45" y="247" width="688" height="706"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H7D-qk-DC9">
@@ -655,7 +655,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="5JG-TT-yjV">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="createMice:" destination="ESk-1B-GpQ" id="3hV-6d-pPs"/>
+                                <action selector="segmentedAdd:" destination="ESk-1B-GpQ" id="aML-LG-4Qs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -669,6 +669,8 @@
                         <outlet property="searchRacksText" destination="0Z4-wL-jnK" id="HJh-fl-Nny"/>
                         <outlet property="segmentedBar" destination="Bzw-6H-0t6" id="4N9-L2-qXD"/>
                         <outlet property="segmentedController" destination="Bzw-6H-0t6" id="9qe-zJ-siK"/>
+                        <segue destination="y1M-tU-aHR" kind="push" identifier="addMouseSegue" id="Opu-ac-yXo"/>
+                        <segue destination="0lG-vS-wde" kind="push" identifier="addRackSegue" id="ZqV-Ob-BUl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zF3-1u-sqd" sceneMemberID="firstResponder"/>
@@ -681,7 +683,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-161" y="-1535"/>
+            <point key="canvasLocation" x="7" y="-1263"/>
         </scene>
         <!--Search Mouse View Controller - Search Mouse-->
         <scene sceneID="SQq-XB-XGr">
@@ -1663,5 +1665,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ucv-dc-7HN"/>
+        <segue reference="Opu-ac-yXo"/>
+        <segue reference="ZqV-Ob-BUl"/>
     </inferredMetricsTieBreakers>
 </document>
