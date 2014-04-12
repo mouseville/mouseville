@@ -1507,7 +1507,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <resources>
         <image name="edit_icon-32" width="32" height="32"/>
         <image name="edit_icon-48" width="48" height="48"/>
-        <image name="label1checked-32" width="32" height="32"/>
         <image name="mouseville_icon-32" width="32" height="32"/>
         <image name="move_icon-32" width="32" height="32"/>
         <image name="rack.png" width="480" height="695"/>
@@ -1518,6 +1517,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xLG-dW-4u3"/>
+        <segue reference="ucv-dc-7HN"/>
     </inferredMetricsTieBreakers>
 </document>

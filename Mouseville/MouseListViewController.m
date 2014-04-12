@@ -27,7 +27,9 @@
     mouseName.text = mouse.mouse_name;
             
     UILabel *mouseDesc = (UILabel *)[cell viewWithTag:133];
-    mouseDesc.text = @"Genotype / DoB";
+    NSDateFormatter *date = [[NSDateFormatter alloc] init];
+    [date setDateFormat:@"yyyy.MM.dd"];
+    mouseDesc.text = [NSString stringWithFormat:@"%@ / %@", @"Genotype", [date stringFromDate:mouse.birth_date]];
     
     return cell;
 }

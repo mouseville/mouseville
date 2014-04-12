@@ -28,6 +28,13 @@
         [self.CageNotes.layer setBorderWidth:1.5f];
         
     } else {
+        // save fields to cage
+        self.cage.cage_name = self.cageName.text;
+        self.cage.notes = self.CageNotes.text;
+        
+        NSManagedObjectContext *context = [self managedObjectContext];
+        Cage *tmp;
+        [tmp editParticularCage:context rack:self.cage.rackDetails row:self.cage.row_id column:self.cage.column_id cageObject:self.cage];
         
         self.cageName.enabled = NO;
         self.cageName.borderStyle = UITextBorderStyleNone;
