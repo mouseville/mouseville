@@ -136,12 +136,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXL-j3-Eis">
-                                <rect key="frame" x="135" y="599" width="498" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Teb-JR-2AA">
                                 <rect key="frame" x="20" y="89" width="728" height="502"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -331,7 +325,6 @@
                         <outlet property="Label6" destination="BDa-QQ-ofv" id="xJn-Bm-xhp"/>
                         <outlet property="Label6Switch" destination="9Wc-0r-LPs" id="43p-EA-3yx"/>
                         <outlet property="Label6View" destination="tJ0-9J-HGe" id="WQG-E7-Lb0"/>
-                        <outlet property="NumCagesLabel" destination="QXL-j3-Eis" id="Wsw-8R-A38"/>
                         <outlet property="cageName" destination="tSC-Jg-Lud" id="GIZ-QR-qWJ"/>
                         <outlet property="mouseListContainter" destination="cXF-i3-U5m" id="pbC-nm-aA4"/>
                     </connections>
@@ -1721,6 +1714,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="tableView" destination="1P0-RS-iQS" id="3mC-aC-zdD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjh-kQ-wI9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

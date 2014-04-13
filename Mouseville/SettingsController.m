@@ -84,35 +84,54 @@
 - (IBAction)saveLabels:(id)sender {
     NSManagedObjectContext *context = [self managedObjectContext];
     Rack* rack = [[Rack alloc]init];
+    NSMutableArray* tempLabelsArray = [[NSMutableArray alloc]init];
+    
+   
+    ///example for first label.
+    
+    if(![self.label1.text isEqual:@""])
+    {
+        Labels* labels1 = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
+        
+        labels1.label_name = self.label1.text;
+        NSNumber* labelOrder = [NSNumber numberWithInt:1];
+        labels1.label_order = labelOrder;
+        
+        [tempLabelsArray addObject:labels1];
+        
+    }
+    
+    
+    
     
     Labels *labels1 = [[Labels alloc]init];
     
-    [labels1 setLabel_id:[NSNumber numberWithInt:1]] ;
+    //[labels1 setLabel_id:[NSNumber numberWithInt:1]] ;
     [labels1 setLabel_name: self.label1.text];
     
     Labels *labels2 = [[Labels alloc]init];
     
-    [labels2 setLabel_id:[NSNumber numberWithInt:2]] ;
+    //[labels2 setLabel_id:[NSNumber numberWithInt:2]] ;
     [labels2 setLabel_name: self.label2.text];
     
     Labels *labels3 = [[Labels alloc]init];
     
-    [labels3 setLabel_id:[NSNumber numberWithInt:3]] ;
+    //[labels3 setLabel_id:[NSNumber numberWithInt:3]] ;
     [labels3 setLabel_name: self.label3.text];
     
     Labels *labels4 = [[Labels alloc]init];
     
-    [labels4 setLabel_id:[NSNumber numberWithInt:4]] ;
+    //[labels4 setLabel_id:[NSNumber numberWithInt:4]] ;
     [labels4 setLabel_name: self.label4.text];
     
     Labels *labels5 = [[Labels alloc]init];
     
-    [labels5 setLabel_id:[NSNumber numberWithInt:5]] ;
+    //[labels5 setLabel_id:[NSNumber numberWithInt:5]] ;
     [labels5 setLabel_name: self.label5.text];
     
     Labels *labels6 = [[Labels alloc]init];
     
-    [labels6 setLabel_id:[NSNumber numberWithInt:6]] ;
+    //[labels6 setLabel_id:[NSNumber numberWithInt:6]] ;
     [labels6 setLabel_name: self.label6.text];
     
     

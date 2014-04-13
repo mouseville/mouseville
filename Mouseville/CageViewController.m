@@ -10,6 +10,7 @@
 #import "MouseDetails.h"
 #import "CageDetails.h"
 #import "MouseListViewController.h"
+#import "Cage.h"
 
 @interface CageViewController ()
 
@@ -57,7 +58,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MouseListViewController *transferVC = segue.destinationViewController;
-    transferVC.mice = self.cage.mouseDetails;
+    transferVC.currentCage = self.cage;
 }
 
 -(NSManagedObjectContext*) managedObjectContext {

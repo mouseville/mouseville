@@ -11,6 +11,18 @@
 @implementation Mouse
 
 
++(NSString *)getGenotypeString:(MouseDetails *)mouse {
+    
+    NSString *genstr = @"";
+    
+    for (Genotype *gen in mouse.genotypes) {
+        genstr = [genstr stringByAppendingString:gen.genotype_name];
+    }
+    
+    return genstr;
+    
+}
+
 -(BOOL) addNewMouse:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotypes:(NSSet *)genotypes dateOfBirth:(NSDate *)dateOfBirth rackName:(NSString *)rackName cageRow:(NSNumber*)cageRow cageColoumn:(NSNumber*)cageColumn
 
 {

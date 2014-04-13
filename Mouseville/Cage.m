@@ -294,6 +294,12 @@
     
 }
 
++(NSString*) getStringFromIndex:(CageDetails *)cageDetails {
+    NSString *column = [Cage numberToAlphabet:cageDetails.column_id];
+    
+    return [NSString stringWithFormat:@"%@%@", column, cageDetails.row_id];
+}
+
 -(NSArray*)getAllCages:(NSManagedObjectContext *)managedObjectContext rackId:(NSNumber *)rackId
 {
     NSEntityDescription* cageEntity = [NSEntityDescription entityForName:@"CageDetails" inManagedObjectContext:managedObjectContext];

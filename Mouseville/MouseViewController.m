@@ -119,11 +119,11 @@
     
     for(CageDetails* cage in rackDetails.cages)
     {
-        NSString* row = [self numberToAlphabet:cage.row_id];
-        NSString* column = [NSString stringWithFormat:@"%d",[cage.column_id intValue]];
+        NSString* column = [self numberToAlphabet:cage.column_id];
+        NSString* row = [NSString stringWithFormat:@"%d",[cage.row_id intValue]];
         NSMutableString* cageName = [[NSMutableString alloc]init];
-        [cageName appendString:row];
         [cageName appendString:column];
+        [cageName appendString:row];
         
         [cageNames addObject:[NSString stringWithString:cageName]];
         
