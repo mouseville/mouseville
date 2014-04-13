@@ -24,5 +24,6 @@
 
 +(CageDetails *) getCageFromStringIndex:(NSString *)index inRack:(RackDetails *)rack;
 
+-(BOOL)setRackLabels: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack labels:(NSArray*)labels;
 
 @end
