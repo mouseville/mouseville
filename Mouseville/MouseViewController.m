@@ -48,17 +48,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.btnCreateMouse setEnabled:YES];
+   
     
+    /*
     
     [self.createMouseView.layer setCornerRadius:30.0f];
     [self.createMouseView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.createMouseView.layer setBorderWidth:1.5f];
+    */
     
     self.genotypeMutableArray = [[NSMutableArray alloc]init];
     
     Rack *rack = [[Rack alloc]init];
     
     NSArray* racks = [rack getAllRacks:[self managedObjectContext]];
+    
     
     NSMutableArray* rackNames = [[NSMutableArray alloc]init];
     
@@ -93,6 +98,35 @@
     
     
     NSArray *allGenotypeLabels =[genotypeManager getAllgenotypes:[self managedObjectContext]];
+    
+    
+    
+    if([racks count]==0 && [allGenotypeLabels count]==0)
+    {
+        [self.btnCreateMouse setEnabled:NO];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"No racks or genes found! Please create a rack and genes before creating a mouse." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    
+    else if([racks count]==0)
+    {
+        [self.btnCreateMouse setEnabled:NO];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"No racks found! Please create a rack before creating a mouse." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+
+    
+    else if([allGenotypeLabels count]==0)
+    {
+        [self.btnCreateMouse setEnabled:NO];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"No genes found! Please create genes before creating a mouse." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+
+    
     
     NSMutableArray* arr = [[NSMutableArray alloc]init];
     
@@ -325,7 +359,7 @@
     
     if(![self sanityCheck])
     {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Unablt to insert mouse details. Please ensure that all the values on this page are set" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Unable to insert mouse details. Please ensure that all the values on this page are set" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return;
     }
@@ -362,6 +396,8 @@
     }
     else
     {
+        
+        
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse details were saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
@@ -369,6 +405,45 @@
     
     
 }
+
+
+
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if([alertView.title isEqual:@"Success"])
+    {
+        if(buttonIndex==0 || buttonIndex
+          ==1 ){
+            
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+   }
+
+
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.txtMouseName resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField)
+    {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    
+}
+
+
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
+}
+
 
 -(BOOL)sanityCheck
 {
@@ -395,6 +470,15 @@
 - (IBAction)selectCage:(id)sender {
     
     [cagePopoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+
+- (IBAction)cancelButtonClick:(id)sender {
+    
+    
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 

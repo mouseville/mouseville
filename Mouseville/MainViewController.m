@@ -10,12 +10,25 @@
 #import "Rack.h"
 #import "Cage.h"
 #import "RackController.h"
+#import "PopOverViewController.h"
+#import "GenotypeManager.h"
+#import "MouseViewController.h"
 
 @interface MainViewController ()
+{
+    
+    UIPopoverController *popoverController;
+    PopOverViewController *popoverView;
+    BOOL isViewExpanded;
+}
 
 @end
 
 @implementation MainViewController
+{
+    NSDictionary *racklist;
+    NSArray *rackSectionTitles;
+}
 @synthesize rackView, miceView;
 
 
@@ -31,25 +44,100 @@
     return context;
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.searchRacksText resignFirstResponder];
+     [self.txtSearch resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField)
+    {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    
+}
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    isViewExpanded = NO;
 
     Rack* rack = [[Rack alloc]init];
     
     self.allRacks = [rack getAllRacks:[self managedObjectContext]];
     
+    
+    if([self.allRacks count]==0){
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"Please create a rack to get started!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
+    }
     self.filteredRacks = [NSMutableArray arrayWithCapacity:[self.allRacks count]];
     
     [self.filteredRacks addObjectsFromArray:self.allRacks];
     
     [self.searchRacksText addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
+    
+    
+    
+    
+    //code for search mouse
+    
+
+    self.slider.maximumValue= 100;
+    self.slider.minimumValue=0;
+    self.slider.value=0;
+    
+    self.slider2.maximumValue=100;
+    self.slider2.minimumValue=0;
+    self.slider2.value=100;
+ 
+    
+    self.label1.text =[NSString stringWithFormat:@"%.0f to %.0f weeks", self.slider.value, self.slider2.value];
+    
+    racklist = @{@"Rack 1" : @[@"Mouse 1A", @"Mouse 2A", @"Mouse 3A", @"Mouse 4A"],
+                 @"Rack 2" : @[@"Mouse 1B", @"Mouse 2B", @"Mouse 3B", @"Mouse 4B"],
+                 @"Rack 3" : @[@"Mouse 1C", @"Mouse 2C", @"Mouse 3C", @"Mouse 4C"],
+                 @"Rack 4" : @[@"Mouse 1D", @"Mouse 2D", @"Mouse 3D", @"Mouse 4D"]};
+    
+    rackSectionTitles = [[racklist allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
+    
+    
+    
+    GenotypeManager* genotypeManager = [[GenotypeManager alloc]init];
+    
+    
+    
+    NSArray *allGenotypeLabels =[genotypeManager getAllgenotypes:[self managedObjectContext]];
+    
+    
+    NSMutableArray* arr = [[NSMutableArray alloc]init];
+    
+    for(GenotypeLabels* individualGenotypeLable in allGenotypeLabels)
+    {
+        [arr addObject:individualGenotypeLable.genotypeLabel];
+    }
+    
+    
+    popoverView = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
+    [popoverView setArrData:arr];
+    popoverController = [[UIPopoverController alloc]initWithContentViewController:popoverView];
+    popoverView.delegate = self;
+    [popoverView setIdentifier:@"genotypeDropDown"];
+    popoverView.tableView.allowsMultipleSelection = YES;
+    
+    
+    
+
+    
 }
+
+
 
 
 
@@ -166,14 +254,185 @@
     
 }
 
-
 - (IBAction)segmentedAdd:(id)sender {
+  
+    /*
     NSLog(@"Selected index , %d",self.selectedIndexSegment);
     if (self.selectedIndexSegment == 0) {
         [self performSegueWithIdentifier:@"addRackSegue" sender:self];
     }else if (self.selectedIndexSegment == 1){
         [self performSegueWithIdentifier:@"addMouseSegue" sender:self];
     }
+     
+     */
+    
+    
+     if (self.selectedIndexSegment == 0) {
+         
+         RackController *viewController= [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"rackController"];
+  
+         
+    //     RackController *viewController= [[RackController alloc] init];
+         viewController.modalPresentationStyle=UIModalPresentationFormSheet;
+         viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+         
+         [self presentViewController:viewController animated:YES completion:^{
+             viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
+             viewController.view.superview.center = self.view.center;
+         }];
+         
+
+         
+        }
+     else if (self.selectedIndexSegment == 1)
+        {
+            
+            
+            MouseViewController *viewController= [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"mouseController"];
+            
+            //MouseViewController *viewController= [[MouseViewController alloc] init];
+            viewController.modalPresentationStyle=UIModalPresentationFormSheet;
+            viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            
+            [self presentViewController:viewController animated:YES completion:^{
+                viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
+                viewController.view.superview.center = self.view.center;
+            }];
+            
+
+        }
+}
+
+
+
+//Code for search mouse view
+
+
+
+
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSString *sectionTitle = [rackSectionTitles objectAtIndex:section];
+    NSArray *sectionRacks = [racklist objectForKey:sectionTitle];
+    return [sectionRacks count];
+}
+
+- (NSInteger)numberofSectionsInTableView:(UITableView *)tableView {
+    return [rackSectionTitles count];
+}
+
+- (NSArray *)sectionIndexTilesForTableView:(UITableView *)tableView {
+    return rackSectionTitles;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    NSString *sectionTitle = [rackSectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionRacks = [racklist objectForKey:sectionTitle];
+    NSString *rack = [sectionRacks objectAtIndex:indexPath.row];
+    cell.textLabel.text = rack;
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [rackSectionTitles objectAtIndex:section];
+}
+
+
+
+-(void) didClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
+{
+    
+    if([popoverIdentifier isEqual:@"genotypeDropDown"])
+    {
+        [self.genotypeMutableArray addObject:string];
+    }
+}
+
+
+-(void)didDeSelectClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier
+{
+    
+    if([popoverIdentifier isEqual:@"genotypeDropDown"])
+    {
+        [self.genotypeMutableArray removeObject:string];
+    }
+}
+
+-(void)dropDownWillDisappear:(NSString *)popoverIdentifier
+{
+    if([popoverIdentifier isEqual:@"genotypeDropDown"])
+    {
+        if([self.genotypeMutableArray count]!=0)
+            [[self btnChooseGenotype]setTitle:[[self.genotypeMutableArray sortedArrayUsingSelector:@selector(localizedStandardCompare:)]componentsJoinedByString:@","] forState:UIControlStateNormal];
+        else
+            [[self btnChooseGenotype]setTitle:@"Select" forState:UIControlStateNormal];
+    }
+}
+
+
+
+- (IBAction)sliderValueChanged:(id)sender {
+    
+    if(self.slider.value>self.slider2.value)
+    {
+        self.slider2.value=self.slider.value;
+    }
+    
+    self.label1.text =[NSString stringWithFormat:@"%.0f to %.0f weeks", self.slider.value, self.slider2.value];
+    
     
 }
+
+
+
+- (IBAction)chooseGenotype:(id)sender {
+    [popoverController presentPopoverFromRect:[sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (IBAction)expandClicked:(id)sender {
+    
+    if(!isViewExpanded){
+        [UIView animateWithDuration:0.4f animations:^{
+            
+            self.slideThisView.transform = CGAffineTransformMakeTranslation(0, 252);
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+        [self.expandButton setTitle:@"Less" forState:UIControlStateNormal];
+    }
+    else{
+        [UIView animateWithDuration:0.4f animations:^{
+            
+            self.slideThisView.transform = CGAffineTransformIdentity;
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+       [self.expandButton setTitle:@"More Search Options" forState:UIControlStateNormal];
+    }
+    isViewExpanded = !isViewExpanded;
+    
+    
+}
+- (IBAction)slider2ValueChanged:(id)sender {
+    
+    
+    if(self.slider.value>self.slider2.value)
+    {
+        self.slider.value=self.slider2.value;
+    }
+    
+    self.label1.text =[NSString stringWithFormat:@"%.0f to %.0f weeks", self.slider.value, self.slider2.value];
+    
+    
+}
+
 @end

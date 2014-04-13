@@ -62,6 +62,22 @@
     
 }
 
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.txtSearch resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField)
+    {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSString *sectionTitle = [rackSectionTitles objectAtIndex:section];
     NSArray *sectionRacks = [racklist objectForKey:sectionTitle];
