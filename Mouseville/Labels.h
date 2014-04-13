@@ -14,6 +14,7 @@
 @interface Labels : NSManagedObject
 
 @property (nonatomic, retain) NSString * label_name;
+@property (nonatomic, retain) NSNumber * label_order;
 @property (nonatomic, retain) CageDetails *cageDetails;
 @property (nonatomic, retain) RackDetails *rackDetails;
 

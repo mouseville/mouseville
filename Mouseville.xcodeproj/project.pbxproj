@@ -13,7 +13,7 @@
 		48241DA818EFDF0E00FB803A /* GenotypeLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 48241DA718EFDF0E00FB803A /* GenotypeLabels.m */; };
 		48350E4518F1286100031DE2 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48350E4418F1286100031DE2 /* Storyboard.storyboard */; };
 		483FF1E518E23DF300EF8AFE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483FF1E418E23DF300EF8AFE /* ViewController.m */; };
-		4868C88B18FA340D006D9A43 /* Labels.m in Sources */ = {isa = PBXBuildFile; fileRef = 4868C88A18FA340C006D9A43 /* Labels.m */; };
+		4868C88E18FA3749006D9A43 /* Labels.m in Sources */ = {isa = PBXBuildFile; fileRef = 4868C88D18FA3749006D9A43 /* Labels.m */; };
 		4883406118E2256500682F5A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4883406018E2256500682F5A /* Foundation.framework */; };
 		4883406318E2256500682F5A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4883406218E2256500682F5A /* CoreGraphics.framework */; };
 		4883406518E2256500682F5A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4883406418E2256500682F5A /* UIKit.framework */; };
@@ -109,8 +109,8 @@
 		48350E4418F1286100031DE2 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Mouseville/Storyboard.storyboard; sourceTree = "<group>"; };
 		483FF1E318E23DF300EF8AFE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		483FF1E418E23DF300EF8AFE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4868C88918FA340C006D9A43 /* Labels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Labels.h; sourceTree = "<group>"; };
-		4868C88A18FA340C006D9A43 /* Labels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Labels.m; sourceTree = "<group>"; };
+		4868C88C18FA3749006D9A43 /* Labels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Labels.h; sourceTree = "<group>"; };
+		4868C88D18FA3749006D9A43 /* Labels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Labels.m; sourceTree = "<group>"; };
 		4883405D18E2256500682F5A /* Mouseville.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mouseville.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4883406018E2256500682F5A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4883406218E2256500682F5A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -370,8 +370,6 @@
 		4883409818E2264500682F5A /* CoreDataFiles */ = {
 			isa = PBXGroup;
 			children = (
-				4868C88918FA340C006D9A43 /* Labels.h */,
-				4868C88A18FA340C006D9A43 /* Labels.m */,
 				489772EE18F124E600D85220 /* Genotype.h */,
 				488340B918E226AA00682F5A /* UserDetails.h */,
 				488340BA18E226AA00682F5A /* UserDetails.m */,
@@ -381,6 +379,8 @@
 				E5DEA55418EB6914000E3B82 /* MouseDeceasedDetails.h */,
 				E5DEA55518EB6914000E3B82 /* MouseDeceasedDetails.m */,
 				E5DEA55118EB68D6000E3B82 /* MouseVilleModel.xcdatamodeld */,
+				4868C88C18FA3749006D9A43 /* Labels.h */,
+				4868C88D18FA3749006D9A43 /* Labels.m */,
 				48241DA618EFDF0E00FB803A /* GenotypeLabels.h */,
 				48241DA718EFDF0E00FB803A /* GenotypeLabels.m */,
 				E5DEA54B18EB6877000E3B82 /* MouseDetails.h */,
@@ -592,7 +592,7 @@
 				4883414418E22AAD00682F5A /* Rack.m in Sources */,
 				BD6E6AC618EC9D5000B539E8 /* ViewRacksController.m in Sources */,
 				4883413518E2271C00682F5A /* MouseCageDetailsOld.m in Sources */,
-				4868C88B18FA340D006D9A43 /* Labels.m in Sources */,
+				4868C88E18FA3749006D9A43 /* Labels.m in Sources */,
 				4883406F18E2256500682F5A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

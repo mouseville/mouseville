@@ -94,6 +94,8 @@
         Labels* labels1 = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
         
         labels1.label_name = self.label1.text;
+        NSNumber* labelOrder = [NSNumber numberWithInt:1];
+        labels1.label_order = labelOrder;
         
         [tempLabelsArray addObject:labels1];
         

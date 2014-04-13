@@ -14,6 +14,7 @@
 @implementation Labels
 
 @dynamic label_name;
+@dynamic label_order;
 @dynamic cageDetails;
 @dynamic rackDetails;
 
