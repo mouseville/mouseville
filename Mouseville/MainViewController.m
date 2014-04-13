@@ -20,6 +20,7 @@
 
 
 
+
 -(NSManagedObjectContext*) managedObjectContext {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication]delegate];
@@ -49,8 +50,26 @@
     
     [self.searchRacksText addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
+    UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCellToDelete:)];
+    
+    lpr.minimumPressDuration = .5;
+    lpr.delegate = self;
+    
+    [self.rackCollection addGestureRecognizer:lpr];
+    
+    [self.rackCollection reloadData];
+    
+    UIMenuItem *renameItem = [[UIMenuItem alloc] initWithTitle:@"Edit" action:@selector(rename:)];
+    UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(delete:)];
+    
+    [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObjects:renameItem, deleteItem, nil]];
+    
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+    [self viewDidLoad];
+
+}
 
 
 - (IBAction)mainViewChanged:(id)sender {
@@ -175,5 +194,78 @@
         [self performSegueWithIdentifier:@"addMouseSegue" sender:self];
     }
     
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+
+-(BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+    if ((action == @selector(delete:)) || (action == @selector(rename:))){
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(void)rename:(UIMenuController *)menuController{
+    
+}
+
+-(void) delete:(id)sender{
+    UICollectionView *collection = (UICollectionView*)[self.rackCollection superview];
+    if ([collection isKindOfClass:[UICollectionView class]]) {
+        id <UICollectionViewDelegate> d = collection.delegate;
+        if ([d respondsToSelector:@selector(collectionView:performAction:forItemAtIndexPath:withSender:)]) {
+            [d collectionView:collection performAction:@selector(delete:) forItemAtIndexPath:[collection indexPathForCell:collection] withSender:sender];
+        }
+    }
+}
+
+- (IBAction)didLongPressCellToDelete:(UILongPressGestureRecognizer*)gesture {
+    CGPoint tapLocation = [gesture locationInView:self.rackCollection];
+    NSIndexPath *indexPath = [self.rackCollection indexPathForItemAtPoint:tapLocation];
+    if (indexPath && gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"image with index %d to be deleted", indexPath.item);
+        
+        UICollectionViewCell *cell = [self.rackCollection cellForItemAtIndexPath:indexPath];
+        
+        self.deleteRackName = ((UILabel *)[cell.contentView viewWithTag:3]).text;
+        UIAlertView *deleteAlert = [[UIAlertView alloc]
+                                    initWithTitle:@"Delete?"
+                                    message:@"Are you sure you want to delete this rack?"
+                                    delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+        [deleteAlert show];
+        
+    }
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"selected button index = %d", buttonIndex);
+    if (buttonIndex == 1) {
+        // Do what you need to do to delete the cell
+        Rack *rack = [[Rack alloc] init];
+        NSManagedObjectContext *context = [self managedObjectContext];
+        
+        
+        if ([rack deleteRack:context rackName:self.deleteRackName]) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Rack has been deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        else{
+            
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"ERROR!" message:@"Error deleting rack!!!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+            
+        }
+
+        [self.rackCollection reloadData];
+        [self viewDidLoad];
+    }
 }
 @end

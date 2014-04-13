@@ -17,7 +17,7 @@
 #import "CHCSVParser.h"
 
 
-@interface SettingsController : UIViewController<MFMailComposeViewControllerDelegate>
+@interface SettingsController : UIViewController<MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 
