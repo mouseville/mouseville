@@ -22,6 +22,5 @@
 -(NSNumber*) getCurrentRackCount: (NSManagedObjectContext*) managedObjectContext;
 
 
-
-
+-(BOOL)setRackLabels: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack labels:(NSArray*)labels;
 @end
