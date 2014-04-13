@@ -41,6 +41,7 @@
 
 +(NSString*) numberToAlphabet: (NSNumber*) cageNumber;
 +(NSNumber*) alphabetToNumber: (NSString*) cageLetter;
++(NSString*) getStringFromIndex:(CageDetails *) cageDetails;
 
 
 @end

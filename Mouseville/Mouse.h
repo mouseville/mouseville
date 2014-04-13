@@ -34,4 +34,6 @@
 
 -(int) getWeeksFromDate: (NSDate*) date;
 
++(NSString *)getGenotypeString:(MouseDetails *)mouse;
+
 @end

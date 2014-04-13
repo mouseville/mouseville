@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #include "RackDetails.h"
+#import "Cage.h"
 
 @interface Rack : NSObject
 
@@ -21,7 +22,7 @@
 
 -(NSNumber*) getCurrentRackCount: (NSManagedObjectContext*) managedObjectContext;
 
-
++(CageDetails *) getCageFromStringIndex:(NSString *)index inRack:(RackDetails *)rack;
 
 
 @end

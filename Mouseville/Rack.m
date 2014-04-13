@@ -13,6 +13,33 @@
 
 @implementation Rack
 
++(CageDetails *)getCageFromStringIndex:(NSString *)index inRack:(RackDetails *)rack {
+    // sanity check on index
+    if (index.length != 2) {
+        return nil;
+    }
+    
+    int column = [[Cage alphabetToNumber:[index substringToIndex:1]] intValue];
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    int row = [[f numberFromString:[index substringFromIndex:1]] intValue];
+    
+    // check if index within bound of the rack
+    if (row > rack.number_rows.intValue || column > rack.number_columns.intValue) {
+        return nil;
+    }
+    
+    for (CageDetails *cage in rack.cages) {
+        if (row == cage.row_id.intValue && column == cage.column_id.intValue) {
+            return cage;
+        }
+    }
+    
+    // there was no cage with the index
+    return nil;
+}
+
 -(BOOL)addNewRack:(NSManagedObjectContext*) managedObjectContext name:(NSString*)name rows:(NSNumber*)rows columns:(NSNumber*)columns
 {
     RackDetails* rack = [NSEntityDescription insertNewObjectForEntityForName:@"RackDetails"inManagedObjectContext:managedObjectContext];
