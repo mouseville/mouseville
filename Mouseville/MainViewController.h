@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ViewRacksController.h"
 
-@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>{
+@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>{
     ViewRacksController *viewRacks ;
 }
 @property (weak, nonatomic) IBOutlet UIView *miceView;
@@ -34,4 +34,5 @@
 
 @property (nonatomic) NSInteger selectedIndexSegment;
 
+@property (nonatomic) NSString *deleteRackName;
 @end

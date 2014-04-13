@@ -86,25 +86,90 @@
     Rack* rack = [[Rack alloc]init];
     NSMutableArray* tempLabelsArray = [[NSMutableArray alloc]init];
     
+    NSNumber *count = 0;
    
     ///example for first label.
     
     if(![self.label1.text isEqual:@""])
     {
-        Labels* labels1 = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
         
-        labels1.label_name = self.label1.text;
-        NSNumber* labelOrder = [NSNumber numberWithInt:1];
-        labels1.label_order = labelOrder;
+        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
         
-        [tempLabelsArray addObject:labels1];
+        labels.label_name = self.label1.text;
+        
+        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
+        NSNumber* labelOrder = count;
+        labels.label_order = labelOrder;
+        
+        [tempLabelsArray addObject:labels];
         
     }
     
+    if(![self.label2.text isEqual:@""])
+    {
+        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
+        
+        labels.label_name = self.label2.text;
+        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
+        NSNumber* labelOrder = count;
+        labels.label_order = labelOrder;
+        
+        [tempLabelsArray addObject:labels];
+        
+    }
     
+    if(![self.label3.text isEqual:@""])
+    {
+        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
+        
+        labels.label_name = self.label3.text;
+        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
+        NSNumber* labelOrder = count;
+        labels.label_order = labelOrder;
+        
+        [tempLabelsArray addObject:labels];
+    }
     
+    if(![self.label4.text isEqual:@""])
+        {
+            Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
+            
+            labels.label_name = self.label4.text;
+            count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
+            NSNumber* labelOrder = count;
+            labels.label_order = labelOrder;
+            
+            [tempLabelsArray addObject:labels];
     
-    Labels *labels1 = [[Labels alloc]init];
+    }
+    
+    if(![self.label5.text isEqual:@""])
+    {
+            Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
+            
+            labels.label_name = self.label5.text;
+        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
+        NSNumber* labelOrder = count;
+            labels.label_order = labelOrder;
+            
+            [tempLabelsArray addObject:labels];
+            
+    }
+    
+    if(![self.label6.text isEqual:@""])
+    {
+        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
+        
+        labels.label_name = self.label6.text;
+        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
+        NSNumber* labelOrder = count;
+        labels.label_order = labelOrder;
+        
+        [tempLabelsArray addObject:labels];
+        
+    }
+    
+    /*Labels *labels1 = [[Labels alloc]init];
     
     //[labels1 setLabel_id:[NSNumber numberWithInt:1]] ;
     [labels1 setLabel_name: self.label1.text];
@@ -149,7 +214,7 @@
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"ERROR!" message:@"Error updating labels!!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
         
-    }
+    }*/
 }
 
 - (IBAction)exportToCSV:(id)sender {
@@ -290,4 +355,22 @@
     
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.label1 resignFirstResponder];
+    [self.label2 resignFirstResponder];
+    [self.label3 resignFirstResponder];
+    [self.label4 resignFirstResponder];
+    [self.label5 resignFirstResponder];
+    [self.label6 resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField)
+    {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    
+}
 @end
