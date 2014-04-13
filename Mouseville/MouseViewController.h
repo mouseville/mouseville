@@ -16,6 +16,7 @@
 - (IBAction)chooseGenotype:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UIView *createMouseView;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *btnChooseGenotype;

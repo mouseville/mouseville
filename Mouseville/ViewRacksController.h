@@ -14,10 +14,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *viewRackCollection;
 
 @property (nonatomic) RackDetails *viewRackDetails;
-
 @property (nonatomic) NSString *rackLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *rackNameLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *rackNameLabel;
 
 @property (nonatomic) NSArray *cageDetailsForRack;
 
