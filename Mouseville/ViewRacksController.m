@@ -10,6 +10,7 @@
 #import "CageViewController.h"
 #import "Rack.h"
 #import "Cage.h"
+#import "SettingsController.h"
 
 
 @interface ViewRacksController ()
@@ -124,6 +125,9 @@
        
         CageViewController *viewCageController = (CageViewController *)segue.destinationViewController;
         viewCageController.cage = cageDetailss;
+    }else if ([segue.identifier isEqualToString:@"rackSettingSegue"]){
+        SettingsController *settings = (SettingsController *)segue.destinationViewController;
+        settings.rackDetails = self.viewRackDetails;
     }
 }
 @end

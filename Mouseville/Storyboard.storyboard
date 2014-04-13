@@ -527,7 +527,7 @@
                     <navigationItem key="navigationItem" id="in6-mw-juk">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="7dS-ek-gsP">
                             <connections>
-                                <segue destination="IvN-mY-AUL" kind="push" id="9Lc-lB-HVO"/>
+                                <segue destination="IvN-mY-AUL" kind="push" identifier="rackSettingsSegue" id="9Lc-lB-HVO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1814,7 +1814,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ucv-dc-7HN"/>
-        <segue reference="Opu-ac-yXo"/>
-        <segue reference="ZqV-Ob-BUl"/>
+        <segue reference="s2j-ad-Xsn"/>
+        <segue reference="4cL-bF-0Ur"/>
     </inferredMetricsTieBreakers>
 </document>

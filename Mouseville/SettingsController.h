@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "RackDetails.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import "Rack.h"
+#import "RackDetails.h"
+#import "CageDetails.h"
+#import "MouseDetails.h"
+#import "CHCSVParser.h"
 
-@interface SettingsController : UIViewController
 
+@interface SettingsController : UIViewController<MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 
@@ -26,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image6;
 @property (weak, nonatomic) IBOutlet UIView *labelView;
 
-@property(weak, nonatomic) NSString *rackName;
+@property(weak, nonatomic) RackDetails *rackDetails;
 
 - (IBAction)saveLabels:(id)sender;
 
