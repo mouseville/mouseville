@@ -40,6 +40,17 @@
     return nil;
 }
 
++(CageDetails *)getCageFromRack:(RackDetails *)rack withRow:(int)row withColumn:(int)column {
+    for (CageDetails *cage in rack.cages) {
+        if (row == cage.row_id.intValue && column == cage.column_id.intValue) {
+            return cage;
+        }
+    }
+    
+    // the cage with these coordinates was not found
+    return nil;
+}
+
 -(BOOL)addNewRack:(NSManagedObjectContext*) managedObjectContext name:(NSString*)name rows:(NSNumber*)rows columns:(NSNumber*)columns
 {
     RackDetails* rack = [NSEntityDescription insertNewObjectForEntityForName:@"RackDetails"inManagedObjectContext:managedObjectContext];

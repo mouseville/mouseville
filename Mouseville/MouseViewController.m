@@ -341,9 +341,10 @@
         [tempMutableArray addObject:substring];
     }];
 
-    NSNumber* cageRow = [self alphabetToNumber:[tempMutableArray objectAtIndex:0 ]];
-    NSInteger cageColumnInteger = [[tempMutableArray objectAtIndex:1]intValue];
-    NSNumber* cageColumn = [NSNumber numberWithInteger:cageColumnInteger];
+    NSNumber* cageColumn = [self alphabetToNumber:[tempMutableArray objectAtIndex:0 ]];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber* cageRow = [f numberFromString:[self.btnSelectCage.currentTitle substringFromIndex:1]];
     
     NSString* rackName = self.btnSelectRack.currentTitle;
     NSString* mouseName = self.txtMouseName.text;

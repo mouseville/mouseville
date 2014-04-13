@@ -19,6 +19,11 @@
 
 @implementation ViewRacksController
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.viewRackCollection reloadData];
+}
+
 -(NSManagedObjectContext*) managedObjectContext {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication]delegate];
@@ -94,6 +99,21 @@
         [button setEnabled:YES];
         UILabel *label = (UILabel *)[cell viewWithTag:4];
         label.text = labelText;
+        
+        CageDetails *cage = [Rack getCageFromRack:self.viewRackDetails withRow:indexPath.section + 1 withColumn:indexPath.row + 1];
+        UIImageView *bg_img;
+        if ([Cage getBreedingStatus:cage] == MALE_ONLY) {
+            bg_img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"male-75"]];
+        } else if ([Cage getBreedingStatus:cage] == FEMALE_ONLY) {
+            bg_img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"female-75"]];
+        } else if ([Cage getBreedingStatus:cage] == BREEDING) {
+            bg_img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"male_female-75"]];
+        } else {
+            bg_img = [[UIImageView alloc] init];
+        }
+        
+        cell.backgroundView = bg_img;
+        
     }else{
         [cell.layer setBackgroundColor:[UIColor grayColor].CGColor];
         UIButton *button = (UIButton *)[cell viewWithTag:5];

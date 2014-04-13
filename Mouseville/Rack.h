@@ -26,4 +26,6 @@
 
 -(BOOL)setRackLabels: (NSManagedObjectContext*) managedObjectContext rack:(RackDetails*)rack labels:(NSArray*)labels;
 
++(CageDetails *) getCageFromRack:(RackDetails *)rack withRow:(int)row withColumn:(int)column;
+
 @end
