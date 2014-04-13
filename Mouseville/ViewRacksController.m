@@ -70,8 +70,6 @@
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RCell" forIndexPath:indexPath];
-    
     NSNumber *columns = self.viewRackDetails.number_columns;
     
     NSNumber *rows = self.viewRackDetails.number_rows;
@@ -88,12 +86,14 @@
         }
     }
     
-    [cell.layer setBorderWidth:1.0f];
-    [cell.layer setBorderColor:[UIColor blackColor].CGColor];
-    
-    
+    UICollectionViewCell *cell;
     if ((indexPath.section )< [rows integerValue] &&
         (indexPath.item < [columns integerValue])) {
+        
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RCell" forIndexPath:indexPath];
+        [cell.layer setBorderWidth:1.0f];
+        [cell.layer setBorderColor:[UIColor blackColor].CGColor];
+        
         [cell.layer setBackgroundColor:[UIColor whiteColor].CGColor];
         UIButton *button = (UIButton *)[cell viewWithTag:5];
         [button setEnabled:YES];
@@ -115,6 +115,11 @@
         cell.backgroundView = bg_img;
         
     }else{
+        
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"disabled" forIndexPath:indexPath];
+        [cell.layer setBorderWidth:1.0f];
+        [cell.layer setBorderColor:[UIColor blackColor].CGColor];
+        
         [cell.layer setBackgroundColor:[UIColor grayColor].CGColor];
         UIButton *button = (UIButton *)[cell viewWithTag:5];
         [button setEnabled:NO];
