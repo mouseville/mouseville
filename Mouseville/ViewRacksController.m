@@ -43,7 +43,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.rackNameLabel.text = self.rackLabel;
+   // self.rackNameLabel.text = self.rackLabel;
+    
+    self.title =self.rackLabel;
     
 }
 
