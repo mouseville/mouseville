@@ -508,10 +508,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B2D01C18EB694400AE5543 /* rack.png in Resources */,
-<<<<<<< HEAD
 				BDE731ED18F9D8FA00C0FE33 /* purple.jpg in Resources */,
 				BDE731E618F9D89700C0FE33 /* blue.jpg in Resources */,
-=======
 				99F7B43D18F9F0F8005B986F /* search.png in Resources */,
 				99F7B43718F9B217005B986F /* datePicekr.png in Resources */,
 				99F7B42D18F9ACAC005B986F /* move_icon-432.png in Resources */,
@@ -523,7 +521,6 @@
 				99F7B42618F9ACAC005B986F /* edit_icon-512.png in Resources */,
 				99F7B42C18F9ACAC005B986F /* move_icon-32.png in Resources */,
 				99F7B43C18F9F0F8005B986F /* search-icon.png in Resources */,
->>>>>>> 4363984543676eab633f126ec728e35b2251da2f
 				48350E4518F1286100031DE2 /* Storyboard.storyboard in Resources */,
 				99F7B43618F9B217005B986F /* calendar2.png in Resources */,
 				99F7B42E18F9ACAC005B986F /* settings-32.png in Resources */,
@@ -538,14 +535,11 @@
 				99F7B42F18F9ACAC005B986F /* settings.png in Resources */,
 				99F7B42018F9ACAC005B986F /* calendar-32.png in Resources */,
 				4883407818E2256500682F5A /* Images.xcassets in Resources */,
-<<<<<<< HEAD
 				BDE731EE18F9D8FA00C0FE33 /* red.jpg in Resources */,
 				BDE731F118F9E0A800C0FE33 /* yellow.jpg in Resources */,
 				BDE731E718F9D89700C0FE33 /* green.jpg in Resources */,
 				BDE731EC18F9D8FA00C0FE33 /* orange.jpg in Resources */,
-=======
 				99F7B42B18F9ACAC005B986F /* mouseville_icon-272.png in Resources */,
->>>>>>> 4363984543676eab633f126ec728e35b2251da2f
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="F5H-VO-f7V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="F5H-VO-f7V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -1792,12 +1792,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-<<<<<<< HEAD
         <image name="blue.jpg" width="32" height="32"/>
-=======
         <image name="calendar1.png" width="32" height="32"/>
         <image name="dropdown1.gif" width="32" height="32"/>
->>>>>>> 4363984543676eab633f126ec728e35b2251da2f
         <image name="edit_icon-32" width="32" height="32"/>
         <image name="edit_icon-48" width="48" height="48"/>
         <image name="green.jpg" width="32" height="32"/>
@@ -1806,12 +1803,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="orange.jpg" width="32" height="32"/>
         <image name="purple.jpg" width="32" height="32"/>
         <image name="rack.png" width="480" height="695"/>
-<<<<<<< HEAD
         <image name="red.jpg" width="32" height="32"/>
-        <image name="yellow.jpg" width="32" height="32"/>
-=======
         <image name="search.png" width="32" height="32"/>
->>>>>>> 4363984543676eab633f126ec728e35b2251da2f
+        <image name="yellow.jpg" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
@@ -1819,18 +1813,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="Opu-ac-yXo"/>
-        <segue reference="ZqV-Ob-BUl"/>
-        <segue reference="xLG-dW-4u3"/>
-=======
-
-        <segue reference="xLG-dW-4u3"/>
-
         <segue reference="ucv-dc-7HN"/>
         <segue reference="Opu-ac-yXo"/>
         <segue reference="ZqV-Ob-BUl"/>
-
->>>>>>> 4363984543676eab633f126ec728e35b2251da2f
     </inferredMetricsTieBreakers>
 </document>
