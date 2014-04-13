@@ -77,11 +77,16 @@
         
         [cage_helper moveMouseToDifferentCage:context rack:self.currentCage.rackDetails cageDetails:self.currentCage mouseDetails:self.selectedMouse rowToMove:row columnToMove:column];
         
+        self.miceArray = [self.currentCage.mouseDetails allObjects];
+        
+        [self.tableView reloadData];
+        
     }
 }
 
 -(void)didClickDropdown:(NSString *)string popoverIdentifier:(NSString *)popoverIdentifier {
     self.currentCageIndex = string;
+    [popoverController dismissPopoverAnimated:YES];
 }
 
 - (IBAction)chooseCage:(id)sender {
@@ -106,16 +111,14 @@
             continue;
         }
         
-        NSString* row = [Cage numberToAlphabet:tmpcage.row_id];
-        NSString* column = [NSString stringWithFormat:@"%d",[tmpcage.column_id intValue]];
+        NSString* column = [Cage numberToAlphabet:tmpcage.column_id];
+        NSString* row = [NSString stringWithFormat:@"%d",[tmpcage.row_id intValue]];
         NSMutableString* cageName = [[NSMutableString alloc]init];
-        [cageName appendString:row];
         [cageName appendString:column];
+        [cageName appendString:row];
         
         
         [cageNames addObject:[NSString stringWithString:cageName]];
-        
-        
     }
     
     return [cageNames sortedArrayUsingSelector:@selector(localizedStandardCompare:)];

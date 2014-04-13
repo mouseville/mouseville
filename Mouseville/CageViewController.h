@@ -14,7 +14,6 @@
 
 @property (strong, nonatomic) CageDetails *cage;
 
-@property (weak, nonatomic) IBOutlet UILabel *NumCagesLabel;
 @property (weak, nonatomic) IBOutlet UIView *CageInfo;
 @property (weak, nonatomic) IBOutlet UITextField *cageName;
 @property (weak, nonatomic) IBOutlet UITextView *CageNotes;
