@@ -12,6 +12,10 @@
 #import "MouseDeceasedDetails.h"
 #import "RackDetails.h"
 
+#define EMPTY_CAGE  (0)
+#define MALE_ONLY   (1)
+#define FEMALE_ONLY (2)
+#define BREEDING    (3)
 
 @interface Cage : NSObject
 
@@ -42,6 +46,9 @@
 +(NSString*) numberToAlphabet: (NSNumber*) cageNumber;
 +(NSNumber*) alphabetToNumber: (NSString*) cageLetter;
 +(NSString*) getStringFromIndex:(CageDetails *) cageDetails;
+
+// This function will return EMPTY_CAGE, MALE_ONLY, FEMALE_ONLY, or BREEDING
++(int)getBreedingStatus:(CageDetails *)cage;
 
 
 @end

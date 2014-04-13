@@ -294,6 +294,31 @@
     
 }
 
++(int)getBreedingStatus:(CageDetails *)cage {
+    bool hasMales = NO;
+    bool hasFemales = NO;
+    
+    if (cage.mouseDetails.count == 0) {
+        return EMPTY_CAGE;
+    }
+    
+    for (MouseDetails *mouse in cage.mouseDetails) {
+        if ([mouse.gender isEqualToString:@"Male"]) {
+            hasMales = YES;
+        }
+        if ([mouse.gender isEqualToString:@"Female"]) {
+            hasFemales = YES;
+        }
+    }
+    if (hasFemales == NO) {
+        return MALE_ONLY;
+    }
+    if (hasMales == NO) {
+        return FEMALE_ONLY;
+    }
+    return BREEDING;
+}
+
 +(NSString*) getStringFromIndex:(CageDetails *)cageDetails {
     NSString *column = [Cage numberToAlphabet:cageDetails.column_id];
     
