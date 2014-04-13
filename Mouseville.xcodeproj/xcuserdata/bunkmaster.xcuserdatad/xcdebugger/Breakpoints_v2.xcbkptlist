@@ -235,7 +235,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
             endingLineNumber = "25"
-            landmarkName = "-addNewRack:name:rows:columns:"
+            landmarkName = "+getCageFromStringIndex:inRack:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -931,7 +931,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
             endingLineNumber = "38"
-            landmarkName = "-addNewRack:name:rows:columns:"
+            landmarkName = "+getCageFromStringIndex:inRack:"
             landmarkType = "5">
             <Locations>
                <Location
