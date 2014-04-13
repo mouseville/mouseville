@@ -53,6 +53,12 @@
 		997C69E918EE9D85006F813D /* ManageGenotypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997C69E818EE9D85006F813D /* ManageGenotypesViewController.m */; };
 		99CF1E3B18E96414003B47B3 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */; };
 		BD6E6AC618EC9D5000B539E8 /* ViewRacksController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E6AC518EC9D5000B539E8 /* ViewRacksController.m */; };
+		BDE731E618F9D89700C0FE33 /* blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDE731E418F9D89700C0FE33 /* blue.jpg */; };
+		BDE731E718F9D89700C0FE33 /* green.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDE731E518F9D89700C0FE33 /* green.jpg */; };
+		BDE731EC18F9D8FA00C0FE33 /* orange.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDE731E818F9D8FA00C0FE33 /* orange.jpg */; };
+		BDE731ED18F9D8FA00C0FE33 /* purple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDE731E918F9D8FA00C0FE33 /* purple.jpg */; };
+		BDE731EE18F9D8FA00C0FE33 /* red.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDE731EA18F9D8FA00C0FE33 /* red.jpg */; };
+		BDE731F118F9E0A800C0FE33 /* yellow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDE731F018F9E0A800C0FE33 /* yellow.jpg */; };
 		BDED13ED18F9182B0004EE7A /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDED13EC18F9182B0004EE7A /* SettingsController.m */; };
 		E5DEA54F18EB6877000E3B82 /* MouseDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DEA54C18EB6877000E3B82 /* MouseDetails.m */; };
 		E5DEA55018EB6877000E3B82 /* MouseFamilyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DEA54E18EB6877000E3B82 /* MouseFamilyDetails.m */; };
@@ -149,6 +155,12 @@
 		99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		BD6E6AC418EC9D5000B539E8 /* ViewRacksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewRacksController.h; sourceTree = "<group>"; };
 		BD6E6AC518EC9D5000B539E8 /* ViewRacksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewRacksController.m; sourceTree = "<group>"; };
+		BDE731E418F9D89700C0FE33 /* blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue.jpg; sourceTree = "<group>"; };
+		BDE731E518F9D89700C0FE33 /* green.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = green.jpg; sourceTree = "<group>"; };
+		BDE731E818F9D8FA00C0FE33 /* orange.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = orange.jpg; sourceTree = "<group>"; };
+		BDE731E918F9D8FA00C0FE33 /* purple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = purple.jpg; sourceTree = "<group>"; };
+		BDE731EA18F9D8FA00C0FE33 /* red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpg; sourceTree = "<group>"; };
+		BDE731F018F9E0A800C0FE33 /* yellow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yellow.jpg; sourceTree = "<group>"; };
 		BDED13EB18F9182B0004EE7A /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		BDED13EC18F9182B0004EE7A /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		E5DEA54B18EB6877000E3B82 /* MouseDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseDetails.h; sourceTree = "<group>"; };
@@ -223,6 +235,12 @@
 		4883406818E2256500682F5A /* Mouseville */ = {
 			isa = PBXGroup;
 			children = (
+				BDE731F018F9E0A800C0FE33 /* yellow.jpg */,
+				BDE731E818F9D8FA00C0FE33 /* orange.jpg */,
+				BDE731E918F9D8FA00C0FE33 /* purple.jpg */,
+				BDE731EA18F9D8FA00C0FE33 /* red.jpg */,
+				BDE731E418F9D89700C0FE33 /* blue.jpg */,
+				BDE731E518F9D89700C0FE33 /* green.jpg */,
 				33B2D01B18EB694400AE5543 /* rack.png */,
 				8490408B18EAF43500694343 /* MouseListViewController.h */,
 				8490408C18EAF43500694343 /* MouseListViewController.m */,
@@ -259,8 +277,8 @@
 				9927C23918E7ED9D00CEC051 /* RackController.m */,
 				9927C23A18E7ED9D00CEC051 /* MainViewController.h */,
 				9927C23B18E7ED9D00CEC051 /* MainViewController.m */,
-				BD6E6AC418EC9D5000B539E8 /* ViewRacksController.h */,
 				BD6E6AC518EC9D5000B539E8 /* ViewRacksController.m */,
+				BD6E6AC418EC9D5000B539E8 /* ViewRacksController.h */,
 				997C69E718EE9D84006F813D /* ManageGenotypesViewController.h */,
 				997C69E818EE9D85006F813D /* ManageGenotypesViewController.m */,
 				992DFC0918EFD3FD00AF8BD7 /* EditMouseViewController.h */,
@@ -413,9 +431,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B2D01C18EB694400AE5543 /* rack.png in Resources */,
+				BDE731ED18F9D8FA00C0FE33 /* purple.jpg in Resources */,
+				BDE731E618F9D89700C0FE33 /* blue.jpg in Resources */,
 				48350E4518F1286100031DE2 /* Storyboard.storyboard in Resources */,
 				4883406D18E2256500682F5A /* InfoPlist.strings in Resources */,
 				4883407818E2256500682F5A /* Images.xcassets in Resources */,
+				BDE731EE18F9D8FA00C0FE33 /* red.jpg in Resources */,
+				BDE731F118F9E0A800C0FE33 /* yellow.jpg in Resources */,
+				BDE731E718F9D89700C0FE33 /* green.jpg in Resources */,
+				BDE731EC18F9D8FA00C0FE33 /* orange.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
