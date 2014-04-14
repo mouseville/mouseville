@@ -51,6 +51,8 @@
 		9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23B18E7ED9D00CEC051 /* MainViewController.m */; };
 		992DFC0B18EFD3FD00AF8BD7 /* EditMouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992DFC0A18EFD3FD00AF8BD7 /* EditMouseViewController.m */; };
 		997C69E918EE9D85006F813D /* ManageGenotypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997C69E818EE9D85006F813D /* ManageGenotypesViewController.m */; };
+		999ED8B618FB856400E538CA /* MouseCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 999ED8B318FB856400E538CA /* MouseCollectionHeader.m */; };
+		999ED8B718FB856400E538CA /* SearchMouseSectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999ED8B518FB856400E538CA /* SearchMouseSectionsController.m */; };
 		99CF1E3B18E96414003B47B3 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */; };
 		99F7B42018F9ACAC005B986F /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F7B41018F9ACAC005B986F /* calendar-32.png */; };
 		99F7B42118F9ACAC005B986F /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F7B41118F9ACAC005B986F /* calendar.png */; };
@@ -174,6 +176,10 @@
 		992DFC0A18EFD3FD00AF8BD7 /* EditMouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMouseViewController.m; sourceTree = "<group>"; };
 		997C69E718EE9D84006F813D /* ManageGenotypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageGenotypesViewController.h; sourceTree = "<group>"; };
 		997C69E818EE9D85006F813D /* ManageGenotypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageGenotypesViewController.m; sourceTree = "<group>"; };
+		999ED8B218FB856400E538CA /* MouseCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseCollectionHeader.h; sourceTree = "<group>"; };
+		999ED8B318FB856400E538CA /* MouseCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseCollectionHeader.m; sourceTree = "<group>"; };
+		999ED8B418FB856400E538CA /* SearchMouseSectionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMouseSectionsController.h; sourceTree = "<group>"; };
+		999ED8B518FB856400E538CA /* SearchMouseSectionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMouseSectionsController.m; sourceTree = "<group>"; };
 		99CF1E3918E96414003B47B3 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		99CF1E3A18E96414003B47B3 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		99F7B41018F9ACAC005B986F /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calendar-32.png"; path = "Mouseville/images/calendar-32.png"; sourceTree = "<group>"; };
@@ -282,6 +288,10 @@
 		4883406818E2256500682F5A /* Mouseville */ = {
 			isa = PBXGroup;
 			children = (
+				999ED8B218FB856400E538CA /* MouseCollectionHeader.h */,
+				999ED8B318FB856400E538CA /* MouseCollectionHeader.m */,
+				999ED8B418FB856400E538CA /* SearchMouseSectionsController.h */,
+				999ED8B518FB856400E538CA /* SearchMouseSectionsController.m */,
 				BDE731F018F9E0A800C0FE33 /* yellow.jpg */,
 				BDE731E818F9D8FA00C0FE33 /* orange.jpg */,
 				BDE731E918F9D8FA00C0FE33 /* purple.jpg */,
@@ -583,7 +593,9 @@
 				4883414718E22ACF00682F5A /* Mouse.m in Sources */,
 				992DFC0B18EFD3FD00AF8BD7 /* EditMouseViewController.m in Sources */,
 				8488F6EA18F9A2D4004CA8B7 /* SearchMouseDisplayViewController.m in Sources */,
+				999ED8B618FB856400E538CA /* MouseCollectionHeader.m in Sources */,
 				E5DEA55018EB6877000E3B82 /* MouseFamilyDetails.m in Sources */,
+				999ED8B718FB856400E538CA /* SearchMouseSectionsController.m in Sources */,
 				997C69E918EE9D85006F813D /* ManageGenotypesViewController.m in Sources */,
 				9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */,
 				9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */,
