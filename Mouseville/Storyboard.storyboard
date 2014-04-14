@@ -1793,7 +1793,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <items>
                                         <navigationItem title="Mice" id="Vhk-D5-2V8">
-                                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="P5p-d3-Jnq"/>
+                                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="P5p-d3-Jnq">
+                                                <connections>
+                                                    <action selector="addMouse:" destination="drT-Mf-FeA" id="jOI-sa-itx"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </navigationItem>
                                     </items>
                                 </navigationBar>
