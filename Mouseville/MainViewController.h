@@ -41,10 +41,13 @@
 //properties for mouse view
 
 @property (weak, nonatomic) IBOutlet UIView *slideThisView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *genderSegment;
 
 @property (weak, nonatomic) IBOutlet UIButton *expandButton;
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
+//- (IBAction)searchButtonClicked:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 - (IBAction)sliderValueChanged:(id)sender;
@@ -66,6 +69,20 @@
 @property NSMutableArray* genotypeMutableArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *searchMouseTable;
+
+
+/*
+@property (assign) BOOL isMouseFiltered;
+
+@property (assign) BOOL *isViewLoaded;
+
+
+@property (nonatomic, retain) NSMutableArray *allMouseDetails;
+
+@property (nonatomic, retain) NSMutableArray *filterMouseDetails;
+
+@property (nonatomic, retain) NSMutableArray *sectionTitles;
+*/
 
 
 @end

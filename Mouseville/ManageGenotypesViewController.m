@@ -142,7 +142,7 @@
     
     if(![genotypeManager updateAllGenotypes:[self managedObjectContext] genotypeLabelsArray:[NSArray arrayWithArray:genotypes]])
     {
-        UIAlertView* alertView =[[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was error in saving genotype to the database. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView* alertView =[[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was error in saving gene to the database. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
     }
 
@@ -150,7 +150,7 @@
 
 - (IBAction)insertNewGenotype:(id)sender {
     
-    UIAlertView * alert= [[UIAlertView alloc] initWithTitle:@"Enter New Genotype" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    UIAlertView * alert= [[UIAlertView alloc] initWithTitle:@"Enter New Gene" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
     [alert show];
 }
@@ -202,6 +202,12 @@
         
         MFMailComposeViewController* mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
+        
+        //david.a.taffany@gmail.com
+        
+        [mailer setToRecipients:[NSArray arrayWithObject: @"david.a.taffany@gmail.com"]];
+        
+        
         [mailer setSubject:@"Mouseville CSV File"];
         [mailer addAttachmentData:csvFile mimeType:@"text/csv" fileName:[filePath lastPathComponent]];
         
@@ -285,7 +291,7 @@
                         NSMutableArray* tempArray = [[NSMutableArray alloc]init];
                         
                         [tempArray addObject:rack.rack_name];
-                       
+                        [tempArray addObject:cage.cage_name == nil?@"No Name":cage.cage_name];
                         
                         [tempArray addObject:mouse.mouse_name];
                         [tempArray addObject:birthDate];

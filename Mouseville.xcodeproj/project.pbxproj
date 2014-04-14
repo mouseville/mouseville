@@ -45,7 +45,6 @@
 		8493795418E739F9000FFEC9 /* CageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493795318E739F9000FFEC9 /* CageViewController.m */; };
 		9927C23118E7ED7E00CEC051 /* PopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23018E7ED7E00CEC051 /* PopOverViewController.m */; };
 		9927C23C18E7ED9D00CEC051 /* SearchMouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23318E7ED9D00CEC051 /* SearchMouseViewController.m */; };
-		9927C23D18E7ED9D00CEC051 /* CreateMouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23518E7ED9D00CEC051 /* CreateMouseViewController.m */; };
 		9927C23E18E7ED9D00CEC051 /* MouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23718E7ED9D00CEC051 /* MouseViewController.m */; };
 		9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23918E7ED9D00CEC051 /* RackController.m */; };
 		9927C24018E7ED9D00CEC051 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927C23B18E7ED9D00CEC051 /* MainViewController.m */; };
@@ -164,8 +163,6 @@
 		9927C23018E7ED7E00CEC051 /* PopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopOverViewController.m; sourceTree = "<group>"; };
 		9927C23218E7ED9D00CEC051 /* SearchMouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMouseViewController.h; sourceTree = "<group>"; };
 		9927C23318E7ED9D00CEC051 /* SearchMouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMouseViewController.m; sourceTree = "<group>"; };
-		9927C23418E7ED9D00CEC051 /* CreateMouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMouseViewController.h; sourceTree = "<group>"; };
-		9927C23518E7ED9D00CEC051 /* CreateMouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMouseViewController.m; sourceTree = "<group>"; };
 		9927C23618E7ED9D00CEC051 /* MouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseViewController.h; sourceTree = "<group>"; };
 		9927C23718E7ED9D00CEC051 /* MouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseViewController.m; sourceTree = "<group>"; };
 		9927C23818E7ED9D00CEC051 /* RackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RackController.h; sourceTree = "<group>"; };
@@ -328,8 +325,6 @@
 				8488F6E918F9A2D4004CA8B7 /* SearchMouseDisplayViewController.m */,
 				9927C23318E7ED9D00CEC051 /* SearchMouseViewController.m */,
 				9927C23718E7ED9D00CEC051 /* MouseViewController.m */,
-				9927C23418E7ED9D00CEC051 /* CreateMouseViewController.h */,
-				9927C23518E7ED9D00CEC051 /* CreateMouseViewController.m */,
 				9927C23818E7ED9D00CEC051 /* RackController.h */,
 				9927C23918E7ED9D00CEC051 /* RackController.m */,
 				9927C23A18E7ED9D00CEC051 /* MainViewController.h */,
@@ -571,7 +566,6 @@
 				8490408D18EAF43500694343 /* MouseListViewController.m in Sources */,
 				9927C23E18E7ED9D00CEC051 /* MouseViewController.m in Sources */,
 				BDED13ED18F9182B0004EE7A /* SettingsController.m in Sources */,
-				9927C23D18E7ED9D00CEC051 /* CreateMouseViewController.m in Sources */,
 				9927C23118E7ED7E00CEC051 /* PopOverViewController.m in Sources */,
 				4883414118E22A8600682F5A /* Cage.m in Sources */,
 				4883413218E2271C00682F5A /* LabelCageMapping.m in Sources */,

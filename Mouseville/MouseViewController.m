@@ -431,7 +431,9 @@
         if(buttonIndex==0 || buttonIndex
           ==1 ){
             
-            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            
+           // [[NSNotificationCenter defaultCenter] postNotificationName:@"updateParent" object:nil];
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:^{[self viewDidLoad];}];
         }
     }
    }
@@ -490,7 +492,7 @@
 
 - (IBAction)cancelButtonClick:(id)sender {
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateParent" object:nil];
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     

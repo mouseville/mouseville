@@ -73,7 +73,8 @@
 - (IBAction)cancelButtonClick:(id)sender {
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        [self.presentingViewController viewDidLoad];}];
+        [self
+         viewDidLoad];}];
 }
 
 -(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -167,7 +168,7 @@
     
     if(tempRack!=nil)
     {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Rack with already exists" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Rack with same name already exists" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
     
@@ -193,9 +194,10 @@
         if(buttonIndex==0 || buttonIndex
            ==1 ){
             
+          //  [[NSNotificationCenter defaultCenter] postNotificationName:@"updateParent" object:nil];
             
             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-                [self.presentingViewController viewWillAppear:YES];}];        }
+                [self viewDidLoad];}];        }
     }
 }
 

@@ -13,6 +13,8 @@
 #import "PopOverViewController.h"
 #import "GenotypeManager.h"
 #import "MouseViewController.h"
+#import "Mouse.h"
+#import "SearchMouseSectionsController.h"
 
 @interface MainViewController ()
 {
@@ -46,19 +48,22 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.searchRacksText resignFirstResponder];
-     [self.txtSearch resignFirstResponder];
+//    [self.searchRacksText resignFirstResponder];
+//     [self.txtSearch resignFirstResponder];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if(textField)
-    {
-        [textField resignFirstResponder];
-    }
-    return NO;
-    
-}
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    if(textField)
+//    {
+//        [textField resignFirstResponder];
+//    }
+//    return NO;
+//    
+//}
+
+
+
 
 
 - (void)viewDidLoad
@@ -80,7 +85,7 @@
     
     [self.filteredRacks addObjectsFromArray:self.allRacks];
     
-    [self.searchRacksText addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
+    //[self.searchRacksText addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCellToDelete:)];
     
@@ -145,22 +150,80 @@
     [popoverView setIdentifier:@"genotypeDropDown"];
     popoverView.tableView.allowsMultipleSelection = YES;
     
+    /*
+    Rack *tmprack = [[Rack alloc] init];
+	
+    NSArray *racks = [tmprack getAllRacks:[self managedObjectContext]];
+    
+    NSMutableArray *eachSection = [[NSMutableArray alloc]init];
+    
+    self.allMouseDetails = [[NSMutableArray  alloc]init];
+    
+    self.sectionTitles = [[NSMutableArray alloc] init];
+    
+    NSArray *labelArray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G", nil];
+    
+    for(RackDetails *rack in racks) {
+        NSString *racktitle = rack.rack_name;
+        for (CageDetails *cage in rack.cages) {
+            
+            NSString *cageName = @"";
+            
+            NSNumber *column = [NSNumber numberWithFloat:([cage.column_id floatValue] - [[ NSNumber numberWithInt:1] floatValue] )];
+            
+            if (cage.cage_name != nil) {
+                cageName = cage.cage_name;
+            }else{
+                cageName = [NSString stringWithFormat:@"%@:%d",[labelArray objectAtIndex:[column intValue]], [cage.row_id intValue]];
+            }
+            
+            for (MouseDetails *mouse in cage.mouseDetails) {
+                //NSLog(@"Mouse %@",mouse.mouse_name);
+                [eachSection addObject:mouse];
+            }
+            if ([eachSection count] != 0) {
+                
+                [self.allMouseDetails addObject:eachSection];
+                [self.sectionTitles addObject:[NSString stringWithFormat:@"Rack : %@ - Cage : %@", racktitle, cageName]];
+            }
+            
+            eachSection = [[NSMutableArray alloc]init];
+        }
+        
+    }
+    
+    Mouse *mouse = [[Mouse alloc] init];
+    
+    NSArray *deceasedMouse = [mouse getAllDeceasedMice: [self managedObjectContext]];
+    [self.allMouseDetails addObject:deceasedMouse];
+    [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
     
     
+    self.filterMouseDetails = self.allMouseDetails;
+    NSLog(@"Main view controller %@",self.filterMouseDetails);
+    isViewExpanded = YES;*/
 
     
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-    [self viewDidLoad];
+    
+    [super viewDidAppear:animated];
+    
+   //     [self.txtSearch resignFirstResponder];
+   // [self viewDidLoad];
+
+    
+    //[self.txtSearch becomeFirstResponder];
+    
 
 }
 
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    //[super viewWillAppear:animated];
-    [self viewDidLoad];
+    [super viewWillAppear:animated];
+    //[self viewDidLoad];
 }
 
 - (IBAction)mainViewChanged:(id)sender {
@@ -246,15 +309,54 @@
         viewRacksController.viewRackDetails = rackDetailss;
         viewRacksController.rackLabel = rackName;
         viewRacksController.cageDetailsForRack = cageDetailss;
-    }
+    }/*else if([segue.identifier isEqualToString:@"mouseCollectionSegue"])
+    { SearchMouseSectionsController *searchMouse = (SearchMouseSectionsController *)segue.destinationViewController;
+        
+        if (!self.isViewLoaded) {
+           // [self viewDidLoad];
+        }
+        
+        searchMouse.filterMouseDetails = self.filterMouseDetails;
+        searchMouse.sectionTitles = self.sectionTitles;
+    }*/
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.searchRacksText) {
+        NSLog(@"SEarch %@",self.searchRacksText.text);
+        if(self.searchRacksText.text.length == 0)
+        {
+            self.isFiltered = FALSE;
+            [self.filteredRacks removeAllObjects];
+            [self.filteredRacks addObjectsFromArray:self.allRacks];
+        }
+        else
+        {
+            NSLog(@"Text search");
+            self.isFiltered = true;
+            [self.filteredRacks removeAllObjects];
+            self.filteredRacks = [[NSMutableArray alloc] init];
+            
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.rack_name contains[c] %@",string];
+            self.filteredRacks = [NSMutableArray arrayWithArray:[self.allRacks filteredArrayUsingPredicate:predicate]];
+            
+        }
+        
+        [self.rackCollection reloadData];
+    }
+    
+    
+    return YES;
+}
 
 -(void) textDidChange:(id)sender
 {
     
-    UITextField* searchField = (UITextField *) sender;
     
+    UITextField* searchField = (UITextField *) sender;
+    if (searchField.text == self.searchRacksText.text) {
+        NSLog(@"SEarch %@",self.searchRacksText.text);
     if(searchField.text.length == 0)
     {
         self.isFiltered = FALSE;
@@ -263,6 +365,7 @@
     }
     else
     {
+          NSLog(@"Text search");
         self.isFiltered = true;
         [self.filteredRacks removeAllObjects];
         self.filteredRacks = [[NSMutableArray alloc] init];
@@ -273,6 +376,7 @@
     }
     
     [self.rackCollection reloadData];
+    }
     
 }
 
@@ -290,6 +394,9 @@
     
     
      if (self.selectedIndexSegment == 0) {
+        // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidLoad) name:@"updateParent" object:nil];
+         
+
          
          RackController *viewController= [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"rackController"];
   
@@ -308,17 +415,17 @@
         }
      else if (self.selectedIndexSegment == 1)
         {
-            
+          //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidLoad) name:@"updateParent" object:nil];
             
             MouseViewController *viewController= [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"mouseController"];
-            
-            //MouseViewController *viewController= [[MouseViewController alloc] init];
+           
             viewController.modalPresentationStyle=UIModalPresentationFormSheet;
             viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
             [self presentViewController:viewController animated:YES completion:^{
                 viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
                 viewController.view.superview.center = self.view.center;
+          //      [self viewDidLoad];
             }];
             
 
@@ -493,7 +600,23 @@
     
     if(!isViewExpanded){
         [UIView animateWithDuration:0.4f animations:^{
+           /*            CGRect bounds = [self.containerView bounds];
+            [self.containerView setBounds:CGRectMake(bounds.origin.x,
+                                            bounds.origin.y,
+                                            bounds.size.width,
+                                            550)];
             
+            
+            */
+            
+            [[self btnChooseGenotype]setTitle:@"Select" forState:UIControlStateNormal];
+            
+            self.slider.value=0;
+            self.slider2.value=100;
+            self.genderSegment.selectedSegmentIndex=0;
+            
+            self.label1.text =[NSString stringWithFormat:@"%.0f to %.0f weeks", self.slider.value, self.slider2.value];
+
             self.slideThisView.transform = CGAffineTransformMakeTranslation(0, 252);
             
         } completion:^(BOOL finished) {
@@ -503,7 +626,20 @@
         [self.expandButton setTitle:@"Less" forState:UIControlStateNormal];
     }
     else{
+        
+        /*
+        CGRect bounds = [self.containerView bounds];
+        [self.containerView setBounds:CGRectMake(bounds.origin.x,
+                                                 bounds.origin.y,
+                                                 bounds.size.width,
+                                                 700)];
+        
+         
+         */
+        
         [UIView animateWithDuration:0.4f animations:^{
+            
+            
             
             self.slideThisView.transform = CGAffineTransformIdentity;
             
@@ -529,4 +665,115 @@
     
 }
 
+/*
+
+-(int) getWeeksFromDate: (NSDate*) date
+{
+    //NSDateFormatter if format error
+    
+    NSDate* currentDate = [[NSDate alloc] init];
+    NSCalendar* gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit;
+    
+    NSDateComponents* components = [gregorian components:unitFlags fromDate:date toDate:currentDate options:0];
+    
+    NSInteger weeks = [components week];
+    
+    int numberOFWeeks = weeks;
+    
+    return numberOFWeeks;
+}
+
+
+- (IBAction)onClick:(id)sender {
+    NSLog(@"Inside search");
+    self.isFiltered = true;
+    [self.filterMouseDetails removeAllObjects];
+    self.filterMouseDetails = [[NSMutableArray alloc] init];
+    
+    NSString *searchText = self.txtSearch.text;
+    float slider1 = self.slider.value;
+    float slider2 = self.slider2.value;
+    NSArray *ageRange = [NSArray arrayWithObjects:[NSNumber numberWithInt:slider1],[NSNumber numberWithInt:slider2],nil];
+    
+    
+    Rack *tmprack = [[Rack alloc] init];
+	
+    NSArray *racks = [tmprack getAllRacks:[self managedObjectContext]];
+    
+    NSMutableArray *eachSection = [[NSMutableArray alloc]init];
+    
+    self.allMouseDetails = [[NSMutableArray  alloc]init];
+    
+    self.sectionTitles = [[NSMutableArray alloc] init];
+    
+    NSArray *labelArray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G", nil];
+    
+    for(RackDetails *rack in racks) {
+        NSString *racktitle = rack.rack_name;
+        for (CageDetails *cage in rack.cages) {
+            
+            NSString *cageName = @"";
+            
+            NSNumber *column = [NSNumber numberWithFloat:([cage.column_id floatValue] - [[ NSNumber numberWithInt:1] floatValue] )];
+            
+            if (cage.cage_name != nil) {
+                cageName = cage.cage_name;
+            }else{
+                cageName = [NSString stringWithFormat:@"%@:%d",[labelArray objectAtIndex:[column intValue]], [cage.row_id intValue]];
+            }
+            
+            for (MouseDetails *mouse in cage.mouseDetails) {
+                
+                if([[mouse genotypes] containsObject:genotype ] &&
+                   ([self getWeeksFromDate:mouse.birth_date]>=[[ageRange firstObject] integerValue] && [self getWeeksFromDate:mouse.birth_date]<=[[ageRange lastObject] integerValue])
+                   && [mouse.mouse_name rangeOfString:searchText].location != NSNotFound)
+                {
+                    [eachSection addObject:mouse];
+                    
+                }
+            }
+            if ([eachSection count] != 0) {
+                
+                [self.allMouseDetails addObject:eachSection];
+                [self.sectionTitles addObject:[NSString stringWithFormat:@"Rack : %@ - Cage : %@", racktitle, cageName]];
+            }
+            
+            eachSection = [[NSMutableArray alloc]init];
+        }
+        
+    }
+    
+    Mouse *mouse = [[Mouse alloc] init];
+    
+    NSArray *deceasedMouse = [mouse getAllDeceasedMice: [self managedObjectContext]];
+    [self.allMouseDetails addObject:deceasedMouse];
+    [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
+    
+    
+    self.filterMouseDetails = self.allMouseDetails;
+    NSLog(@"Main view controller %@",self.filterMouseDetails);
+    
+    
+    
+    
+    
+    
+    
+    // Genotype *genotype =
+    
+ 
+    SearchMouseSectionsController *sectionView = (SearchMouseSectionsController *)self.childViewControllers.lastObject;
+    sectionView.filterMouseDetails = self.filterMouseDetails;
+    sectionView.sectionTitles = self.sectionTitles;
+    [sectionView.collectionSectionsView reloadData];
+    
+    
+    
+}*/
+/*
+- (IBAction)searchButtonClicked:(id)sender {
+}
+ 
+ */
 @end

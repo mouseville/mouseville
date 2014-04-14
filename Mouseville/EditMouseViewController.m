@@ -113,19 +113,22 @@
     NSEntityDescription* mouseEntity = [NSEntityDescription entityForName:@"MouseDetails" inManagedObjectContext:[self managedObjectContext]];
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
     [fetchRequest setEntity:mouseEntity];
+   
+    /*
     NSError* errorRequest = Nil;
     
     NSArray* mice = [[self managedObjectContext]executeFetchRequest:fetchRequest error:&errorRequest];
+     */
     
     
     self.genotypeMutableArray = [[NSMutableArray alloc]init];
     
-    
+    /*
     if([mice count]>0)
     {
         self.mouse = [mice objectAtIndex:0];
     }
-    
+    */
    [self performViewInitialization:self.mouse];
     
 }
