@@ -408,9 +408,11 @@
          [self presentViewController:viewController animated:YES completion:^{
              viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
              viewController.view.superview.center = self.view.center;
+             [self.view setNeedsDisplay];
+
          }];
          
-
+         
          
         }
      else if (self.selectedIndexSegment == 1)
@@ -425,7 +427,7 @@
             [self presentViewController:viewController animated:YES completion:^{
                 viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
                 viewController.view.superview.center = self.view.center;
-          //      [self viewDidLoad];
+            [self.view setNeedsDisplay];
             }];
             
 

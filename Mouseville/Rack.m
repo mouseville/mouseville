@@ -266,8 +266,14 @@
     NSError* error = nil;
     NSArray* racks = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    return racks[0];
     
+    if([racks count]!=0)
+    {
+      return racks[0];
+    }
+    
+    
+    return nil;
 }
 
 
