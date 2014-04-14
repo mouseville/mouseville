@@ -13,7 +13,9 @@
 #import "SettingsController.h"
 
 
-@interface ViewRacksController ()
+@interface ViewRacksController () {
+    NSArray *colors;
+}
 
 @end
 
@@ -50,6 +52,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
    // self.rackNameLabel.text = self.rackLabel;
+    
+    colors = [NSArray arrayWithObjects:[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor],[UIColor blueColor],[UIColor purpleColor],nil];
+    
     
     self.title =self.rackLabel;
     
@@ -118,9 +123,11 @@
         // set label indicators
         UILabel *indicator;
         for (int i = 1; i <= 6; i++) {
+            indicator = (UILabel *)[cell viewWithTag:10+i];
             if ([cage.labels member:[Rack getLabelFromRack:cage.rackDetails withIndex:i]] == nil) {
-                indicator = (UILabel *)[cell viewWithTag:10+i];
                 [indicator setBackgroundColor:[UIColor whiteColor]];
+            } else {
+                [indicator setBackgroundColor:[colors objectAtIndex:i-1]];
             }
         }
         
