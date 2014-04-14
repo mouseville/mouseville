@@ -51,8 +51,8 @@
     
     self.slider2.maximumValue=100;
     self.slider2.minimumValue=0;
-
-
+    self.slider2.value=100;
+    
     racklist = @{@"Rack 1" : @[@"Mouse 1A", @"Mouse 2A", @"Mouse 3A", @"Mouse 4A"],
                  @"Rack 2" : @[@"Mouse 1B", @"Mouse 2B", @"Mouse 3B", @"Mouse 4B"],
                  @"Rack 3" : @[@"Mouse 1C", @"Mouse 2C", @"Mouse 3C", @"Mouse 4C"],
@@ -61,6 +61,22 @@
     rackSectionTitles = [[racklist allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
 }
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.txtSearch resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField)
+    {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSString *sectionTitle = [rackSectionTitles objectAtIndex:section];

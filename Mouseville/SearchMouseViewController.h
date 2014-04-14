@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PopOverViewController.h"
 
-@interface SearchMouseViewController : UIViewController<DropDownDelegate>
+@interface SearchMouseViewController : UIViewController<DropDownDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 - (IBAction)sliderValueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
@@ -17,7 +17,8 @@
 - (IBAction)chooseGenotype:(id)sender;
 
 
-;
+@property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+
 @property (weak, nonatomic) IBOutlet UISlider *slider2;
 
 

@@ -14,7 +14,7 @@
 
 //@end
 
-@interface RackController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface RackController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *rackNameText;
 
 
@@ -28,6 +28,8 @@
 
 - (IBAction)onRowChange:(UIStepper *)sender;
 - (IBAction)onColumnAction:(UIStepper *)sender;
+
+- (IBAction)cancelButtonClick:(id)sender;
 
 
 //@property (nonatomic, assign) id<stepperDelegate> delegate;

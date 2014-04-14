@@ -12,7 +12,7 @@
 #import "Mouse.h"
 
 
-@interface EditMouseViewController : UIViewController <DropDownDelegate, UIPopoverControllerDelegate>
+@interface EditMouseViewController : UIViewController <DropDownDelegate, UIPopoverControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *editMouseView;
 
@@ -36,5 +36,9 @@
 @property NSMutableArray* genotypeMutableArray;
 
 @property MouseDetails* mouse;
+
+- (IBAction)cancelButtonClick:(id)sender;
+
+
 
 @end

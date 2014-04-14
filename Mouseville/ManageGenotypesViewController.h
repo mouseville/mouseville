@@ -14,6 +14,7 @@
 
 @interface ManageGenotypesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *genotypeTableView;
+@property (weak, nonatomic) IBOutlet UIView *genesView;
 
 @property (strong, nonatomic) NSMutableArray *genotypes;
 
