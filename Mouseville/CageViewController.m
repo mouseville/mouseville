@@ -82,6 +82,29 @@
     return self;
 }
 
+- (IBAction)labelChecked:(id)sender {
+    UISwitch *switched = (UISwitch *)sender;
+    int labelChecked = [sender tag] - 60;
+    
+    NSMutableSet *cageLabels = [NSMutableSet setWithSet:self.cage.labels];
+    
+    if (switched.on) {
+        [cageLabels addObject:[Rack getLabelFromRack:self.cage.rackDetails withIndex:labelChecked]];
+    } else {
+        [cageLabels removeObject:[Rack getLabelFromRack:self.cage.rackDetails withIndex:labelChecked]];
+    }
+    
+    self.cage.labels = cageLabels;
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    //[[[Cage alloc] init] setLabelsForCage:context cage:self.cage labels:[self.cage.labels allObjects]];
+    NSError *error = nil;
+    if(![context save:&error])
+    {
+        NSLog(@"Unable to save label information %@ %@",error, [error localizedDescription]);
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -115,26 +138,38 @@
     [self.Label1View.layer setCornerRadius:30.f];
     [self.Label1View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label1View.layer setBorderWidth:1.5f];
+    self.Label1.text = [[Rack getLabelFromRack:self.cage.rackDetails withIndex:1] label_name];
+    self.Label1Switch.on = [self.cage.labels member:[Rack getLabelFromRack:self.cage.rackDetails withIndex:1]] != nil;
     
     [self.Label2View.layer setCornerRadius:30.f];
     [self.Label2View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label2View.layer setBorderWidth:1.5f];
+    self.Label2.text = [[Rack getLabelFromRack:self.cage.rackDetails withIndex:2] label_name];
+    self.Label2Switch.on = [self.cage.labels member:[Rack getLabelFromRack:self.cage.rackDetails withIndex:2]] != nil;
     
     [self.Label3View.layer setCornerRadius:30.f];
     [self.Label3View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label3View.layer setBorderWidth:1.5f];
+    self.Label3.text = [[Rack getLabelFromRack:self.cage.rackDetails withIndex:3] label_name];
+    self.Label3Switch.on = [self.cage.labels member:[Rack getLabelFromRack:self.cage.rackDetails withIndex:3]] != nil;
     
     [self.Label4View.layer setCornerRadius:30.f];
     [self.Label4View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label4View.layer setBorderWidth:1.5f];
+    self.Label4.text = [[Rack getLabelFromRack:self.cage.rackDetails withIndex:4] label_name];
+    self.Label4Switch.on = [self.cage.labels member:[Rack getLabelFromRack:self.cage.rackDetails withIndex:4]] != nil;
     
     [self.Label5View.layer setCornerRadius:30.f];
     [self.Label5View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label5View.layer setBorderWidth:1.5f];
+    self.Label5.text = [[Rack getLabelFromRack:self.cage.rackDetails withIndex:5] label_name];
+    self.Label5Switch.on = [self.cage.labels member:[Rack getLabelFromRack:self.cage.rackDetails withIndex:5]] != nil;
     
     [self.Label6View.layer setCornerRadius:30.f];
     [self.Label6View.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.Label6View.layer setBorderWidth:1.5f];
+    self.Label6.text = [[Rack getLabelFromRack:self.cage.rackDetails withIndex:6] label_name];
+    self.Label6Switch.on = [self.cage.labels member:[Rack getLabelFromRack:self.cage.rackDetails withIndex:6]] != nil;
 }
 
 - (void)didReceiveMemoryWarning
