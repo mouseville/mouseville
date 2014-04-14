@@ -51,7 +51,18 @@
     return nil;
 }
 
--(BOOL)addNewRack:(NSManagedObjectContext*) managedObjectContext name:(NSString*)name rows:(NSNumber*)rows columns:(NSNumber*)columns
++(Labels *)getLabelFromRack:(RackDetails *)rack withIndex:(int)index {
+    for (Labels *label in rack.labels) {
+        if (label.label_order.intValue == index) {
+            return label;
+        }
+    }
+    
+    //if we're gotten here then either it was a bad index or the database is corrupted
+    return nil;
+}
+
+-(BOOL)addNewRack:(NSManagedObjectContext*) managedObjectContext name:(NSString*)name rows:(NSNumber*)rows columns:(NSNumber*)columns withLabels:(NSSet *)labels
 {
     RackDetails* rack = [NSEntityDescription insertNewObjectForEntityForName:@"RackDetails"inManagedObjectContext:managedObjectContext];
     
@@ -91,6 +102,7 @@
                 
             }
         }
+        rack.labels = labels;
         
         NSError *error = nil;
         if(![managedObjectContext save:&error])

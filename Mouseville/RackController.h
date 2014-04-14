@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Labels.h"
 
 //@protocol stepperDelegate
 

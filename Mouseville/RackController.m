@@ -126,11 +126,18 @@
     NSString* rackName = self.rackNameText.text;
     NSNumber* number_rows = [[NSNumber alloc]initWithDouble:self.rowStepper.value];
     NSNumber* number_columns = [[NSNumber alloc]initWithDouble:self.columnStepper.value];
-    
+    // create 6 empty labels
+    NSMutableSet *rack_labels = [[NSMutableSet alloc]  init];
+    for (int i = 0; i < 6; i++) {
+        Labels *label = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
+        label.label_name = @"";
+        label.label_order = [NSNumber numberWithInt:i+1];
+        [rack_labels addObject:label];
+    }
     
     Rack* rack = [[Rack alloc]init];
     
-   if([rack addNewRack:context name:rackName rows:number_rows columns:number_columns])
+   if([rack addNewRack:context name:rackName rows:number_rows columns:number_columns withLabels:rack_labels])
    {
        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"New Rack has been created" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
        [alert show];

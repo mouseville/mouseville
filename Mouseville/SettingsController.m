@@ -73,6 +73,8 @@
     [self.labelView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.labelView.layer setBorderWidth:1.5f];
     
+    //self.label1.text = [Rack getLabelFromRack:<#(RackDetails *)#> withIndex:<#(int)#>]
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,91 +85,13 @@
 
 - (IBAction)saveLabels:(id)sender {
     NSManagedObjectContext *context = [self managedObjectContext];
-    Rack* rack = [[Rack alloc]init];
+    
     NSMutableArray* tempLabelsArray = [[NSMutableArray alloc]init];
     
     NSNumber *count = 0;
    
     ///example for first label.
     
-    if(![self.label1.text isEqual:@""])
-    {
-        
-        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
-        
-        labels.label_name = self.label1.text;
-        
-        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
-        NSNumber* labelOrder = count;
-        labels.label_order = labelOrder;
-        
-        [tempLabelsArray addObject:labels];
-        
-    }
-    
-    if(![self.label2.text isEqual:@""])
-    {
-        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
-        
-        labels.label_name = self.label2.text;
-        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
-        NSNumber* labelOrder = count;
-        labels.label_order = labelOrder;
-        
-        [tempLabelsArray addObject:labels];
-        
-    }
-    
-    if(![self.label3.text isEqual:@""])
-    {
-        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
-        
-        labels.label_name = self.label3.text;
-        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
-        NSNumber* labelOrder = count;
-        labels.label_order = labelOrder;
-        
-        [tempLabelsArray addObject:labels];
-    }
-    
-    if(![self.label4.text isEqual:@""])
-        {
-            Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
-            
-            labels.label_name = self.label4.text;
-            count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
-            NSNumber* labelOrder = count;
-            labels.label_order = labelOrder;
-            
-            [tempLabelsArray addObject:labels];
-    
-    }
-    
-    if(![self.label5.text isEqual:@""])
-    {
-            Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
-            
-            labels.label_name = self.label5.text;
-        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
-        NSNumber* labelOrder = count;
-            labels.label_order = labelOrder;
-            
-            [tempLabelsArray addObject:labels];
-            
-    }
-    
-    if(![self.label6.text isEqual:@""])
-    {
-        Labels* labels = [NSEntityDescription insertNewObjectForEntityForName:@"Labels" inManagedObjectContext:context];
-        
-        labels.label_name = self.label6.text;
-        count = [NSNumber numberWithFloat:([count floatValue] + [[NSNumber numberWithFloat:1 ] floatValue])];
-        NSNumber* labelOrder = count;
-        labels.label_order = labelOrder;
-        
-        [tempLabelsArray addObject:labels];
-        
-    }
     
     /*Labels *labels1 = [[Labels alloc]init];
     

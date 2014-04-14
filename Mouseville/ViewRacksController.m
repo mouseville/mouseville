@@ -110,6 +110,7 @@
             bg_img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"male_female-75"]];
         } else {
             bg_img = [[UIImageView alloc] init];
+            
         }
         
         cell.backgroundView = bg_img;
