@@ -211,7 +211,7 @@
     [super viewDidAppear:animated];
     
    //     [self.txtSearch resignFirstResponder];
-   // [self viewDidLoad];
+   [self viewDidLoad];
 
     
     //[self.txtSearch becomeFirstResponder];
@@ -223,7 +223,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[self viewDidLoad];
+    [self viewDidLoad];
 }
 
 - (IBAction)mainViewChanged:(id)sender {
@@ -323,32 +323,38 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    if (textField == self.searchRacksText) {
-        NSLog(@"SEarch %@",self.searchRacksText.text);
-        if(self.searchRacksText.text.length == 0)
+    
+    NSLog(@"%@",self.searchRacksText.text);
+    NSLog(@"%@",string);
+    
+    
+    
+    if(self.searchRacksText.text.length == 0)
         {
-            self.isFiltered = FALSE;
+            self.isFiltered = NO;
             [self.filteredRacks removeAllObjects];
             [self.filteredRacks addObjectsFromArray:self.allRacks];
         }
         else
         {
-            NSLog(@"Text search");
-            self.isFiltered = true;
+            //NSLog(@"Text search");
+            self.isFiltered = YES;
             [self.filteredRacks removeAllObjects];
             self.filteredRacks = [[NSMutableArray alloc] init];
             
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.rack_name contains[c] %@",string];
+            NSString * searchString = [NSString stringWithFormat:@"%@%@",self.searchRacksText.text,string];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.rack_name contains[c] %@",searchString];
             self.filteredRacks = [NSMutableArray arrayWithArray:[self.allRacks filteredArrayUsingPredicate:predicate]];
             
         }
         
         [self.rackCollection reloadData];
-    }
     
     
     return YES;
 }
+
+
 
 -(void) textDidChange:(id)sender
 {

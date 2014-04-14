@@ -103,11 +103,11 @@
     
     //getting a mouse from core data
     //replace the MouseDetails object here with whatever mouse you want to edit while loading this view.
-    
+    /*
     [self.editMouseView.layer setCornerRadius:30.0f];
     [self.editMouseView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.editMouseView.layer setBorderWidth:1.5f];
-
+*/
     
     
     NSEntityDescription* mouseEntity = [NSEntityDescription entityForName:@"MouseDetails" inManagedObjectContext:[self managedObjectContext]];
