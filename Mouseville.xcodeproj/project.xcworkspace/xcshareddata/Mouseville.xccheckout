@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>54809D97-CBA2-4477-ADB5-B832008BB734</string>
+	<string>FE7B8AEA-6B1A-44EE-BEDB-ABAB9FB0D69B</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Mouseville</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E3C2DB83-573D-45C5-AA09-6DF9D62678EF</key>
-		<string>https://github.com/mouseville/mouseville.git</string>
+		<key>A1FFBF87-EDEB-43AE-BD7A-F0257192878D</key>
+		<string>http://www.github.com/mouseville/mouseville.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Mouseville.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E3C2DB83-573D-45C5-AA09-6DF9D62678EF</key>
+		<key>A1FFBF87-EDEB-43AE-BD7A-F0257192878D</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/mouseville/mouseville.git</string>
+	<string>http://www.github.com/mouseville/mouseville.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E3C2DB83-573D-45C5-AA09-6DF9D62678EF</string>
+	<string>A1FFBF87-EDEB-43AE-BD7A-F0257192878D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E3C2DB83-573D-45C5-AA09-6DF9D62678EF</string>
+			<string>A1FFBF87-EDEB-43AE-BD7A-F0257192878D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>mouseville</string>
 		</dict>
