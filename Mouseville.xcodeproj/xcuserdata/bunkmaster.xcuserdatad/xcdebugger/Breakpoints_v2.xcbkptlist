@@ -1252,6 +1252,9 @@
             startingLineNumber = "245"
             endingLineNumber = "245"
             landmarkName = "-editMouseDetails:mouseDetails:"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "-miceResult:mouseName:gender:genotype:weekRange:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1268,6 +1271,9 @@
             startingLineNumber = "235"
             endingLineNumber = "235"
             landmarkName = "-editMouseDetails:mouseDetails:"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "-miceResult:mouseName:gender:genotype:weekRange:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -362,8 +362,19 @@
     [self.mouse setBirth_date:dateOfBirth];
     
     Mouse* mouseHelper = [[Mouse alloc]init];
-
-    if([mouseHelper editMouseDetails:[self managedObjectContext] mouseDetails:self.mouse] == nil)
+    
+    
+    MouseDetails* tempMouse = [mouseHelper getMiceForRackCage:[self managedObjectContext] mouseName:mouseName gender:gender rack:self.mouse.cageDetails.rackDetails.rack_name cageRow:self.mouse.cageDetails.row_id cageColumn:self.mouse.cageDetails.column_id];
+    
+    if(tempMouse!=nil)
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"Mouse with name already exists" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    
+    
+    else if([mouseHelper editMouseDetails:[self managedObjectContext] mouseDetails:self.mouse] == nil)
     {
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was a problem while saving the mouse details. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];

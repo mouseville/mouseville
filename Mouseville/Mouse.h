@@ -34,6 +34,8 @@
 
 -(int) getWeeksFromDate: (NSDate*) date;
 
+-(MouseDetails*) getMiceForRackCage: (NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender rack:(NSString*) rackName cageRow:(NSNumber*)cageRow cageColumn:(NSNumber*)cageColumn;
+
 +(NSString *)getGenotypeString:(MouseDetails *)mouse;
 
 @end

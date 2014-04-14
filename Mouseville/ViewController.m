@@ -249,7 +249,7 @@
                         NSMutableArray* tempArray = [[NSMutableArray alloc]init];
                     
                         [tempArray addObject:rack.rack_name];
-                        [tempArray addObject:cage.cage_name];
+                        [tempArray addObject:cage.cage_name == nil?@"No Name":cage.cage_name];
                         [tempArray addObject:mouse.mouse_name];
                         [tempArray addObject:birthDate];
                         [tempArray addObject:mouse.gender];
