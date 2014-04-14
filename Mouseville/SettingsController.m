@@ -69,9 +69,12 @@
     [self.image6.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.image6.layer setBorderWidth:1.5f];**/
     
+    /*
     [self.labelView.layer setCornerRadius:30.0f];
     [self.labelView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.labelView.layer setBorderWidth:1.5f];
+    */
+    
     
     self.label1.text = [[Rack getLabelFromRack:self.rackDetails withIndex:1] label_name];
     self.label2.text = [[Rack getLabelFromRack:self.rackDetails withIndex:2] label_name];

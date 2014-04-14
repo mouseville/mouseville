@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MouseCollectionHeader.h"
+#import "Mouse.h"
 
-@interface SearchMouseSectionsController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SearchMouseSectionsController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, retain) NSMutableArray *allMouseDetails;
 
@@ -18,5 +19,7 @@
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionSectionsView;
 
+
+@property (nonatomic) MouseDetails *deleteMouse;
 
 @end

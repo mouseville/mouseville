@@ -32,6 +32,16 @@
     NSManagedObjectContext *context = [self managedObjectContext];
     
     
+    UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCellToDelete:)];
+    
+    lpr.minimumPressDuration = .5;
+    lpr.delegate = self;
+    
+    [self.collectionSectionsView addGestureRecognizer:lpr];
+    
+    [self.collectionSectionsView reloadData];
+
+    
     Rack *tmprack = [[Rack alloc] init];
 	
     NSArray *racks = [tmprack getAllRacks:context];
@@ -47,8 +57,6 @@
     for(RackDetails *rack in racks) {
         NSString *racktitle = rack.rack_name;
         for (CageDetails *cage in rack.cages) {
-            //NSLog(@"%@",cage.cage_name);
-            //NSLog(@"%@",racktitle);
             
             NSString *cageName = @"";
             
@@ -62,17 +70,26 @@
             
             for (MouseDetails *mouse in cage.mouseDetails) {
                 //NSLog(@"Mouse %@",mouse.mouse_name);
-                [eachSection addObject:mouse.mouse_name]
-                ;
+                [eachSection addObject:mouse];
             }
-            [self.allMouseDetails addObject:eachSection];
-            [self.sectionTitles addObject:[NSString stringWithFormat:@"Rack : %@ - Cage : %@", racktitle, cageName]];
+            if ([eachSection count] != 0) {
+                
+                [self.allMouseDetails addObject:eachSection];
+                [self.sectionTitles addObject:[NSString stringWithFormat:@"Rack : %@ - Cage : %@", racktitle, cageName]];
+            }
             
             eachSection = [[NSMutableArray alloc]init];
         }
         
     }
     
+    Mouse *mouse = [[Mouse alloc] init];
+    
+    NSArray *deceasedMouse = [mouse getAllDeceasedMice: [self managedObjectContext]];
+    if([deceasedMouse count] != 0){
+        [self.allMouseDetails addObject:deceasedMouse];
+        [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
+    }
     UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout *)self.collectionSectionsView.collectionViewLayout;
     
     collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
@@ -102,7 +119,7 @@
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MCell" forIndexPath:indexPath];
     
-    NSString *labelName = [[self.allMouseDetails objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+    NSString *labelName = ((MouseDetails *)[[self.allMouseDetails objectAtIndex:indexPath.section] objectAtIndex:indexPath.item]).mouse_name;
     
     UILabel *label = (UILabel *) [cell viewWithTag:11];
     label.text = [NSString stringWithFormat:@"%@",labelName];
@@ -147,5 +164,55 @@
     return reusableview;
 }
 
+
+
+- (IBAction)didLongPressCellToDelete:(UILongPressGestureRecognizer*)gesture {
+    CGPoint tapLocation = [gesture locationInView:self.collectionSectionsView];
+    NSIndexPath *indexPath = [self.collectionSectionsView indexPathForItemAtPoint:tapLocation];
+    if (indexPath && gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"image with index %d to be deleted", indexPath.item);
+        
+        
+        self.deleteMouse = (MouseDetails *)[[self.allMouseDetails objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        NSLog(@" deceased %@",self.deleteMouse.is_deceased);
+        
+        if ([self.deleteMouse.is_deceased isEqualToString:@"Yes"]) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Mouse already deceased" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            
+        }else{
+            
+            UIAlertView *deleteAlert = [[UIAlertView alloc]
+                                        initWithTitle:@"Delete?"
+                                        message:@"Are you sure you want to mark this mouse deceased?"
+                                        delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+            [deleteAlert show];
+        }
+    }
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"selected button index = %d", buttonIndex);
+    if (buttonIndex == 1) {
+        // Do what you need to do to delete the cell
+        Mouse *mouse = [[Mouse alloc] init];
+        NSManagedObjectContext *context = [self managedObjectContext];
+        
+        
+        if ([mouse markMousedDeceased:context mouseDetails:self.deleteMouse]) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse has been deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        else{
+            
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"ERROR!" message:@"Error deleting mouse!!!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+            
+        }
+        
+    }
+}
 
 @end
