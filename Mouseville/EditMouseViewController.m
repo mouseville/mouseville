@@ -379,7 +379,11 @@
     
     else if([mouseHelper editMouseDetails:[self managedObjectContext] mouseDetails:self.mouse] == nil)
     {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was a problem while saving the mouse details. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+     //   UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"There was a problem while saving the mouse details. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+      //  [alert show];
+        
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse details were saved successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     
