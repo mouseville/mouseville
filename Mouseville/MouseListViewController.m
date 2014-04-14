@@ -9,6 +9,7 @@
 #import "MouseListViewController.h"
 #import "Cage.h"
 #import "MouseViewController.h"
+#import "EditMouseViewController.h"
 
 @interface MouseListViewController ()
 {
@@ -40,6 +41,25 @@
     }
     
     return context;
+}
+
+- (IBAction)editMouse:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    self.selectedMouse = [self.miceArray objectAtIndex:indexPath.row];
+    
+    
+    EditMouseViewController *viewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"editMouseController"];
+    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    viewController.mouse = self.selectedMouse;
+    
+    [self presentViewController:viewController animated:YES completion:^{viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
+        viewController.view.superview.center = self.view.superview.superview.center;
+    }];
+    
+    [self.tableView reloadData];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

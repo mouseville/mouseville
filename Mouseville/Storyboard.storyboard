@@ -1303,7 +1303,7 @@
         <!--Edit Mouse View Controller - Edit Mouse Details-->
         <scene sceneID="2lZ-Fx-LIc">
             <objects>
-                <viewController id="DWZ-fF-YUL" customClass="EditMouseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editMouseController" id="DWZ-fF-YUL" customClass="EditMouseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U3i-rt-wR9">
                         <rect key="frame" x="0.0" y="0.0" width="700" height="933"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1768,6 +1768,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <state key="normal" image="edit_icon-32">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="editMouse:" destination="drT-Mf-FeA" eventType="touchUpInside" id="K34-l8-6GM"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="134" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Aep-Pb-QYN">
                                                     <rect key="frame" x="623" y="11" width="32" height="32"/>

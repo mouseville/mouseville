@@ -269,7 +269,7 @@
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:mouseEntity];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"mouse_name LIKE '%@'",mouseDetails];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"mouse_name LIKE '%@'",mouseDetails.mouse_name];
     [fetchRequest setPredicate:predicate];
     
    
