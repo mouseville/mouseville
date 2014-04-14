@@ -164,7 +164,15 @@
     
     Rack* rack = [[Rack alloc]init];
     
-   if([rack addNewRack:context name:rackName rows:number_rows columns:number_columns withLabels:rack_labels])
+    RackDetails* tempRack = [rack getParticularRack:context rackName:rackName];
+    
+    if(tempRack!=nil)
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Rack with already exists" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+   else if([rack addNewRack:context name:rackName rows:number_rows columns:number_columns withLabels:rack_labels])
    {
        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"New Rack has been created" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
        [alert show];

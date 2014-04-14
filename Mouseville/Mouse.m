@@ -37,12 +37,13 @@
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
     [fetchRequest setEntity:rackEntity];
     
+    
     NSFetchRequest* fetchRequest2 = [[NSFetchRequest alloc]init];
     
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"rack_name LIKE %@", rackName];
     [fetchRequest setPredicate:predicate];
-    
+    [fetchRequest setReturnsObjectsAsFaults:NO];
     
     NSError* errorRequest = nil;
     NSArray* racks = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
@@ -155,6 +156,39 @@
     
     return YES;
 }
+
+-(MouseDetails*) getMiceForRackCage: (NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender rack:(NSString*) rackName cageRow:(NSNumber*)cageRow cageColumn:(NSNumber*)cageColumn
+
+{
+    NSEntityDescription* mouseEntity = [NSEntityDescription entityForName:@"MouseDetails" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:mouseEntity];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+    
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"mouse_name LIKE '%@'",mouseName];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* errorRequest = nil;
+    
+    NSArray* mouseArray = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
+    
+    for(MouseDetails* eachMouse in mouseArray)
+    {
+        if([eachMouse.mouse_name isEqual:mouseName] && [eachMouse.cageDetails.column_id intValue] == [cageRow intValue] && [eachMouse.cageDetails.row_id intValue] == [cageColumn intValue] && [eachMouse.cageDetails.rackDetails.rack_name isEqual:rackName])
+        {
+            return eachMouse;
+        }
+    }
+    
+    return nil;
+    
+}
+
+
+
+
 
 -(NSArray*)getAllDeceasedMice:(NSManagedObjectContext *)managedObjectContext
 {
