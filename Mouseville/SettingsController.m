@@ -73,8 +73,12 @@
     [self.labelView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.labelView.layer setBorderWidth:1.5f];
     
-    //self.label1.text = [Rack getLabelFromRack:<#(RackDetails *)#> withIndex:<#(int)#>]
-    
+    self.label1.text = [[Rack getLabelFromRack:self.rackDetails withIndex:1] label_name];
+    self.label2.text = [[Rack getLabelFromRack:self.rackDetails withIndex:2] label_name];
+    self.label3.text = [[Rack getLabelFromRack:self.rackDetails withIndex:3] label_name];
+    self.label4.text = [[Rack getLabelFromRack:self.rackDetails withIndex:4] label_name];
+    self.label5.text = [[Rack getLabelFromRack:self.rackDetails withIndex:5] label_name];
+    self.label6.text = [[Rack getLabelFromRack:self.rackDetails withIndex:6] label_name];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,9 +90,38 @@
 - (IBAction)saveLabels:(id)sender {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    NSMutableArray* tempLabelsArray = [[NSMutableArray alloc]init];
+    Labels *label;
+    label = [Rack getLabelFromRack:self.rackDetails withIndex:1];
+    label.label_name = self.label1.text;
     
-    NSNumber *count = 0;
+    label = [Rack getLabelFromRack:self.rackDetails withIndex:2];
+    label.label_name = self.label2.text;
+    
+    label = [Rack getLabelFromRack:self.rackDetails withIndex:3];
+    label.label_name = self.label3.text;
+    
+    label = [Rack getLabelFromRack:self.rackDetails withIndex:4];
+    label.label_name = self.label4.text;
+    
+    label = [Rack getLabelFromRack:self.rackDetails withIndex:5];
+    label.label_name = self.label5.text;
+    
+    label = [Rack getLabelFromRack:self.rackDetails withIndex:6];
+    label.label_name = self.label6.text;
+    
+    NSError *error = nil;
+    
+    if([context save:&error])
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Labels successfully updated" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"ERROR!" message:@"Error updating labels!!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+        
+    }
    
     ///example for first label.
     
