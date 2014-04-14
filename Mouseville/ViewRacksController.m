@@ -121,7 +121,7 @@
         [cell.layer setBorderWidth:1.0f];
         [cell.layer setBorderColor:[UIColor blackColor].CGColor];
         
-        [cell.layer setBackgroundColor:[UIColor grayColor].CGColor];
+        [cell.layer setBackgroundColor:[UIColor groupTableViewBackgroundColor].CGColor];
         UIButton *button = (UIButton *)[cell viewWithTag:5];
         [button setEnabled:NO];
         UILabel *label = (UILabel *)[cell viewWithTag:4];

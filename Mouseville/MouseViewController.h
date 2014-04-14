@@ -10,13 +10,13 @@
 #import  "PopOverViewController.h"
 #import "DatePickerViewController.h"
 
-@interface MouseViewController : UIViewController<DropDownDelegate, UIPopoverControllerDelegate>
+@interface MouseViewController : UIViewController<DropDownDelegate, UIPopoverControllerDelegate, UITextFieldDelegate>
 
 
 - (IBAction)chooseGenotype:(id)sender;
 
 
-@property (weak, nonatomic) IBOutlet UIView *createMouseView;
+//@property (weak, nonatomic) IBOutlet UIView *createMouseView;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *btnChooseGenotype;
@@ -31,6 +31,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtMouseName;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segGenderControl;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnCreateMouse;
+
+- (IBAction)cancelButtonClick:(id)sender;
+
 
 
 - (IBAction)selectRack:(id)sender;

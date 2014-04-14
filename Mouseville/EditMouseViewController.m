@@ -210,8 +210,19 @@
     
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.txtMouseName resignFirstResponder];
+}
 
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField)
+    {
+        [textField resignFirstResponder];
+    }
+    return NO;
+        
+}
 
 -(NSString*) numberToAlphabet: (NSNumber* )number
 {
@@ -288,6 +299,17 @@
     }
 
 }
+
+
+- (IBAction)cancelButtonClick:(id)sender {
+    
+    
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
 
 - (IBAction)btnSaveClick:(id)sender {
     

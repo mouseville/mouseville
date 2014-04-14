@@ -248,8 +248,8 @@
 		4883405418E2256500682F5A = {
 			isa = PBXGroup;
 			children = (
-				99F7B40F18F9AC73005B986F /* images */,
 				48350E4418F1286100031DE2 /* Storyboard.storyboard */,
+				99F7B40F18F9AC73005B986F /* images */,
 				4883406818E2256500682F5A /* Mouseville */,
 				4883408518E2256600682F5A /* MousevilleTests */,
 				4883405F18E2256500682F5A /* Frameworks */,

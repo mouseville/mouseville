@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewRacksController.h"
-
-@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>{
+#import "PopOverViewController.h"
+#import "MouseViewController.h"
+@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, DropDownDelegate>{
     ViewRacksController *viewRacks ;
 }
 @property (weak, nonatomic) IBOutlet UIView *miceView;
@@ -35,4 +36,36 @@
 @property (nonatomic) NSInteger selectedIndexSegment;
 
 @property (nonatomic) NSString *deleteRackName;
+
+
+//properties for mouse view
+
+@property (weak, nonatomic) IBOutlet UIView *slideThisView;
+
+@property (weak, nonatomic) IBOutlet UIButton *expandButton;
+
+
+
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+- (IBAction)sliderValueChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UIButton *btnChooseGenotype;
+- (IBAction)chooseGenotype:(id)sender;
+
+- (IBAction)expandClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+
+@property (weak, nonatomic) IBOutlet UISlider *slider2;
+
+
+- (IBAction)slider2ValueChanged:(id)sender;
+
+@property (nonatomic, copy) NSNumber *minAge;
+@property (nonatomic, copy) NSNumber *maxAge;
+@property NSMutableArray* genotypeMutableArray;
+
+@property (weak, nonatomic) IBOutlet UITableView *searchMouseTable;
+
+
 @end

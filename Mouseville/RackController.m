@@ -72,6 +72,11 @@
     [self.tableCollection reloadData];
 }
 
+- (IBAction)cancelButtonClick:(id)sender {
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     
     NSInteger counter = self.rowStepper.value ;
@@ -93,12 +98,34 @@
     UILabel *label = (UILabel *) [cell viewWithTag:2];
     label.text = @"";
     
+    [cell.layer setCornerRadius:5.f
+     ];
    [cell.layer setBorderWidth:1.0f];
-  [cell.layer setBorderColor:[UIColor blackColor].CGColor];
+  [cell.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     
     
     return cell;
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.rackNameText resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField)
+    {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    
+}
+
+- (BOOL)disablesAutomaticKeyboardDismissal
+{
+    return NO;
+}
+
 
 
 -(NSManagedObjectContext*) managedObjectContext {
@@ -151,6 +178,20 @@
     
     
 }
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if([alertView.title isEqual:@"Success"])
+    {
+        if(buttonIndex==0 || buttonIndex
+           ==1 ){
+            
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+}
+
+
 
 -(BOOL)sanityCheck
 {

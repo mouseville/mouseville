@@ -45,6 +45,14 @@
     
    self.navigationItem.rightBarButtonItem=self.editButtonItem;
     
+    
+    [self.genesView.layer setCornerRadius:30.0f];
+    [self.genesView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.genesView.layer setBorderWidth:1.5f];
+    
+
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
