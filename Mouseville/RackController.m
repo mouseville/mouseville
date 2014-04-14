@@ -195,9 +195,15 @@
            ==1 ){
             
           //  [[NSNotificationCenter defaultCenter] postNotificationName:@"updateParent" object:nil];
-            
+            if([self.delegate respondsToSelector:@selector(reloadDetails)]){
+                
+                [self.delegate reloadDetails];
+                
+            }
             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-                [self viewDidLoad];}];        }
+                //[self viewDidLoad];
+            
+            }];        }
     }
 }
 

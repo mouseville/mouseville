@@ -10,7 +10,8 @@
 #import "ViewRacksController.h"
 #import "PopOverViewController.h"
 #import "MouseViewController.h"
-@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, DropDownDelegate>{
+#import "RackController.h"
+@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, DropDownDelegate,RackControllerDelegate> {
     ViewRacksController *viewRacks ;
 }
 @property (weak, nonatomic) IBOutlet UIView *miceView;

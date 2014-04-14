@@ -15,6 +15,13 @@
 
 //@end
 
+@protocol RackControllerDelegate <NSObject>
+
+-(void) reloadDetails;
+
+@end
+
+
 @interface RackController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *rackNameText;
 
@@ -26,7 +33,7 @@
 
 @property (weak, nonatomic) IBOutlet UIStepper *columnStepper;
 @property (weak, nonatomic) IBOutlet UICollectionView *tableCollection;
-
+@property(nonatomic, assign) id<RackControllerDelegate> delegate;
 - (IBAction)onRowChange:(UIStepper *)sender;
 - (IBAction)onColumnAction:(UIStepper *)sender;
 

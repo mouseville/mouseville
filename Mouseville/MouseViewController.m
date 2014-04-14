@@ -431,7 +431,9 @@
         if(buttonIndex==0 || buttonIndex
           ==1 ){
             
-            
+            if([self.delegate respondsToSelector:@selector(reloadDetails)]){
+                [self.delegate reloadDetails];
+            }
            // [[NSNotificationCenter defaultCenter] postNotificationName:@"updateParent" object:nil];
             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{[self viewDidLoad];}];
         }

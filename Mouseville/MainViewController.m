@@ -400,7 +400,7 @@
          
          RackController *viewController= [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"rackController"];
   
-         
+         viewController.delegate = self;
     //     RackController *viewController= [[RackController alloc] init];
          viewController.modalPresentationStyle=UIModalPresentationFormSheet;
          viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -420,7 +420,7 @@
           //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidLoad) name:@"updateParent" object:nil];
             
             MouseViewController *viewController= [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"mouseController"];
-           
+            viewController.delegate = self;
             viewController.modalPresentationStyle=UIModalPresentationFormSheet;
             viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
@@ -434,7 +434,16 @@
         }
 }
 
-
+-(void)reloadDetails{
+    
+    Rack* rack = [[Rack alloc]init];
+    
+    self.allRacks = [rack getAllRacks:[self managedObjectContext]];
+    [self.filteredRacks removeAllObjects];
+    [self.filteredRacks addObjectsFromArray:self.allRacks];
+    [self.rackCollection reloadData];
+    
+}
 
 //Code for search mouse view
 

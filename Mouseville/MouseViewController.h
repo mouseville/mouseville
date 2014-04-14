@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import  "PopOverViewController.h"
 #import "DatePickerViewController.h"
-
+#import "RackController.h"
 @interface MouseViewController : UIViewController<DropDownDelegate, UIPopoverControllerDelegate, UITextFieldDelegate>
 
 
@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnDate;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet UITextField *txtMouseName;
-
+@property (nonatomic, assign) id<RackControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segGenderControl;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnCreateMouse;
