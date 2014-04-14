@@ -8,6 +8,7 @@
 
 #import "MouseListViewController.h"
 #import "Cage.h"
+#import "MouseViewController.h"
 
 @interface MouseListViewController ()
 {
@@ -18,6 +19,17 @@
 @end
 
 @implementation MouseListViewController
+
+- (IBAction)addMouse:(id)sender {
+    MouseViewController *viewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"mouseController"];
+    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:viewController animated:YES completion:^{viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
+        viewController.view.superview.center = self.view.superview.superview.center;
+    }];
+    self.miceArray = [self.currentCage.mouseDetails allObjects];
+    [self.tableView reloadData];
+}
 
 -(NSManagedObjectContext*) managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -31,7 +43,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.currentCage.mouseDetails count];
+    return [self.miceArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
