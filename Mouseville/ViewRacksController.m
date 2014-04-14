@@ -151,7 +151,7 @@
        
         CageViewController *viewCageController = (CageViewController *)segue.destinationViewController;
         viewCageController.cage = cageDetailss;
-    }else if ([segue.identifier isEqualToString:@"rackSettingSegue"]){
+    }else if ([segue.identifier isEqualToString:@"rackSettingsSegue"]){
         SettingsController *settings = (SettingsController *)segue.destinationViewController;
         settings.rackDetails = self.viewRackDetails;
     }
