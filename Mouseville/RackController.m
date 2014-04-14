@@ -28,11 +28,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-  //  self.rowStepper.wraps=YES;
+
     
     self.rowStepper.minimumValue = 1;
     self.rowStepper.maximumValue = 10;
-    //  self.rowStepper.autorepeat=YES;
+ 
     
     
     
@@ -44,9 +44,7 @@
     self.columnStepper.maximumValue = 7;
     NSUInteger numberOfColumns = self.columnStepper.value;
     self.columnLabel.text = [NSString stringWithFormat:@"%2lu", (unsigned long)numberOfColumns];
-    
-    
-    //self.delegate = self;
+  
 
 }
 
@@ -74,7 +72,8 @@
 
 - (IBAction)cancelButtonClick:(id)sender {
     
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        [self.presentingViewController viewDidLoad];}];
 }
 
 -(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -194,8 +193,9 @@
         if(buttonIndex==0 || buttonIndex
            ==1 ){
             
-            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        }
+            
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                [self.presentingViewController viewWillAppear:YES];}];        }
     }
 }
 

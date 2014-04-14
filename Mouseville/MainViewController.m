@@ -157,7 +157,11 @@
 }
 
 
-
+-(void) viewWillAppear:(BOOL)animated
+{
+    //[super viewWillAppear:animated];
+    [self viewDidLoad];
+}
 
 - (IBAction)mainViewChanged:(id)sender {
     

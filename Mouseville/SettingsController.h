@@ -38,7 +38,7 @@
 - (IBAction)saveLabels:(id)sender;
 
 
-- (IBAction)exportToCSV:(id)sender;
+
 
 
 @property (weak, nonatomic) IBOutlet UITextField *label2;

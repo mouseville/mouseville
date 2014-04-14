@@ -11,8 +11,18 @@
 #import "Genotype.h"
 #import "GenotypeManager.h"
 
+#import "RackDetails.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import "Rack.h"
+#import "RackDetails.h"
+#import "CageDetails.h"
+#import "MouseDetails.h"
+#import "CHCSVParser.h"
 
-@interface ManageGenotypesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+
+
+@interface ManageGenotypesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *genotypeTableView;
 @property (weak, nonatomic) IBOutlet UIView *genesView;
 
@@ -22,4 +32,6 @@
 
 
 - (IBAction)insertNewGenotype:(id)sender;
+
+- (IBAction)exportToCSV:(id)sender;
 @end
