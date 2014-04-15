@@ -152,6 +152,15 @@
     
 }
 
++(BOOL)maleInCage:(CageDetails *)cage {
+    for (MouseDetails *mouse in cage.mouseDetails) {
+        if ([mouse.gender isEqualToString:@"Male"]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 
 -(CageDetails*) addMouseToCage:(NSManagedObjectContext *)managedObjectContext rack:(RackDetails *)rack row:(NSNumber *)row column:(NSNumber *)column cageDetails:(CageDetails *)cageObject mouseDetails:(MouseDetails *)mouseDetails
 {

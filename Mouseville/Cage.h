@@ -50,5 +50,6 @@
 // This function will return EMPTY_CAGE, MALE_ONLY, FEMALE_ONLY, or BREEDING
 +(int)getBreedingStatus:(CageDetails *)cage;
 
++(BOOL)maleInCage:(CageDetails *)cage;
 
 @end

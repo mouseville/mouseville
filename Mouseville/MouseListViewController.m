@@ -107,11 +107,19 @@
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         NSNumber *row = [f numberFromString:[self.currentCageIndex substringFromIndex:1]];
         
-        [cage_helper moveMouseToDifferentCage:context rack:self.currentCage.rackDetails cageDetails:self.currentCage mouseDetails:self.selectedMouse rowToMove:row columnToMove:column];
+        // make sure we will not have 2 males in the same cage
+        int destCageStatus = [Cage getBreedingStatus:self.currentCage];
+        if ([self.selectedMouse.gender isEqualToString:@"Male"] && ((destCageStatus == BREEDING) || destCageStatus == MALE_ONLY)) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You attempted to move a male into a cage that already containts a male. This is not allowed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        } else {
         
-        self.miceArray = [self.currentCage.mouseDetails allObjects];
+            [cage_helper moveMouseToDifferentCage:context rack:self.currentCage.rackDetails cageDetails:self.currentCage mouseDetails:self.selectedMouse rowToMove:row columnToMove:column];
         
-        [self.tableView reloadData];
+            self.miceArray = [self.currentCage.mouseDetails allObjects];
+        
+            [self.tableView reloadData];
+        }
         
     }
 }
