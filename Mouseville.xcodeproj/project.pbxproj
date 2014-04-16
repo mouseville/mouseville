@@ -40,6 +40,7 @@
 		489772ED18F124E500D85220 /* RackDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 489772EC18F124E500D85220 /* RackDetails.m */; };
 		489772F018F124E600D85220 /* Genotype.m in Sources */ = {isa = PBXBuildFile; fileRef = 489772EF18F124E600D85220 /* Genotype.m */; };
 		48EB8AFC18F24A500077D4AA /* GenotypeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EB8AFB18F24A500077D4AA /* GenotypeManager.m */; };
+		48EEC9A218FE35A800B03CD5 /* CageLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EEC9A118FE35A800B03CD5 /* CageLabels.m */; };
 		8488F6EA18F9A2D4004CA8B7 /* SearchMouseDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8488F6E918F9A2D4004CA8B7 /* SearchMouseDisplayViewController.m */; };
 		8490408D18EAF43500694343 /* MouseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8490408C18EAF43500694343 /* MouseListViewController.m */; };
 		8493795418E739F9000FFEC9 /* CageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493795318E739F9000FFEC9 /* CageViewController.m */; };
@@ -153,6 +154,8 @@
 		489772EF18F124E600D85220 /* Genotype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Genotype.m; sourceTree = "<group>"; };
 		48EB8AFA18F24A500077D4AA /* GenotypeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenotypeManager.h; sourceTree = "<group>"; };
 		48EB8AFB18F24A500077D4AA /* GenotypeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenotypeManager.m; sourceTree = "<group>"; };
+		48EEC9A018FE35A800B03CD5 /* CageLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CageLabels.h; sourceTree = "<group>"; };
+		48EEC9A118FE35A800B03CD5 /* CageLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CageLabels.m; sourceTree = "<group>"; };
 		8488F6E818F9A2D4004CA8B7 /* SearchMouseDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMouseDisplayViewController.h; sourceTree = "<group>"; };
 		8488F6E918F9A2D4004CA8B7 /* SearchMouseDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMouseDisplayViewController.m; sourceTree = "<group>"; };
 		8490408B18EAF43500694343 /* MouseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseListViewController.h; sourceTree = "<group>"; };
@@ -402,6 +405,8 @@
 				4883412718E2271C00682F5A /* MouseCageDetailsOld.m */,
 				4883412E18E2271C00682F5A /* MouseGenotype.h */,
 				4883412F18E2271C00682F5A /* MouseGenotype.m */,
+				48EEC9A018FE35A800B03CD5 /* CageLabels.h */,
+				48EEC9A118FE35A800B03CD5 /* CageLabels.m */,
 			);
 			name = CoreDataFiles;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				8488F6EA18F9A2D4004CA8B7 /* SearchMouseDisplayViewController.m in Sources */,
 				999ED8B618FB856400E538CA /* MouseCollectionHeader.m in Sources */,
 				E5DEA55018EB6877000E3B82 /* MouseFamilyDetails.m in Sources */,
+				48EEC9A218FE35A800B03CD5 /* CageLabels.m in Sources */,
 				999ED8B718FB856400E538CA /* SearchMouseSectionsController.m in Sources */,
 				997C69E918EE9D85006F813D /* ManageGenotypesViewController.m in Sources */,
 				9927C23F18E7ED9D00CEC051 /* RackController.m in Sources */,
