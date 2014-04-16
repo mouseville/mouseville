@@ -4,6 +4,12 @@
         <attribute name="cage_id" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="cage_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="column_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="label1" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="label2" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="label3" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="label4" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="label5" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="label6" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rack_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="row_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -94,6 +100,7 @@
     </entity>
     <elements>
         <element name="CageDetails" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CageLabels" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Genotype" positionX="0" positionY="0" width="0" height="0"/>
         <element name="GenotypeLabels" positionX="0" positionY="0" width="0" height="0"/>
         <element name="LabelCageMapping" positionX="0" positionY="0" width="0" height="0"/>
@@ -106,6 +113,5 @@
         <element name="MouseGenotype" positionX="0" positionY="0" width="0" height="0"/>
         <element name="RackDetails" positionX="0" positionY="0" width="0" height="0"/>
         <element name="UserDetails" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="CageLabels" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
