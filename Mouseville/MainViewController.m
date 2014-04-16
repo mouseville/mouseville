@@ -77,6 +77,18 @@
     self.allRacks = [rack getAllRacks:[self managedObjectContext]];
     
     
+    self.allMouseDetails = [[NSMutableArray alloc]init];
+  
+    self.allDeceasedMouseDetails = [[NSMutableArray alloc]init];
+    
+    Mouse* tempMouse = [[Mouse alloc]init];
+    NSArray* allAliveMice = [tempMouse miceResult:[self managedObjectContext] mouseName:@"" gender:@"" genotype:@"" weekRange:nil];
+    
+    NSArray* allDeceasedMice = [tempMouse getAllDeceasedMice:[self managedObjectContext]];
+    
+    [self.allMouseDetails addObjectsFromArray:allAliveMice];
+    [self.allMouseDetails addObjectsFromArray:allDeceasedMice];
+    
     if([self.allRacks count]==0){
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"Please create a rack to get started!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
@@ -141,6 +153,8 @@
     {
         [arr addObject:individualGenotypeLable.genotypeLabel];
     }
+    
+    self.genotypeMutableArray = [[NSMutableArray alloc]init];
     
     
     popoverView = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]instantiateViewControllerWithIdentifier:@"dropdown"];
@@ -226,9 +240,9 @@
     [self viewDidLoad];
 }
 
+
+
 - (IBAction)mainViewChanged:(id)sender {
-    
-    
     
     
 }
@@ -256,6 +270,18 @@
     return [self.filteredRacks count];
 }
 
+-(void) reloadMouseArrayDetails
+{
+    Mouse* tempMouse = [[Mouse alloc]init];
+    
+    [self.allMouseDetails removeAllObjects];
+    [self.allDeceasedMouseDetails removeAllObjects];
+    
+    self.allMouseDetails = [NSMutableArray arrayWithArray:[tempMouse miceResult:[self managedObjectContext] mouseName:@"" gender:@"" genotype:@"" weekRange:nil]];
+    self.allDeceasedMouseDetails = [NSMutableArray arrayWithArray:[tempMouse miceResultDeceased:[self managedObjectContext] mouseName:@"" gender:@"" genotype:@"" weekRange:nil]];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -279,6 +305,10 @@
             self.rackView.hidden=YES;
             self.miceView.hidden= NO;
             self.selectedIndexSegment = 1;
+            [self reloadMouseArrayDetails];
+            [self.delegate reloadDetails:self.allMouseDetails allDeceasedMouseDetails:self.allDeceasedMouseDetails];
+            
+            
             break;
             
         default:
@@ -309,43 +339,53 @@
         viewRacksController.viewRackDetails = rackDetailss;
         viewRacksController.rackLabel = rackName;
         viewRacksController.cageDetailsForRack = cageDetailss;
-    }/*else if([segue.identifier isEqualToString:@"mouseCollectionSegue"])
-    { SearchMouseSectionsController *searchMouse = (SearchMouseSectionsController *)segue.destinationViewController;
+    }
+    
+    else if([segue.identifier isEqualToString:@"mouseCollectionSegue"])
+    {
+        SearchMouseSectionsController *searchMouse = (SearchMouseSectionsController *)segue.destinationViewController;
         
-        if (!self.isViewLoaded) {
+        
+        //if (!self.isViewLoaded) {
            // [self viewDidLoad];
-        }
+        //}
         
-        searchMouse.filterMouseDetails = self.filterMouseDetails;
-        searchMouse.sectionTitles = self.sectionTitles;
-    }*/
+        
+        Mouse* tempMouse = [[Mouse alloc]init];
+        
+        searchMouse.allMouseDetails = [NSMutableArray arrayWithArray:[tempMouse miceResult:[self managedObjectContext] mouseName:@"" gender:@"" genotype:@"" weekRange:nil]];
+        
+        searchMouse.allDeceasedMouseDetails = [NSMutableArray arrayWithArray:[tempMouse getAllDeceasedMice:[self managedObjectContext]]];
+        
+        self.delegate = searchMouse;
+    }
 }
 
 
 
--(void) textDidChange:(id)sender
-{
-    
-    
-    UITextField* searchField = (UITextField *) sender;
-    if (searchField.text == self.searchRacksText.text) {
-        NSLog(@"SEarch %@",self.searchRacksText.text);
-    if(searchField.text.length == 0)
-    {
-        self.isFiltered = FALSE;
-        [self.filteredRacks removeAllObjects];
-        [self.filteredRacks addObjectsFromArray:self.allRacks];
-    }
-    else
-    {
-        
-        
-    }
-    
-    [self.rackCollection reloadData];
-    }
-    
-}
+//-(void) textDidChange:(id)sender
+//{
+//    
+//    
+//    UITextField* searchField = (UITextField *) sender;
+//    if (searchField.text == self.searchRacksText.text) {
+//        NSLog(@"SEarch %@",self.searchRacksText.text);
+//    if(searchField.text.length == 0)
+//    {
+//        self.isFiltered = FALSE;
+//        [self.filteredRacks removeAllObjects];
+//        [self.filteredRacks addObjectsFromArray:self.allRacks];
+//    }
+//    else
+//    {
+//        
+//        
+//    }
+//    
+//    [self.rackCollection reloadData];
+//    }
+//    
+//}
 
 - (IBAction)segmentedAdd:(id)sender {
   
@@ -754,6 +794,58 @@
 }
  
  */
+
+
+
+
+
+- (IBAction)searchMouseOnButtonClick:(id)sender {
+
+
+    NSString* mouseName = self.txtSearch.text;
+    NSString* gender = [self.genderSegment titleForSegmentAtIndex:self.genderSegment.selectedSegmentIndex];
+    
+    NSArray *ageRange = [NSArray arrayWithObjects:[NSNumber numberWithInt:self.slider.value],[NSNumber numberWithInt:self.slider2.value],nil];
+
+    NSString* genotype;
+    
+    
+   if([self.btnChooseGenotype.currentTitle isEqual:@"Select"])
+   {
+       genotype = @"";
+   }
+   else
+    {
+        genotype = self.btnChooseGenotype.currentTitle;
+    }
+  
+    
+    Mouse* tempMouse = [[Mouse alloc]init];
+    
+    NSArray* miceResult = [tempMouse miceResult:[self managedObjectContext] mouseName:mouseName gender:gender genotype:genotype weekRange:ageRange];
+    
+    
+    NSArray* miceDeceasedResult = [tempMouse miceResultDeceased:[self managedObjectContext] mouseName:mouseName gender:gender genotype:genotype weekRange:ageRange];
+    
+    [self.allMouseDetails removeAllObjects];
+    [self.allMouseDetails addObjectsFromArray:miceResult];
+    
+    [self.allDeceasedMouseDetails removeAllObjects];
+    [self.allDeceasedMouseDetails addObjectsFromArray:miceDeceasedResult];
+    
+    
+    //now pass it to the container and reload the container
+    
+    if([self.delegate respondsToSelector:@selector(reloadDetails:allDeceasedMouseDetails:)])
+    {
+        [self.delegate reloadDetails:self.allMouseDetails allDeceasedMouseDetails:self.allDeceasedMouseDetails];
+    }
+    
+
+}
+
+
+
 - (IBAction)searchRacksOnButtnClick:(id)sender {
     if(self.searchRacksText.text.length == 0)
     {
@@ -776,4 +868,6 @@
     [self.rackCollection reloadData];
     
 }
+
+
 @end

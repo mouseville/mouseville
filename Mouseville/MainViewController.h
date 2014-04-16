@@ -11,9 +11,21 @@
 #import "PopOverViewController.h"
 #import "MouseViewController.h"
 #import "RackController.h"
+
+
+@protocol MainViewControllerDelegate <NSObject>
+
+-(void) reloadDetails:(NSMutableArray*)allMouseDetails allDeceasedMouseDetails:(NSMutableArray*) allDeceasedMouseDetails;
+
+@end
+
 @interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, DropDownDelegate,RackControllerDelegate> {
     ViewRacksController *viewRacks ;
 }
+
+
+@property (nonatomic, assign) id<MainViewControllerDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UIView *miceView;
 @property (weak, nonatomic) IBOutlet UIView *rackView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedBar;
@@ -72,13 +84,18 @@
 @property (weak, nonatomic) IBOutlet UITableView *searchMouseTable;
 
 
+
+@property NSMutableArray *allMouseDetails;
+@property NSMutableArray *allDeceasedMouseDetails;
+
+
 /*
 @property (assign) BOOL isMouseFiltered;
 
 @property (assign) BOOL *isViewLoaded;
 
 
-@property (nonatomic, retain) NSMutableArray *allMouseDetails;
+
 
 @property (nonatomic, retain) NSMutableArray *filterMouseDetails;
 

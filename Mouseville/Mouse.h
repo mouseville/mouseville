@@ -36,6 +36,11 @@
 
 -(MouseDetails*) getMiceForRackCage: (NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender rack:(NSString*) rackName cageRow:(NSNumber*)cageRow cageColumn:(NSNumber*)cageColumn;
 
+-(NSArray*) miceResultDeceased:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotype:(NSString *)genotype weekRange:(NSArray *)ageRange;
+
+
+
 +(NSString *)getGenotypeString:(MouseDetails *)mouse;
+
 
 @end

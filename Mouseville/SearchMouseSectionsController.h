@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "MouseCollectionHeader.h"
 #import "Mouse.h"
+#import "MainViewController.h"
 
-@interface SearchMouseSectionsController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
+@interface SearchMouseSectionsController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate ,MainViewControllerDelegate>
 
 @property (nonatomic, retain) NSMutableArray *allMouseDetails;
+@property (nonatomic, retain) NSMutableArray *allDeceasedMouseDetails;
 
+@property (nonatomic, retain) NSMutableArray *sectionMouseDetails;
 
 @property (nonatomic, retain) NSMutableArray *sectionTitles;
 

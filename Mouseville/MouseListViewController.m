@@ -197,7 +197,7 @@
     self.selectedMouse = [self.miceArray objectAtIndex:indexPath.row];
     NSLog(@"Mouse selected at index %d with name %@", indexPath.row, self.selectedMouse.mouse_name);
 }
-
+	
 - (void)viewDidLoad
 {
     [super viewDidLoad];
