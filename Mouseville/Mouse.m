@@ -225,14 +225,17 @@
 -(NSArray*) miceResult:(NSManagedObjectContext *)managedObjectContext mouseName:(NSString *)mouseName gender:(NSString *)gender genotype:(NSString *)genotype weekRange:(NSArray *)ageRange
 
 {
+    
     NSEntityDescription* mouseEntity = [NSEntityDescription entityForName:@"MouseDetails" inManagedObjectContext:managedObjectContext];
     
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:mouseEntity];
-    
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"mouse_name LIKE '%@'",mouseName];
-    [fetchRequest setPredicate:predicate];
-    
+   
+    if(![mouseName isEqual:@""])
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"mouse_name LIKE '%@'",mouseName];
+        [fetchRequest setPredicate:predicate];
+    }
     NSError* errorRequest = nil;
     
     NSArray* mouseArray = [managedObjectContext executeFetchRequest:fetchRequest error:&errorRequest];
@@ -245,20 +248,31 @@
     
     if([mouseArray count] == 0)
     {
-        NSLog(@"Error no such mouse with given mouse name %@",mouseName);
+        NSLog(@"Error no such mouse with given information %@",mouseName);
         return  nil;
     }
-    
+   
     NSMutableArray* mouseResult = [[NSMutableArray alloc]init];
+    
+    // if([[mouse genotypes] containsObject:genotype ] && ([self getWeeksFromDate:mouse.birth_date]>=[[ageRange firstObject] integerValue] && [self getWeeksFromDate:mouse.birth_date]<=[[ageRange lastObject] integerValue]))
+        //        {
+        //            [mouseResult addObject:mouse];
+        //        }
+        
     
     for(MouseDetails* mouse in mouseArray)
     {
-        if([[mouse genotypes] containsObject:genotype ] && ([self getWeeksFromDate:mouse.birth_date]>=[[ageRange firstObject] integerValue] && [self getWeeksFromDate:mouse.birth_date]<=[[ageRange lastObject] integerValue]))
-        {
-            [mouseResult addObject:mouse];
-        }
+        
+        if( ( [gender isEqual:@""]? TRUE: [mouse.gender isEqual:gender] ) && ([genotype isEqual:@""]?TRUE:[mouse.genotypes containsObject:genotype]) && ((ageRange == nil)?TRUE:  ([self getWeeksFromDate:mouse.birth_date]>=[[ageRange firstObject] integerValue] && [self getWeeksFromDate:mouse.birth_date]<=[[ageRange lastObject] integerValue])))
+           {
+               [mouseResult addObject:mouse];
+               
+           }
+        
         
     }
+    
+    
     
     NSArray* result = [[NSArray alloc]initWithArray:mouseResult];
     return result;
