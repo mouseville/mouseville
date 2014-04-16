@@ -16,7 +16,12 @@
     NSString *genstr = @"";
     
     for (Genotype *gen in mouse.genotypes) {
-        genstr = [genstr stringByAppendingString:gen.genotype_name];
+        genstr = [genstr stringByAppendingString:[NSString stringWithFormat:@"%@,", gen.genotype_name]];
+    }
+    
+    // remove last comma
+    if ([genstr length] > 0) {
+        genstr = [genstr substringToIndex:[genstr length] - 1];
     }
     
     return genstr;
