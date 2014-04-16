@@ -120,17 +120,43 @@
             
         }
         
-        // set label indicators
-        UILabel *indicator;
-        for (int i = 1; i <= 6; i++) {
-            indicator = (UILabel *)[cell viewWithTag:10+i];
-            if ([cage.labels member:[Rack getLabelFromRack:cage.rackDetails withIndex:i]] == nil) {
-                [indicator setBackgroundColor:[UIColor whiteColor]];
-            } else {
-                [indicator setBackgroundColor:[colors objectAtIndex:i-1]];
-            }
-        }
+        UILabel *label1 = (UILabel *)[cell viewWithTag:11];
+        UILabel *label2 = (UILabel *)[cell viewWithTag:12];
+        UILabel *label3 = (UILabel *)[cell viewWithTag:13];
+        UILabel *label4 = (UILabel *)[cell viewWithTag:14];
+        UILabel *label5 = (UILabel *)[cell viewWithTag:15];
+        UILabel *label6 = (UILabel *)[cell viewWithTag:16];
         
+        if (cage.label1) {
+            [label1 setBackgroundColor:[UIColor redColor]];
+        } else {
+            [label1 setBackgroundColor:[UIColor whiteColor]];
+        }
+        if (cage.label2) {
+            [label2 setBackgroundColor:[UIColor orangeColor]];
+        } else {
+            [label2 setBackgroundColor:[UIColor whiteColor]];
+        }
+        if (cage.label3) {
+            [label3 setBackgroundColor:[UIColor yellowColor]];
+        } else {
+            [label3 setBackgroundColor:[UIColor whiteColor]];
+        }
+        if (cage.label4) {
+            [label4 setBackgroundColor:[UIColor greenColor]];
+        } else {
+            [label4 setBackgroundColor:[UIColor whiteColor]];
+        }
+        if (cage.label5) {
+            [label5 setBackgroundColor:[UIColor blueColor]];
+        } else {
+            [label5 setBackgroundColor:[UIColor whiteColor]];
+        }
+        if (cage.label6) {
+            [label6 setBackgroundColor:[UIColor purpleColor]];
+        } else {
+            [label6 setBackgroundColor:[UIColor whiteColor]];
+        }
         
         cell.backgroundView = bg_img;
         

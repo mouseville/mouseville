@@ -98,6 +98,7 @@
                 cage.cage_id = [NSNumber numberWithInteger:cageID];
                 cage.rack_id = rack.rack_id;
                 cage.rackDetails = rack;
+                cage.label1 = NO; cage.label2 = NO; cage.label3 = NO; cage.label4 = NO; cage.label5 = NO; cage.label6 = NO;
                 [rack addCagesObject:cage];
                 
             }

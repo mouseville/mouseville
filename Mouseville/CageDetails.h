@@ -22,6 +22,12 @@
 @property (nonatomic, retain) NSSet *labels;
 @property (nonatomic, retain) NSSet *mouseDetails;
 @property (nonatomic, retain) RackDetails *rackDetails;
+@property (nonatomic) BOOL label1;
+@property (nonatomic) BOOL label2;
+@property (nonatomic) BOOL label3;
+@property (nonatomic) BOOL label4;
+@property (nonatomic) BOOL label5;
+@property (nonatomic) BOOL label6;
 @end
 
 @interface CageDetails (CoreDataGeneratedAccessors)

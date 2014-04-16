@@ -23,6 +23,12 @@
 @dynamic labels;
 @dynamic mouseDetails;
 @dynamic rackDetails;
+@dynamic label1;
+@dynamic label2;
+@dynamic label3;
+@dynamic label4;
+@dynamic label5;
+@dynamic label6;
 
 
 @end
