@@ -88,6 +88,8 @@
     
     NSMutableSet *cageLabels = [NSMutableSet setWithSet:self.cage.labels];
     
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
     if (switched.on) {
         [cageLabels addObject:[Rack getLabelFromRack:self.cage.rackDetails withIndex:labelChecked]];
     } else {
@@ -96,7 +98,6 @@
     
     self.cage.labels = cageLabels;
     
-    NSManagedObjectContext *context = [self managedObjectContext];
     //[[[Cage alloc] init] setLabelsForCage:context cage:self.cage labels:[self.cage.labels allObjects]];
     NSError *error = nil;
     if(![context save:&error])
