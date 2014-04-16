@@ -254,68 +254,7 @@
         <!--Search Mouse Sections Controller-->
         <scene sceneID="Xvs-pe-49u">
             <objects>
-                <viewController id="qT7-ik-db1" customClass="SearchMouseSectionsController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="MOY-KG-w5O">
-                        <rect key="frame" x="0.0" y="0.0" width="613" height="735"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T2J-Yd-fQE">
-                            <size key="itemSize" width="100" height="100"/>
-                            <size key="headerReferenceSize" width="50" height="35"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="10"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MCell" id="986-Hn-XyX">
-                                <rect key="frame" x="10" y="45" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mouseville_icon-152.png" id="Xav-eU-1gl">
-                                            <rect key="frame" x="10" y="-1" width="80" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ni0-aO-iov">
-                                            <rect key="frame" x="0.0" y="79" width="100" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <segue destination="DWZ-fF-YUL" kind="push" identifier="passToEachMouse" id="K5W-Zu-tc9"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="0gw-8p-5o5" customClass="MouseCollectionHeader">
-                            <rect key="frame" x="0.0" y="0.0" width="613" height="35"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LQe-Ib-RWa">
-                                    <rect key="frame" x="7" y="7" width="527" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            <connections>
-                                <outlet property="sectionName" destination="LQe-Ib-RWa" id="HcT-v5-cKT"/>
-                            </connections>
-                        </collectionReusableView>
-                        <connections>
-                            <outlet property="dataSource" destination="qT7-ik-db1" id="7Hi-ea-NH5"/>
-                            <outlet property="delegate" destination="qT7-ik-db1" id="wxQ-re-5ni"/>
-                        </connections>
-                    </collectionView>
-                    <connections>
-                        <outlet property="collectionSectionsView" destination="MOY-KG-w5O" id="94E-ty-taD"/>
-                    </connections>
-                </viewController>
+                <viewController id="qT7-ik-db1" customClass="SearchMouseSectionsController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nvo-t0-HzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3969" y="-1283"/>
@@ -659,9 +598,6 @@
                                         <state key="normal" title="Go">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="onClick:" destination="ESk-1B-GpQ" eventType="touchUpInside" id="PXl-uN-fZc"/>
-                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Pgq-gl-idJ">
                                         <rect key="frame" x="184" y="120" width="400" height="30"/>
@@ -680,14 +616,63 @@
                                         <rect key="frame" x="0.0" y="160" width="768" height="864"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <containerView contentMode="scaleToFill" id="oOt-VN-Yfy">
-                                                <rect key="frame" x="77" y="50" width="613" height="735"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="MOY-KG-w5O">
+                                                <rect key="frame" x="77" y="65" width="613" height="735"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T2J-Yd-fQE">
+                                                    <size key="itemSize" width="100" height="100"/>
+                                                    <size key="headerReferenceSize" width="50" height="35"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="10"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MCell" id="986-Hn-XyX">
+                                                        <rect key="frame" x="10" y="45" width="100" height="100"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mouseville_icon-152.png" id="Xav-eU-1gl">
+                                                                    <rect key="frame" x="10" y="-1" width="80" height="81"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ni0-aO-iov">
+                                                                    <rect key="frame" x="0.0" y="79" width="100" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                        <connections>
+                                                            <segue destination="DWZ-fF-YUL" kind="push" identifier="passToEachMouse" id="K5W-Zu-tc9"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="0gw-8p-5o5" customClass="MouseCollectionHeader">
+                                                    <rect key="frame" x="0.0" y="0.0" width="613" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LQe-Ib-RWa">
+                                                            <rect key="frame" x="7" y="7" width="527" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <connections>
+                                                        <outlet property="sectionName" destination="LQe-Ib-RWa" id="HcT-v5-cKT"/>
+                                                    </connections>
+                                                </collectionReusableView>
                                                 <connections>
-                                                    <segue destination="qT7-ik-db1" kind="embed" identifier="mouseCollectionSegue" id="bQF-a7-t8T"/>
+                                                    <outlet property="dataSource" destination="ESk-1B-GpQ" id="9Jj-dX-8Tn"/>
+                                                    <outlet property="delegate" destination="ESk-1B-GpQ" id="a0g-nw-Y34"/>
                                                 </connections>
-                                            </containerView>
+                                            </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8oe-J2-uOX">
                                                 <rect key="frame" x="0.0" y="0.0" width="768" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -696,6 +681,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="expandClicked:" destination="ESk-1B-GpQ" eventType="touchUpInside" id="EqM-bl-WPu"/>
+                                                    <action selector="searchMouse:" destination="ESk-1B-GpQ" eventType="touchUpInside" id="7rx-xK-pk2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -812,11 +798,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="btnChooseGenotype" destination="2q5-1B-TcL" id="AFl-Zh-9Xo"/>
-                        <outlet property="containerView" destination="oOt-VN-Yfy" id="8jh-ub-3fz"/>
                         <outlet property="expandButton" destination="8oe-J2-uOX" id="IuH-oh-4Yo"/>
                         <outlet property="genderSegment" destination="c68-tF-oYJ" id="Y0q-xa-SlY"/>
                         <outlet property="label1" destination="0QD-so-bOj" id="9go-oD-O98"/>
                         <outlet property="miceView" destination="1op-Dy-5xj" id="fvV-Sy-Aul"/>
+                        <outlet property="mouseCollection" destination="MOY-KG-w5O" id="rkM-0w-YXD"/>
                         <outlet property="rackCollection" destination="E29-bd-3OH" id="YCX-EZ-JoX"/>
                         <outlet property="rackView" destination="ipo-sR-qJb" id="1ZO-ry-VlX"/>
                         <outlet property="searchDisplayController" destination="GRT-m4-ZI9" id="8kL-oa-xq5"/>

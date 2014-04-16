@@ -15,6 +15,7 @@
 #import "MouseViewController.h"
 #import "Mouse.h"
 #import "SearchMouseSectionsController.h"
+#import "EditMouseViewController.h"
 
 @interface MainViewController ()
 {
@@ -96,14 +97,6 @@
     
     [self.rackCollection reloadData];
     
-    UIMenuItem *renameItem = [[UIMenuItem alloc] initWithTitle:@"Edit" action:@selector(rename:)];
-    UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(delete:)];
-    
-    [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObjects:renameItem, deleteItem, nil]];
-    
-    
-    
-    
     //code for search mouse
     
 
@@ -150,7 +143,11 @@
     [popoverView setIdentifier:@"genotypeDropDown"];
     popoverView.tableView.allowsMultipleSelection = YES;
     
-    /*
+    [self loadMouseDetails:nil ageRange:nil];
+    
+}
+
+-(void) loadMouseDetails : (NSString *)searchMouseText ageRange : (NSArray *) ageRange{
     Rack *tmprack = [[Rack alloc] init];
 	
     NSArray *racks = [tmprack getAllRacks:[self managedObjectContext]];
@@ -195,15 +192,43 @@
     Mouse *mouse = [[Mouse alloc] init];
     
     NSArray *deceasedMouse = [mouse getAllDeceasedMice: [self managedObjectContext]];
-    [self.allMouseDetails addObject:deceasedMouse];
-    [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
-    
+    if([deceasedMouse count] != 0){
+        [self.allMouseDetails addObject:deceasedMouse];
+        [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
+    }
     
     self.filterMouseDetails = self.allMouseDetails;
     NSLog(@"Main view controller %@",self.filterMouseDetails);
-    isViewExpanded = YES;*/
-
+    isViewExpanded = YES;
     
+    
+    UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout *)self.mouseCollection.collectionViewLayout;
+    
+    collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
+    
+    
+    UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCellToDeleteMouse:)];
+    
+    lpr.minimumPressDuration = .5;
+    lpr.delegate = self;
+    
+    [self.mouseCollection addGestureRecognizer:lpr];
+}
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        MouseCollectionHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        NSString *title = [self.sectionTitles objectAtIndex:indexPath.section];
+        headerView.sectionName.text = title;
+        
+        reusableview = headerView;
+    }
+    
+    return reusableview;
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -238,22 +263,41 @@
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    if (collectionView == self.mouseCollection) {
+        return [self.allMouseDetails count];
+    }else{
+        return 1;
+    }
 }
 
 
 -(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rack" forIndexPath:indexPath];
-    UILabel* label = (UILabel*) [cell viewWithTag:3];
-    [label setText:[[self.filteredRacks objectAtIndex:indexPath.row]rack_name]];
-    return cell;
+    if (collectionView == self.mouseCollection) {
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MCell" forIndexPath:indexPath];
+        
+        NSString *labelName = ((MouseDetails *)[[self.allMouseDetails objectAtIndex:indexPath.section] objectAtIndex:indexPath.item]).mouse_name;
+        
+        UILabel *label = (UILabel *) [cell viewWithTag:11];
+        label.text = [NSString stringWithFormat:@"%@",labelName];
+        
+        return cell;
+    }else {
+        UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rack" forIndexPath:indexPath];
+        UILabel* label = (UILabel*) [cell viewWithTag:3];
+        [label setText:[[self.filteredRacks objectAtIndex:indexPath.row]rack_name]];
+        return cell;
+    }
     
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.filteredRacks count];
+    if(collectionView == self.mouseCollection){
+        return [[self.allMouseDetails objectAtIndex:section] count];
+    }else{
+        return [self.filteredRacks count];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -309,42 +353,17 @@
         viewRacksController.viewRackDetails = rackDetailss;
         viewRacksController.rackLabel = rackName;
         viewRacksController.cageDetailsForRack = cageDetailss;
-    }/*else if([segue.identifier isEqualToString:@"mouseCollectionSegue"])
-    { SearchMouseSectionsController *searchMouse = (SearchMouseSectionsController *)segue.destinationViewController;
+    }else if([segue.identifier isEqualToString:@"passToEachMouse"]){
         
-        if (!self.isViewLoaded) {
-           // [self viewDidLoad];
-        }
+        EditMouseViewController *editMouseController = (EditMouseViewController *)segue.destinationViewController;
         
-        searchMouse.filterMouseDetails = self.filterMouseDetails;
-        searchMouse.sectionTitles = self.sectionTitles;
-    }*/
-}
-
-
-
--(void) textDidChange:(id)sender
-{
-    
-    
-    UITextField* searchField = (UITextField *) sender;
-    if (searchField.text == self.searchRacksText.text) {
-        NSLog(@"SEarch %@",self.searchRacksText.text);
-    if(searchField.text.length == 0)
-    {
-        self.isFiltered = FALSE;
-        [self.filteredRacks removeAllObjects];
-        [self.filteredRacks addObjectsFromArray:self.allRacks];
-    }
-    else
-    {
+        NSIndexPath *indexPath = [[self.mouseCollection indexPathsForSelectedItems] objectAtIndex:0];
         
+        MouseDetails *mouseDet = (MouseDetails *)[[self.filterMouseDetails objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        editMouseController.mouse = mouseDet;
         
     }
-    
-    [self.rackCollection reloadData];
-    }
-    
 }
 
 - (IBAction)segmentedAdd:(id)sender {
@@ -412,14 +431,6 @@
     
 }
 
-//Code for search mouse view
-
-
-
-
-
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSString *sectionTitle = [rackSectionTitles objectAtIndex:section];
     NSArray *sectionRacks = [racklist objectForKey:sectionTitle];
@@ -435,29 +446,9 @@
 }
 
 
--(BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
-    if ((action == @selector(delete:)) || (action == @selector(rename:))){
-        return YES;
-    }
-    return NO;
-}
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
-}
-
--(void)rename:(UIMenuController *)menuController{
-    
-}
-
--(void) delete:(id)sender{
-    UICollectionView *collection = (UICollectionView*)[self.rackCollection superview];
-    if ([collection isKindOfClass:[UICollectionView class]]) {
-        id <UICollectionViewDelegate> d = collection.delegate;
-        if ([d respondsToSelector:@selector(collectionView:performAction:forItemAtIndexPath:withSender:)]) {
-            [d collectionView:collection performAction:@selector(delete:) forItemAtIndexPath:[collection indexPathForCell:collection] withSender:sender];
-        }
-    }
 }
 
 - (IBAction)didLongPressCellToDelete:(UILongPressGestureRecognizer*)gesture {
@@ -475,6 +466,34 @@
                                     delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
         [deleteAlert show];
         
+    }
+}
+
+
+- (IBAction)didLongPressCellToDeleteMouse:(UILongPressGestureRecognizer*)gesture {
+    CGPoint tapLocation = [gesture locationInView:self.rackCollection];
+    NSIndexPath *indexPath = [self.rackCollection indexPathForItemAtPoint:tapLocation];
+   
+    if (indexPath && gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"image with index %d to be deleted", indexPath.item);
+        
+        
+        self.deleteMouse = (MouseDetails *)[[self.allMouseDetails objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        NSLog(@" deceased %@",self.deleteMouse.is_deceased);
+        
+        if ([self.deleteMouse.is_deceased isEqualToString:@"Yes"]) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Mouse already deceased" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            
+        }else{
+            
+            UIAlertView *deleteAlert = [[UIAlertView alloc]
+                                        initWithTitle:@"Delete?"
+                                        message:@"Are you sure you want to mark this mouse deceased?"
+                                        delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+            [deleteAlert show];
+        }
     }
 }
 
@@ -500,7 +519,24 @@
 
         [self.rackCollection reloadData];
         [self viewDidLoad];
-    }
+    }/*else {
+        // Do what you need to do to delete the cell
+        Mouse *mouse = [[Mouse alloc] init];
+        NSManagedObjectContext *context = [self managedObjectContext];
+        
+        
+        if ([mouse markMousedDeceased:context mouseDetails:self.deleteMouse]) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse has been deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        else{
+            
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"ERROR!" message:@"Error deleting mouse!!!" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+            
+        }
+        
+    }*/
 }
 - (NSArray *)sectionIndexTilesForTableView:(UITableView *)tableView {
     return rackSectionTitles;
@@ -643,117 +679,7 @@
     
 }
 
-/*
 
--(int) getWeeksFromDate: (NSDate*) date
-{
-    //NSDateFormatter if format error
-    
-    NSDate* currentDate = [[NSDate alloc] init];
-    NSCalendar* gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit;
-    
-    NSDateComponents* components = [gregorian components:unitFlags fromDate:date toDate:currentDate options:0];
-    
-    NSInteger weeks = [components week];
-    
-    int numberOFWeeks = weeks;
-    
-    return numberOFWeeks;
-}
-
-
-- (IBAction)onClick:(id)sender {
-    NSLog(@"Inside search");
-    self.isFiltered = true;
-    [self.filterMouseDetails removeAllObjects];
-    self.filterMouseDetails = [[NSMutableArray alloc] init];
-    
-    NSString *searchText = self.txtSearch.text;
-    float slider1 = self.slider.value;
-    float slider2 = self.slider2.value;
-    NSArray *ageRange = [NSArray arrayWithObjects:[NSNumber numberWithInt:slider1],[NSNumber numberWithInt:slider2],nil];
-    
-    
-    Rack *tmprack = [[Rack alloc] init];
-	
-    NSArray *racks = [tmprack getAllRacks:[self managedObjectContext]];
-    
-    NSMutableArray *eachSection = [[NSMutableArray alloc]init];
-    
-    self.allMouseDetails = [[NSMutableArray  alloc]init];
-    
-    self.sectionTitles = [[NSMutableArray alloc] init];
-    
-    NSArray *labelArray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G", nil];
-    
-    for(RackDetails *rack in racks) {
-        NSString *racktitle = rack.rack_name;
-        for (CageDetails *cage in rack.cages) {
-            
-            NSString *cageName = @"";
-            
-            NSNumber *column = [NSNumber numberWithFloat:([cage.column_id floatValue] - [[ NSNumber numberWithInt:1] floatValue] )];
-            
-            if (cage.cage_name != nil) {
-                cageName = cage.cage_name;
-            }else{
-                cageName = [NSString stringWithFormat:@"%@:%d",[labelArray objectAtIndex:[column intValue]], [cage.row_id intValue]];
-            }
-            
-            for (MouseDetails *mouse in cage.mouseDetails) {
-                
-                if([[mouse genotypes] containsObject:genotype ] &&
-                   ([self getWeeksFromDate:mouse.birth_date]>=[[ageRange firstObject] integerValue] && [self getWeeksFromDate:mouse.birth_date]<=[[ageRange lastObject] integerValue])
-                   && [mouse.mouse_name rangeOfString:searchText].location != NSNotFound)
-                {
-                    [eachSection addObject:mouse];
-                    
-                }
-            }
-            if ([eachSection count] != 0) {
-                
-                [self.allMouseDetails addObject:eachSection];
-                [self.sectionTitles addObject:[NSString stringWithFormat:@"Rack : %@ - Cage : %@", racktitle, cageName]];
-            }
-            
-            eachSection = [[NSMutableArray alloc]init];
-        }
-        
-    }
-    
-    Mouse *mouse = [[Mouse alloc] init];
-    
-    NSArray *deceasedMouse = [mouse getAllDeceasedMice: [self managedObjectContext]];
-    [self.allMouseDetails addObject:deceasedMouse];
-    [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
-    
-    
-    self.filterMouseDetails = self.allMouseDetails;
-    NSLog(@"Main view controller %@",self.filterMouseDetails);
-    
-    
-    
-    
-    
-    
-    
-    // Genotype *genotype =
-    
- 
-    SearchMouseSectionsController *sectionView = (SearchMouseSectionsController *)self.childViewControllers.lastObject;
-    sectionView.filterMouseDetails = self.filterMouseDetails;
-    sectionView.sectionTitles = self.sectionTitles;
-    [sectionView.collectionSectionsView reloadData];
-    
-    
-    
-}*/
-/*
-- (IBAction)searchButtonClicked:(id)sender {
-}
- 
- */
 - (IBAction)searchRacksOnButtnClick:(id)sender {
     if(self.searchRacksText.text.length == 0)
     {
@@ -774,6 +700,25 @@
     }
     
     [self.rackCollection reloadData];
+    
+}
+- (IBAction)searchMouse:(id)sender {
+    
+    NSString *searchTxt = @"";
+    
+    if (self.txtSearch.text) {
+        searchTxt = self.txtSearch.text;
+    }
+    
+    self.isFiltered = true;
+    [self.filterMouseDetails removeAllObjects];
+    self.filterMouseDetails = [[NSMutableArray alloc] init];
+    
+    float slider1 = self.slider.value;
+    float slider2 = self.slider2.value;
+    NSArray *ageRange = [NSArray arrayWithObjects:[NSNumber numberWithInt:slider1],[NSNumber numberWithInt:slider2],nil];
+    
+    [self loadMouseDetails:searchTxt ageRange:ageRange];
     
 }
 @end

@@ -124,15 +124,6 @@
     UILabel *label = (UILabel *) [cell viewWithTag:11];
     label.text = [NSString stringWithFormat:@"%@",labelName];
     
-   // NSLog(@"LAbel %@",label.text);
-    
-    //UIImageView *image = (UIImageView *)[cell viewWithTag:12];
-    //image.image = [UIImage imageNamed:self]
-    
-    //[cell.layer setBorderWidth:1.0f];
-    //[cell.layer setBorderColor:[UIColor blackColor].CGColor];
-    
-    
     return cell;
 }
 
