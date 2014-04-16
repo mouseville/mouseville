@@ -143,11 +143,11 @@
     [popoverView setIdentifier:@"genotypeDropDown"];
     popoverView.tableView.allowsMultipleSelection = YES;
     
-    [self loadMouseDetails:nil ageRange:nil];
+    [self loadMouseDetails ];
     
 }
 
--(void) loadMouseDetails : (NSString *)searchMouseText ageRange : (NSArray *) ageRange{
+-(void) loadMouseDetails{
     Rack *tmprack = [[Rack alloc] init];
 	
     NSArray *racks = [tmprack getAllRacks:[self managedObjectContext]];
@@ -214,6 +214,82 @@
     
     [self.mouseCollection addGestureRecognizer:lpr];
 }
+
+
+-(void) searchMouseDetails : (NSString *)searchMouseText ageRange : (NSArray *) ageRange{
+    Rack *tmprack = [[Rack alloc] init];
+	
+    NSArray *racks = [tmprack getAllRacks:[self managedObjectContext]];
+    
+    NSMutableArray *eachSection = [[NSMutableArray alloc]init];
+    
+    self.allMouseDetails = [[NSMutableArray  alloc]init];
+    
+    self.sectionTitles = [[NSMutableArray alloc] init];
+    
+    NSArray *labelArray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G", nil];
+    
+    Mouse *mouse = [[Mouse alloc]init];
+    
+    NSArray *mouseSearchResult = [mouse miceResult:[self managedObjectContext] mouseName:searchMouseText gender:@"" genotype:@"" weekRange:ageRange];
+    
+    for(RackDetails *rack in racks) {
+        NSString *racktitle = rack.rack_name;
+        for (CageDetails *cage in rack.cages) {
+            
+            NSString *cageName = @"";
+            
+            NSNumber *column = [NSNumber numberWithFloat:([cage.column_id floatValue] - [[ NSNumber numberWithInt:1] floatValue] )];
+            
+            if (cage.cage_name != nil) {
+                cageName = cage.cage_name;
+            }else{
+                cageName = [NSString stringWithFormat:@"%@:%d",[labelArray objectAtIndex:[column intValue]], [cage.row_id intValue]];
+            }
+            
+            for (MouseDetails *mouse in mouseSearchResult) {
+                //NSLog(@"Mouse %@",mouse.mouse_name);
+                if(mouse.cage_id == cage.cage_id && mouse.cageDetails.rack_id == rack.rack_id){
+                    
+                    [eachSection addObject:mouse];
+            
+                }
+            }
+            if ([eachSection count] != 0) {
+                
+                [self.allMouseDetails addObject:eachSection];
+                [self.sectionTitles addObject:[NSString stringWithFormat:@"Rack : %@ - Cage : %@", racktitle, cageName]];
+            }
+            
+            eachSection = [[NSMutableArray alloc]init];
+        }
+        
+    }
+    
+    NSArray *deceasedMouse = [mouse getAllDeceasedMice: [self managedObjectContext]];
+    if([deceasedMouse count] != 0){
+        [self.allMouseDetails addObject:deceasedMouse];
+        [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
+    }
+    
+    self.filterMouseDetails = self.allMouseDetails;
+    NSLog(@"Main view controller %@",self.filterMouseDetails);
+    isViewExpanded = YES;
+    
+    
+    UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout *)self.mouseCollection.collectionViewLayout;
+    
+    collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
+    
+    
+    UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCellToDeleteMouse:)];
+    
+    lpr.minimumPressDuration = .5;
+    lpr.delegate = self;
+    
+    [self.mouseCollection addGestureRecognizer:lpr];
+}
+
 
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -718,7 +794,7 @@
     float slider2 = self.slider2.value;
     NSArray *ageRange = [NSArray arrayWithObjects:[NSNumber numberWithInt:slider1],[NSNumber numberWithInt:slider2],nil];
     
-    [self loadMouseDetails:searchTxt ageRange:ageRange];
+    [self searchMouseDetails:searchTxt ageRange:ageRange];
     
 }
 @end
