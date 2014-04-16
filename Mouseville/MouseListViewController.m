@@ -23,6 +23,8 @@
 
 - (IBAction)addMouse:(id)sender {
     MouseViewController *viewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"mouseController"];
+    
+    viewController.delegate = self;
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
     viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:viewController animated:YES completion:^{viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
@@ -31,6 +33,22 @@
     self.miceArray = [self.currentCage.mouseDetails allObjects];
     [self.tableView reloadData];
 }
+
+
+-(void)reloadDetails
+{
+    // self.miceArray = [self.currentCage.mouseDetails allObjects];
+    Cage* tempCage = [[Cage alloc]init];
+    
+    CageDetails* tempCageDetails = [tempCage getParticularCage:[self managedObjectContext] rack:self.currentCage.rackDetails row:self.currentCage.row_id column:self.currentCage.column_id];
+    
+    self.miceArray = [tempCageDetails.mouseDetails allObjects];
+    
+    [self.tableView reloadData];
+    
+}
+
+
 
 -(NSManagedObjectContext*) managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -50,6 +68,7 @@
     
     
     EditMouseViewController *viewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"editMouseController"];
+    viewController.delegate = self;
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
     viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     

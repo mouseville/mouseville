@@ -10,6 +10,7 @@
 #import  "PopOverViewController.h"
 #import "DatePickerViewController.h"
 #import "Mouse.h"
+#import "RackController.h"
 
 
 @interface EditMouseViewController : UIViewController <DropDownDelegate, UIPopoverControllerDelegate, UITextFieldDelegate>
@@ -36,6 +37,9 @@
 @property NSMutableArray* genotypeMutableArray;
 
 @property MouseDetails* mouse;
+
+@property (nonatomic, assign) id<RackControllerDelegate> delegate;
+
 
 - (IBAction)cancelButtonClick:(id)sender;
 

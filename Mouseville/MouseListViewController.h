@@ -12,8 +12,10 @@
 #import "Mouse.h"
 #import "Rack.h"
 #import "Cage.h"
+#import "RackController.h"
 
-@interface MouseListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,DropDownDelegate>
+
+@interface MouseListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,DropDownDelegate, RackControllerDelegate>
 
 @property (strong, nonatomic) NSArray *miceArray;
 

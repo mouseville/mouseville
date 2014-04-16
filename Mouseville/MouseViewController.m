@@ -428,8 +428,7 @@
 {
     if([alertView.title isEqual:@"Success"])
     {
-        if(buttonIndex==0 || buttonIndex
-          ==1 ){
+        if(buttonIndex==0 || buttonIndex ==1 ){
             
             if([self.delegate respondsToSelector:@selector(reloadDetails)]){
                 [self.delegate reloadDetails];

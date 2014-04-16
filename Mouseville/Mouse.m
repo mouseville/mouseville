@@ -286,7 +286,7 @@
     
     for(MouseDetails* individualMouse in mouseArray)
     {
-        if(individualMouse.cage_id == mouseDetails.cage_id && individualMouse.cage_name == mouseDetails.cage_name && [individualMouse.mouse_name isEqual:mouseDetails.mouse_name])
+        if([individualMouse.cage_id intValue ]== [mouseDetails.cage_id intValue] && [individualMouse.cageDetails.rack_id intValue ] == [mouseDetails.cageDetails.rack_id intValue] && [individualMouse.mouse_name isEqual:mouseDetails.mouse_name])
         {
             mouseToEdit = individualMouse;
         }
