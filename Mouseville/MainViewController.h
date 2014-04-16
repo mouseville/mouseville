@@ -85,5 +85,6 @@
 @property (nonatomic, retain) NSMutableArray *sectionTitles;
 */
 
+- (IBAction)searchRacksOnButtnClick:(id)sender;
 
 @end

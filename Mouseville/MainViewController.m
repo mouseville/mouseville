@@ -321,39 +321,6 @@
     }*/
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
-    
-    NSLog(@"%@",self.searchRacksText.text);
-    NSLog(@"%@",string);
-    
-    
-    
-    if(self.searchRacksText.text.length == 0)
-        {
-            self.isFiltered = NO;
-            [self.filteredRacks removeAllObjects];
-            [self.filteredRacks addObjectsFromArray:self.allRacks];
-        }
-        else
-        {
-            //NSLog(@"Text search");
-            self.isFiltered = YES;
-            [self.filteredRacks removeAllObjects];
-            self.filteredRacks = [[NSMutableArray alloc] init];
-            
-            NSString * searchString = [NSString stringWithFormat:@"%@%@",self.searchRacksText.text,string];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.rack_name contains[c] %@",searchString];
-            self.filteredRacks = [NSMutableArray arrayWithArray:[self.allRacks filteredArrayUsingPredicate:predicate]];
-            
-        }
-        
-        [self.rackCollection reloadData];
-    
-    
-    return YES;
-}
-
 
 
 -(void) textDidChange:(id)sender
@@ -371,13 +338,7 @@
     }
     else
     {
-          NSLog(@"Text search");
-        self.isFiltered = true;
-        [self.filteredRacks removeAllObjects];
-        self.filteredRacks = [[NSMutableArray alloc] init];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.rack_name contains[c] %@",searchField.text];
-        self.filteredRacks = [NSMutableArray arrayWithArray:[self.allRacks filteredArrayUsingPredicate:predicate]];
         
     }
     
@@ -793,4 +754,26 @@
 }
  
  */
+- (IBAction)searchRacksOnButtnClick:(id)sender {
+    if(self.searchRacksText.text.length == 0)
+    {
+        self.isFiltered = NO;
+        [self.filteredRacks removeAllObjects];
+        [self.filteredRacks addObjectsFromArray:self.allRacks];
+    }
+    else
+    {
+        NSLog(@"Text search");
+        self.isFiltered = true;
+        [self.filteredRacks removeAllObjects];
+        self.filteredRacks = [[NSMutableArray alloc] init];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.rack_name contains[c] %@",self.searchRacksText.text];
+        self.filteredRacks = [NSMutableArray arrayWithArray:[self.allRacks filteredArrayUsingPredicate:predicate]];
+        
+    }
+    
+    [self.rackCollection reloadData];
+    
+}
 @end
