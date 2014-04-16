@@ -30,8 +30,9 @@
     [self presentViewController:viewController animated:YES completion:^{viewController.view.superview.frame = CGRectMake(0, 0, 700, 933);
         viewController.view.superview.center = self.view.superview.superview.center;
     }];
-    self.miceArray = [self.currentCage.mouseDetails allObjects];
-    [self.tableView reloadData];
+    
+    //self.miceArray = [self.currentCage.mouseDetails allObjects];
+    // [self.tableView reloadData];
 }
 
 
@@ -41,7 +42,7 @@
     Cage* tempCage = [[Cage alloc]init];
     
     CageDetails* tempCageDetails = [tempCage getParticularCage:[self managedObjectContext] rack:self.currentCage.rackDetails row:self.currentCage.row_id column:self.currentCage.column_id];
-    
+    				
     self.miceArray = [tempCageDetails.mouseDetails allObjects];
     
     [self.tableView reloadData];
@@ -78,7 +79,7 @@
         viewController.view.superview.center = self.view.superview.superview.center;
     }];
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

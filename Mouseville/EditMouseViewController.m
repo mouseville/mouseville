@@ -406,7 +406,7 @@
                 [self.delegate reloadDetails];
             }
             // [[NSNotificationCenter defaultCenter] postNotificationName:@"updateParent" object:nil];
-            [self.presentingViewController dismissViewControllerAnimated:YES completion:^{[self viewDidLoad];}];
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }
     }
 }
