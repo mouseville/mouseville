@@ -78,7 +78,8 @@
     NSDateFormatter *date = [[NSDateFormatter alloc] init];
     [date setDateFormat:@"yyyy.MM.dd"];
     NSString *genotype_str = [Mouse getGenotypeString:mouse];
-    mouseDesc.text = [NSString stringWithFormat:@"%@ / %@",
+    mouseDesc.text = [NSString stringWithFormat:@"%@ / %@ / %@",
+                      mouse.gender,
                       ([genotype_str length] > 0) ? genotype_str : @"No Genotype Info",
                       [date stringFromDate:mouse.birth_date]];
     
