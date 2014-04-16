@@ -11,6 +11,8 @@
 #import "PopOverViewController.h"
 #import "MouseViewController.h"
 #import "RackController.h"
+#import "MouseDetails.h"
+
 @interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, DropDownDelegate,RackControllerDelegate> {
     ViewRacksController *viewRacks ;
 }
@@ -69,10 +71,6 @@
 @property (nonatomic, copy) NSNumber *maxAge;
 @property NSMutableArray* genotypeMutableArray;
 
-@property (weak, nonatomic) IBOutlet UITableView *searchMouseTable;
-
-
-/*
 @property (assign) BOOL isMouseFiltered;
 
 @property (assign) BOOL *isViewLoaded;
@@ -83,8 +81,17 @@
 @property (nonatomic, retain) NSMutableArray *filterMouseDetails;
 
 @property (nonatomic, retain) NSMutableArray *sectionTitles;
-*/
+
 
 - (IBAction)searchRacksOnButtnClick:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UICollectionView *mouseCollection;
+
+
+@property (nonatomic) MouseDetails *deleteMouse;
+
+- (IBAction)searchMouse:(id)sender;
+
 
 @end
