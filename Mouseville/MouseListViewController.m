@@ -107,20 +107,28 @@
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         NSNumber *row = [f numberFromString:[self.currentCageIndex substringFromIndex:1]];
         
+        CageDetails *destCage = [cage_helper getParticularCage:context rack:self.currentCage.rackDetails row:row column:column];
+        
         // make sure we will not have 2 males in the same cage
-        int destCageStatus = [Cage getBreedingStatus:self.currentCage];
+        int destCageStatus = [Cage getBreedingStatus:destCage ];
         if ([self.selectedMouse.gender isEqualToString:@"Male"] && ((destCageStatus == BREEDING) || destCageStatus == MALE_ONLY)) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You attempted to move a male into a cage that already containts a male. This is not allowed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         } else {
         
+            // check is this move will make the destination cage a breeding cage
+            if (([self.selectedMouse.gender isEqualToString:@"Male"] && (destCageStatus == FEMALE_ONLY)) ||
+                ([self.selectedMouse.gender isEqualToString:@"Female"] && (destCageStatus == MALE_ONLY))) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"The destination age has been marked a breeding cage." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
+            
             [cage_helper moveMouseToDifferentCage:context rack:self.currentCage.rackDetails cageDetails:self.currentCage mouseDetails:self.selectedMouse rowToMove:row columnToMove:column];
-        
+                
             self.miceArray = [self.currentCage.mouseDetails allObjects];
-        
+                
             [self.tableView reloadData];
         }
-        
     }
 }
 
