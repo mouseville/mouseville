@@ -9,6 +9,7 @@
 #import "SearchMouseSectionsController.h"
 #import "Rack.h"
 #import "RackDetails.h"
+#import "EditMouseViewController.h"
 
 @interface SearchMouseSectionsController ()
 
@@ -236,6 +237,17 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"passToEachMouse"]){
+        EditMouseViewController *editMouse = (EditMouseViewController *)segue.destinationViewController;
+        NSIndexPath *indexPath = [[self.collectionSectionsView indexPathsForSelectedItems] objectAtIndex:0];
+        MouseDetails *mouseDetails = (MouseDetails *)[[self.sectionMouseDetails objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
+        
+        editMouse.mouse = mouseDetails;
+    }
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"selected button index = %d", buttonIndex);
@@ -246,7 +258,7 @@
         
         
         if ([mouse markMousedDeceased:context mouseDetails:self.deleteMouse]) {
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse has been deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Mouse has been marked deceased" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
         else{
