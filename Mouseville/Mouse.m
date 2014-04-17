@@ -483,17 +483,38 @@
 {
     //NSDateFormatter if format error
     
-    NSDate* currentDate = [[NSDate alloc] init];
-    NSCalendar* gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit;
+//    NSDate* currentDate = [[NSDate alloc] init];
+//    NSCalendar* gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit;
+//    
+//    NSDateComponents* components = [gregorian components:unitFlags fromDate:date toDate:currentDate options:0];
+//    
+//    NSInteger weeks = [components week];
+//    
+//    int numberOFWeeks = weeks;
+//    
+//    return numberOFWeeks;
     
-    NSDateComponents* components = [gregorian components:unitFlags fromDate:date toDate:currentDate options:0];
     
-    NSInteger weeks = [components week];
+    NSDate *fromDate = date;
+    NSDate *toDate = [[NSDate alloc]init];
     
-    int numberOFWeeks = weeks;
+    NSDate* fromDateTime;
+    NSDate* toDateTime;
     
-    return numberOFWeeks;
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDateTime interval:NULL forDate:fromDate];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDateTime interval:NULL forDate:toDate];
+    
+    NSDateComponents* difference = [calendar components:NSDayCalendarUnit fromDate:fromDateTime toDate:toDateTime options:0];
+    
+    int days = [difference day];
+    
+    int weeks = days/7;
+    
+    return weeks;
+    
 }
 
 -(NSNumber*) nextMouseId:(CageDetails *)cageDetails
