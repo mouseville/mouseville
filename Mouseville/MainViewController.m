@@ -14,7 +14,9 @@
 #import "GenotypeManager.h"
 #import "MouseViewController.h"
 #import "Mouse.h"
+#import "UserDetails.h"
 #import "SearchMouseSectionsController.h"
+
 
 @interface MainViewController ()
 {
@@ -89,10 +91,16 @@
     [self.allMouseDetails addObjectsFromArray:allAliveMice];
     [self.allMouseDetails addObjectsFromArray:allDeceasedMice];
     
+    /*
     if([self.allRacks count]==0){
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"Please create a rack to get started!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+        
     [alert show];
     }
+     
+     */
+    
     self.filteredRacks = [NSMutableArray arrayWithCapacity:[self.allRacks count]];
     
     [self.filteredRacks addObjectsFromArray:self.allRacks];
@@ -163,69 +171,47 @@
     popoverView.delegate = self;
     [popoverView setIdentifier:@"genotypeDropDown"];
     popoverView.tableView.allowsMultipleSelection = YES;
+   
     
-    /*
-    Rack *tmprack = [[Rack alloc] init];
-	
-    NSArray *racks = [tmprack getAllRacks:[self managedObjectContext]];
     
-    NSMutableArray *eachSection = [[NSMutableArray alloc]init];
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSEntityDescription* userDetailsEntity = [NSEntityDescription entityForName:@"UserDetails" inManagedObjectContext:context];
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc]init];
+    [fetchRequest setEntity:userDetailsEntity];
     
-    self.allMouseDetails = [[NSMutableArray  alloc]init];
+    NSError *error = nil;
     
-    self.sectionTitles = [[NSMutableArray alloc] init];
+    NSArray* user = [context executeFetchRequest:fetchRequest error:&error];
     
-    NSArray *labelArray = [[NSArray alloc] initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G", nil];
+    if(error)
+    {
+        NSLog(@"Error fetching user details: %@ %@",error,[error localizedDescription]);
+        return;
+    }
     
-    for(RackDetails *rack in racks) {
-        NSString *racktitle = rack.rack_name;
-        for (CageDetails *cage in rack.cages) {
-            
-            NSString *cageName = @"";
-            
-            NSNumber *column = [NSNumber numberWithFloat:([cage.column_id floatValue] - [[ NSNumber numberWithInt:1] floatValue] )];
-            
-            if (cage.cage_name != nil) {
-                cageName = cage.cage_name;
-            }else{
-                cageName = [NSString stringWithFormat:@"%@:%d",[labelArray objectAtIndex:[column intValue]], [cage.row_id intValue]];
-            }
-            
-            for (MouseDetails *mouse in cage.mouseDetails) {
-                //NSLog(@"Mouse %@",mouse.mouse_name);
-                [eachSection addObject:mouse];
-            }
-            if ([eachSection count] != 0) {
-                
-                [self.allMouseDetails addObject:eachSection];
-                [self.sectionTitles addObject:[NSString stringWithFormat:@"Rack : %@ - Cage : %@", racktitle, cageName]];
-            }
-            
-            eachSection = [[NSMutableArray alloc]init];
-        }
+    
+    if([user count] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hello" message:@"Please let us know your name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert setTag:1];
+        [alert show];
         
     }
     
-    Mouse *mouse = [[Mouse alloc] init];
-    
-    NSArray *deceasedMouse = [mouse getAllDeceasedMice: [self managedObjectContext]];
-    [self.allMouseDetails addObject:deceasedMouse];
-    [self.sectionTitles addObject:[NSString stringWithFormat:@"Deceased Mice"]];
-    
-    
-    self.filterMouseDetails = self.allMouseDetails;
-    NSLog(@"Main view controller %@",self.filterMouseDetails);
-    isViewExpanded = YES;*/
+    //[self createTestRack];
+}
+
 
     
-}
+
 
 -(void) viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
     
    //     [self.txtSearch resignFirstResponder];
-   [self viewDidLoad];
+  // [self viewDidLoad];
 
     
     //[self.txtSearch becomeFirstResponder];
@@ -237,7 +223,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self viewDidLoad];
+   // [self viewDidLoad];
 }
 
 
@@ -450,6 +436,16 @@
     [self.filteredRacks addObjectsFromArray:self.allRacks];
     [self.rackCollection reloadData];
     
+    [self reloadMouseArrayDetails];
+    
+    
+    if([self.delegate respondsToSelector:@selector(reloadDetails:allDeceasedMouseDetails:)])
+    {
+        [self.delegate reloadDetails:self.allMouseDetails allDeceasedMouseDetails:self.allDeceasedMouseDetails];
+    }
+
+    
+    
 }
 
 //Code for search mouse view
@@ -513,7 +509,9 @@
                                     initWithTitle:@"Delete?"
                                     message:@"Are you sure you want to delete this rack?"
                                     delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+        [deleteAlert setTag:2];
         [deleteAlert show];
+        
         
     }
 }
@@ -521,7 +519,43 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"selected button index = %d", buttonIndex);
-    if (buttonIndex == 1) {
+    
+    
+    
+
+    
+    
+    if(alertView.tag ==1)
+    {
+    
+       NSManagedObjectContext *context = [self managedObjectContext];
+        UserDetails *userDetails = [NSEntityDescription insertNewObjectForEntityForName:@"UserDetails" inManagedObjectContext:context];
+        
+        userDetails.user_name = [[alertView textFieldAtIndex:0]text];
+        
+        
+        NSError* error = nil;
+        
+        if(![context save:&error])
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        
+     //   [[self Label]setText:userDetails.user_name];
+        
+        
+    }
+    
+    
+    
+    
+    else if (buttonIndex == 1 && alertView.tag ==2)
+    {
+        
+        
+        
+        
         // Do what you need to do to delete the cell
         Rack *rack = [[Rack alloc] init];
         NSManagedObjectContext *context = [self managedObjectContext];
